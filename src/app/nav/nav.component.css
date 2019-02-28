@@ -1,0 +1,14 @@
+mat-sidenav-container, mat-sidenav-content, mat-sidenav {
+    height: 100%;
+}
+
+.logo{
+    height: 50px;
+    width: 70px;
+}
+
+.list {
+    font-size: 1.5rem;
+    padding: .5rem;
+    margin-right: 1.2rem;
+}

@@ -1,0 +1,41 @@
+
+
+
+<mat-toolbar color="primary">
+    <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <div fxFlex fxLayout fxLayoutAlign="flex-end">
+        <img src="../../assets/7v7Logo.png" alt="" class="logo">
+    </div>
+</mat-toolbar>
+
+        <mat-sidenav-container>
+        <mat-sidenav #sidenav role="navigation">
+            <mat-nav-list>
+                <a mat-list-item class="list" routerLink="/matches" (click)="sidenav.toggle()">
+                    <mat-icon>calendar_today</mat-icon>
+                    <span mat-menu-item>Matches</span>
+                </a>
+                <a mat-list-item class="list" routerLink="/teams" (click)="sidenav.toggle()">
+                    <mat-icon>group</mat-icon>
+                    <span mat-menu-item>Teams</span>
+                </a>
+                <a mat-list-item class="list" routerLink="/leagueTable" (click)="sidenav.toggle()">
+                    <mat-icon>format_line_spacing</mat-icon>
+                    <span mat-menu-item>League Table</span>
+                </a>
+                <mat-list-item>
+                    <button mat-icon-button class="list" (click)="onLogout()">
+                        <mat-icon>eject</mat-icon>
+                        <span mat-menu-item>Logout</span>
+                    </button>
+                </mat-list-item>
+            </mat-nav-list>
+        </mat-sidenav>
+
+        <mat-sidenav-content>
+        <!-- Content Here -->
+        <ng-content></ng-content>
+        </mat-sidenav-content>
+</mat-sidenav-container>

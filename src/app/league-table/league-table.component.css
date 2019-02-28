@@ -1,0 +1,10 @@
+.table {
+    height: 500px;
+    width: 500px;
+}
+
+table {
+    height: 100%;
+    width: 700px;
+    font-size: 30px;
+}

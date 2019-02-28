@@ -1,0 +1,26 @@
+<section class="matches" fxLayout fxLayoutAlign="center">
+<mat-card>
+<mat-card-title fxLayoutAlign="center">Create Fixtures</mat-card-title>
+<mat-form-field fxLayoutAlign="center">
+  <mat-select placeholder="Select Team" [(value)]="secondTeam">
+    <mat-option *ngFor="let team of teams" [value]="team.name">
+      {{team.name}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+<mat-form-field fxLayoutAlign="center">
+  <mat-select placeholder="Select Team" [(value)]="firstTeam">
+    <mat-option *ngFor="let team of teams" [value]="team.name">
+      {{team.name}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+<mat-card-actions fxLayoutAlign="center">
+  <button mat-raised-button color="primary" 
+  (click)="openSnackBar(secondTeam, firstTeam)">
+  Add Fixtures
+  </button>
+</mat-card-actions>
+</mat-card>
+<p>{{ secondTeam }}  {{ firstTeam }}</p>
+</section>
