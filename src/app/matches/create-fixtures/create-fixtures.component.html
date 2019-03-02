@@ -1,26 +1,51 @@
 <section class="matches" fxLayout fxLayoutAlign="center">
 <mat-card>
 <mat-card-title fxLayoutAlign="center">Create Fixtures</mat-card-title>
-<mat-form-field fxLayoutAlign="center">
-  <mat-select placeholder="Select Team" [(value)]="secondTeam">
+<form class="form" [formGroup]="fixturesForm" (ngSubmit)="onSubmit()">
+  <mat-form-field fxLayoutAlign="center">
+    <mat-select id="firstTeam" formControlName="firstTeam" placeholder="Select Team" [(value)]="firstTeam">
+      <mat-option *ngFor="let team of teams" [value]="team.name">
+        {{team.name}}
+      </mat-option>
+    </mat-select>
+    <mat-error>
+      Please Choose a Team!
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field fxLayoutAlign="center">
+  <mat-select id="secondTeam" formControlName="secondTeam" placeholder="Select Team" [(value)]="secondTeam">
     <mat-option *ngFor="let team of teams" [value]="team.name">
       {{team.name}}
     </mat-option>
   </mat-select>
-</mat-form-field>
-<mat-form-field fxLayoutAlign="center">
-  <mat-select placeholder="Select Team" [(value)]="firstTeam">
-    <mat-option *ngFor="let team of teams" [value]="team.name">
-      {{team.name}}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
-<mat-card-actions fxLayoutAlign="center">
-  <button mat-raised-button color="primary" 
-  (click)="openSnackBar(secondTeam, firstTeam)">
-  Add Fixtures
-  </button>
-</mat-card-actions>
+  <mat-error>
+    Please Choose a Team!
+  </mat-error>
+  </mat-form-field>
+  <mat-form-field class="full-width">
+    <input id="date" formControlName="date" matInput [matDatepicker]="picker" placeholder="Choose a date">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker touchUi #picker></mat-datepicker>
+    <mat-error>
+      Please Choose a Date!
+    </mat-error>
+  </mat-form-field>
+    <mat-form-field class="full-width">
+      <input id="time" formControlName="time" type="time" matInput placeholder="Match Time " value="">
+      <mat-error>
+        Please Choose a Time!
+      </mat-error>
+    </mat-form-field>
+  <mat-card-actions fxLayoutAlign="center">
+    <button mat-raised-button 
+    color="primary" 
+    type="submit"
+    (click)="openSnackBar(secondTeam, firstTeam)"
+    [disabled]="fixturesForm.invalid">
+      Add Fixtures
+    </button>
+  </mat-card-actions>
+</form>
 </mat-card>
 <p>{{ secondTeam }}  {{ firstTeam }}</p>
 </section>

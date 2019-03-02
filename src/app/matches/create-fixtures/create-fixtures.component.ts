@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Teams } from '../teams';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MAT_DATEPICKER_VALIDATORS } from '@angular/material';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-create-fixtures',
@@ -19,17 +20,30 @@ export class CreateFixturesComponent implements OnInit {
   firstTeam: string;
   secondTeam: string;
 
-  //Validation Needed!
+  //Form Validation
+
+  fixturesForm: FormGroup;
 
   constructor(private snackBar: MatSnackBar) { }
 
+  //success snackbar
   openSnackBar(teamone: string, teamtwo: string) {
     this.snackBar.open('Succesfully Added Fixture: ' + teamone + ' vs ' + teamtwo, 'Close', {
       duration: 3000,
     });
   }
-
+  // Attention:
+  // date needs a better validator to esnure its in correct format
   ngOnInit() {
+    this.fixturesForm = new FormGroup({
+      'firstTeam': new FormControl(null, Validators.required),
+      'secondTeam': new FormControl(null, Validators.required),
+      'date': new FormControl(null, [Validators.required]),
+      'time': new FormControl(null, Validators.required)
+    });
   }
 
+  onSubmit() {
+    console.log(this.fixturesForm);
+  }
 }
