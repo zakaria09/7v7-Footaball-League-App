@@ -3,7 +3,12 @@
 <mat-card-title fxLayoutAlign="center">Create Fixtures</mat-card-title>
 <form class="form" [formGroup]="fixturesForm" (ngSubmit)="onSubmit()">
   <mat-form-field fxLayoutAlign="center">
-    <mat-select id="firstTeam" formControlName="firstTeam" placeholder="Select Team" [(value)]="firstTeam">
+    <mat-select 
+      id="firstTeam" 
+      formControlName="firstTeam" 
+      placeholder="Select Team" 
+      [(value)]="firstTeam"
+      (selectionChange)="setFirstValues(fixturesForm)">
       <mat-option *ngFor="let team of teams" [value]="team.name">
         {{team.name}}
       </mat-option>
@@ -13,8 +18,16 @@
     </mat-error>
   </mat-form-field>
   <mat-form-field fxLayoutAlign="center">
-  <mat-select id="secondTeam" formControlName="secondTeam" placeholder="Select Team" [(value)]="secondTeam">
-    <mat-option *ngFor="let team of teams" [value]="team.name">
+  <mat-select 
+    id="secondTeam" 
+    formControlName="secondTeam" 
+    placeholder="Select Team" 
+    [(value)]="secondTeam"
+    [disabled]="isEmpty()">
+    <mat-option 
+      *ngFor="let team of teams" 
+      [value]="team.name"
+      [disabled]="isSame(team.name)">
       {{team.name}}
     </mat-option>
   </mat-select>
@@ -47,5 +60,5 @@
   </mat-card-actions>
 </form>
 </mat-card>
-<p>{{ secondTeam }}  {{ firstTeam }}</p>
+<!-- <p>{{ secondTeam }}  {{ firstTeam }}</p> -->
 </section>

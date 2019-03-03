@@ -22,6 +22,8 @@ export class CreateFixturesComponent implements OnInit {
 
   //Form Validation
 
+  firstSelections: string = '';
+
   fixturesForm: FormGroup;
 
   constructor(private snackBar: MatSnackBar) { }
@@ -45,5 +47,19 @@ export class CreateFixturesComponent implements OnInit {
 
   onSubmit() {
     console.log(this.fixturesForm);
+  }
+
+  setFirstValues(selectedValue) {
+    this.firstSelections = selectedValue.value.firstTeam;
+  }
+
+  isEmpty() {
+    // returns empty string which is false
+    return this.firstSelections == '';
+  }
+
+  isSame(name) {
+    // returns the first team selected dropdown
+    return this.firstSelections.includes(name);
   }
 }
