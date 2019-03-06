@@ -1,7 +1,7 @@
 <section fxLayout fxLayoutAlign="center" fxLayout="column" class="fixtures">
 <mat-card *ngFor="let match of matches | async">
     <mat-card-title fxLayoutAlign="center">{{ match.firstTeam }} VS {{ match.secondTeam }}</mat-card-title>
-    <mat-card-subtitle fxLayoutAlign="center">Date: {{ match.date | date }}</mat-card-subtitle>
+    <mat-card-subtitle fxLayoutAlign="center">Date: {{ match.date | date : 'fullDate'  : locale }}</mat-card-subtitle>
     <mat-card-subtitle fxLayoutAlign="center">Time: {{ match.time }}</mat-card-subtitle>
 </mat-card>
 </section>
