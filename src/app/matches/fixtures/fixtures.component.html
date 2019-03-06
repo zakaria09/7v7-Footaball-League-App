@@ -1,12 +1,7 @@
 <section fxLayout fxLayoutAlign="center" fxLayout="column" class="fixtures">
-<mat-card>
-    <mat-card-title fxLayoutAlign="center">Rovers FC VS Blatant United</mat-card-title>
-    <mat-card-subtitle fxLayoutAlign="center">Date: Sunday</mat-card-subtitle>
-    <mat-card-subtitle fxLayoutAlign="center">Time: 17:00</mat-card-subtitle>
-</mat-card>
-<mat-card>
-        <mat-card-title fxLayoutAlign="center">Rovers FC VS Blatant United</mat-card-title>
-        <mat-card-subtitle fxLayoutAlign="center">Date: Sunday</mat-card-subtitle>
-        <mat-card-subtitle fxLayoutAlign="center">Time: 17:00</mat-card-subtitle>
+<mat-card *ngFor="let match of matches | async">
+    <mat-card-title fxLayoutAlign="center">{{ match.firstTeam }} VS {{ match.secondTeam }}</mat-card-title>
+    <mat-card-subtitle fxLayoutAlign="center">Date: {{ match.date | date }}</mat-card-subtitle>
+    <mat-card-subtitle fxLayoutAlign="center">Time: {{ match.time }}</mat-card-subtitle>
 </mat-card>
 </section>

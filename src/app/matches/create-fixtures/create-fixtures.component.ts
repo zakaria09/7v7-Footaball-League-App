@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Teams } from '../teams';
 import { MatSnackBar, MAT_DATEPICKER_VALIDATORS } from '@angular/material';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AngularFirestore } from 'angularfire2/firestore';
+import { MatchesService } from '../matches.service';
 
 @Component({
   selector: 'app-create-fixtures',
@@ -26,7 +28,7 @@ export class CreateFixturesComponent implements OnInit {
 
   fixturesForm: FormGroup;
 
-  constructor(private snackBar: MatSnackBar) { }
+  constructor(private snackBar: MatSnackBar, private matchesService: MatchesService) { }
 
   //success snackbar
   openSnackBar(teamone: string, teamtwo: string) {
@@ -42,11 +44,12 @@ export class CreateFixturesComponent implements OnInit {
       'secondTeam': new FormControl(null, Validators.required),
       'date': new FormControl(null, [Validators.required]),
       'time': new FormControl(null, Validators.required)
-    });
+    }); 
   }
 
-  onSubmit() {
-    console.log(this.fixturesForm);
+  onSubmit(value) {
+    console.log(this.fixturesForm.value.date);
+    this.matchesService.createMatches(value.value);
   }
 
   setFirstValues(selectedValue) {

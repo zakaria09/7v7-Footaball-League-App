@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { MatchesService } from '../matches.service';
 
 @Component({
   selector: 'app-fixtures',
@@ -6,10 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./fixtures.component.css']
 })
 export class FixturesComponent implements OnInit {
+  matches: Observable<any>;
 
-  constructor() { }
+  constructor(private games: MatchesService) { }
 
   ngOnInit() {
+    this.matches = this.games.fetchMatches();
   }
 
 }

@@ -1,7 +1,7 @@
 <section class="matches" fxLayout fxLayoutAlign="center">
 <mat-card>
 <mat-card-title fxLayoutAlign="center">Create Fixtures</mat-card-title>
-<form class="form" [formGroup]="fixturesForm" (ngSubmit)="onSubmit()">
+<form class="form" [formGroup]="fixturesForm" (ngSubmit)="onSubmit(fixturesForm)">
   <mat-form-field fxLayoutAlign="center">
     <mat-select 
       id="firstTeam" 
