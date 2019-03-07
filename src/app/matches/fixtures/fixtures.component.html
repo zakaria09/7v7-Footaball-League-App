@@ -1,7 +1,9 @@
 <section fxLayout fxLayoutAlign="center" fxLayout="column" class="fixtures">
-<mat-card *ngFor="let match of matches | async">
-    <mat-card-title fxLayoutAlign="center">{{ match.firstTeam }} VS {{ match.secondTeam }}</mat-card-title>
-    <mat-card-subtitle fxLayoutAlign="center">Date: {{ match.date | date : 'fullDate'  : locale }}</mat-card-subtitle>
-    <mat-card-subtitle fxLayoutAlign="center">Time: {{ match.time }}</mat-card-subtitle>
+<mat-card *ngFor="let match of matches | async" (value)="match.id">
+    <mat-card-title fxLayoutAlign="center">{{ match.firstTeam }} V {{ match.secondTeam }}</mat-card-title>
+    <mat-card-subtitle fxLayoutAlign="center">{{ match.date | date : 'fullDate'  : locale }}</mat-card-subtitle>
+    <mat-card-subtitle fxLayoutAlign="center">{{ match.time }}</mat-card-subtitle>
+    <button mat-button color="warn" (click)="deleteFixture(match.id)"><mat-icon>delete</mat-icon></button>
+    <button mat-fab class="addscore"><mat-icon>add</mat-icon></button>
 </mat-card>
 </section>

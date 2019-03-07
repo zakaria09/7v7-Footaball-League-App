@@ -19,9 +19,8 @@ export class MatchesService {
 
 
     fetchMatches() {
-        return this.db
-            .collection('matches')
-            .valueChanges()
+        this.matches = this.db.collection('matches').snapshotChanges();
+        return this.matches;
     }
 
     createMatches(value) {
@@ -31,5 +30,9 @@ export class MatchesService {
             date: this.datePipe.transform(value.date, 'yyyy-MM-dd'),
             time: value.time
         });
+    }
+
+    deleteFixtures(key) {
+        return this.db.collection('matches').doc(key).delete();
     }
 }

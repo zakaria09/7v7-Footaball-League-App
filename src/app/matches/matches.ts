@@ -1,4 +1,5 @@
 export interface Matches {
+    id: string;
     firstTeam: string;
     secondTeam: string;
     date: string;
