@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { MatchesService } from '../matches.service';
-import 'rxjs/add/operator/map'
+import { map } from 'rxjs/operators';
 import { Matches } from '../matches';
 
 @Component({
@@ -23,14 +23,14 @@ export class FixturesComponent implements OnInit {
     console.log(this.games.fetchMatches());
     this.matches = this.games
       .fetchMatches()
-      .map(docArray => {
+      .pipe(map(docArray => {
         return docArray.map(doc => {
           return {
             id: doc.payload.doc.id,
             ...doc.payload.doc.data()
           }
         })
-      })
+      }))
 
   }
 

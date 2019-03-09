@@ -6,7 +6,7 @@ import {
 import { Observable } from 'rxjs';
 import { Matches } from './matches';
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs/Subject';
+import { Subject } from 'rxjs';
 import { DatePipe } from '@angular/common';
 
 @Injectable() // Whats the point??
