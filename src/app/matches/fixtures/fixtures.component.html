@@ -3,7 +3,7 @@
     <mat-card-title fxLayoutAlign="center">{{ match.firstTeam }} V {{ match.secondTeam }}</mat-card-title>
     <mat-card-subtitle fxLayoutAlign="center">{{ match.date | date : 'fullDate'  : locale }}</mat-card-subtitle>
     <mat-card-subtitle fxLayoutAlign="center">{{ match.time }}</mat-card-subtitle>
-    <button mat-button color="warn" (click)="deleteFixture(match.id)"><mat-icon>delete</mat-icon></button>
-    <button mat-fab class="addscore"><mat-icon>add</mat-icon></button>
+    <button mat-button color="warn" matTooltip="Delete This Fixture" (click)="deleteFixture(match.id)"><mat-icon>delete</mat-icon></button>
+    <button mat-fab matTooltip="Add The Final Score" class="addscore" (click)="openDialog(match.firstTeam, match.secondTeam)"><mat-icon>add</mat-icon></button>
 </mat-card>
 </section>

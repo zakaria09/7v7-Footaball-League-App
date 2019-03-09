@@ -21,6 +21,7 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { environment } from 'src/environments/environment';
 import { MatchesService } from './matches/matches.service'
 import { DatePipe } from '@angular/common';
+import { ScoresModalComponent } from './matches/scores-modal/scores-modal.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { DatePipe } from '@angular/common';
     ScoresComponent,
     TeamsComponent,
     LeagueTableComponent,
+    ScoresModalComponent
   ],
   imports: [
     BrowserModule,
@@ -45,9 +47,10 @@ import { DatePipe } from '@angular/common';
   ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'en-GB'},
-    MatchesService,
-    DatePipe
+    MatchesService, 
+    DatePipe,
   ],
+  entryComponents: [ScoresModalComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
