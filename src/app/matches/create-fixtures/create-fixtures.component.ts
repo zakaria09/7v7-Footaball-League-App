@@ -36,8 +36,7 @@ export class CreateFixturesComponent implements OnInit {
       duration: 3000,
     });
   }
-  // Attention:
-  // date needs a better validator to esnure its in correct format
+
   ngOnInit() {
     this.fixturesForm = new FormGroup({
       'firstTeam': new FormControl(null, Validators.required),

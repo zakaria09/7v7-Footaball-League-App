@@ -1,12 +1,41 @@
-<mat-dialog-content>
-  <form class="container" [formGroup]="myForm" (ngSubmit)="update()">
+<mat-dialog-content 
+  fxLayout 
+  class="scores" 
+  fxLayoutAlign="center">
+  <form 
+    class="container" 
+    [formGroup]="scoresForm" 
+    (ngSubmit)="onSubmit(scoresForm)"
+    fxLayoutAlign="center"
+    fxLayout="column">
       <mat-label>{{ passedData.team1 }}    </mat-label>
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="Goals" type="number">
+    <mat-form-field 
+      class="example-full-width" 
+      mat-dialog-content>
+      <input 
+        matInput 
+        placeholder="Goals" 
+        type="number"
+        min=0
+        formControlName="firstTeamGoals">
     </mat-form-field>
       <mat-label>{{ passedData.team2 }}    </mat-label>
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="Goals" type="number">
+    <mat-form-field 
+      class="example-full-width" 
+      mat-dialog-content>
+      <input 
+        matInput 
+        placeholder="Goals" 
+        type="number"
+        min=0
+        formControlName="secondTeamGoals">
     </mat-form-field>
+    <button 
+      mat-raised-button 
+      color="primary" 
+      type="submit"
+      [disabled]="scoresForm.invalid">
+      Add Final Score
+    </button>
   </form>
 </mat-dialog-content>

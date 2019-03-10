@@ -36,7 +36,12 @@
   </mat-error>
   </mat-form-field>
   <mat-form-field class="full-width">
-    <input id="date" formControlName="date" matInput [matDatepicker]="picker" placeholder="Choose a date">
+    <input 
+      id="date" 
+      formControlName="date" 
+      matInput 
+      [matDatepicker]="picker" 
+      placeholder="Choose a date">
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker touchUi #picker></mat-datepicker>
     <mat-error>
@@ -44,17 +49,23 @@
     </mat-error>
   </mat-form-field>
     <mat-form-field class="full-width">
-      <input id="time" formControlName="time" type="time" matInput placeholder="Match Time " value="">
+      <input 
+        id="time" 
+        formControlName="time" 
+        type="time" 
+        matInput 
+        placeholder="Match Time" 
+        value="">
       <mat-error>
         Please Choose a Time!
       </mat-error>
     </mat-form-field>
   <mat-card-actions fxLayoutAlign="center">
     <button mat-raised-button 
-    color="primary" 
-    type="submit"
-    (click)="openSnackBar(secondTeam, firstTeam)"
-    [disabled]="fixturesForm.invalid">
+      color="primary" 
+      type="submit"
+      (click)="openSnackBar(secondTeam, firstTeam)"
+      [disabled]="fixturesForm.invalid">
       Add Fixtures
     </button>
   </mat-card-actions>

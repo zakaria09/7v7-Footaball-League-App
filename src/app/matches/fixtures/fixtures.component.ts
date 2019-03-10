@@ -51,7 +51,7 @@ export class FixturesComponent implements OnInit {
   openDialog(team1, team2) {
     console.log(this.matches)
     this.dialog.open(ScoresModalComponent, {
-      width: '60%',
+      width: '70%',
       autoFocus: true,
       data: {
         team1: team1,
