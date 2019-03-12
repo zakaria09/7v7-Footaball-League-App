@@ -13,10 +13,11 @@ import { MatchesService } from '../matches.service';
 export class CreateFixturesComponent implements OnInit {
 
   teams: Teams[] = [
-    {name: 'team 1'},
-    {name: 'team 2'},
-    {name: 'team 3'},
-    {name: 'team 4'}
+    {name: 'Intercontinetal FC'},
+    {name: 'Teenage Mutant Ninja Skirtles'},
+    {name: 'Harlem Spartans FC'},
+    {name: 'Lakehay FC'},
+    {name: 'Leather Jacket FC'},
   ];
 
   firstTeam: string;

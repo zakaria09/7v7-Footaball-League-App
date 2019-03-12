@@ -13,7 +13,8 @@ import { DatePipe } from '@angular/common';
 export class MatchesService {
     matchesAdded = new Subject<Matches[]>();
     matches: Observable<any>;
-    private currentFixtures: Matches[] = [];
+    
+    scores: Observable<any>;
 
     constructor(private db: AngularFirestore, private datePipe: DatePipe) {}
 
@@ -29,6 +30,13 @@ export class MatchesService {
             secondTeam: value.secondTeam,
             date: this.datePipe.transform(value.date, 'yyyy-MM-dd'),
             time: value.time
+        });
+    }
+
+    addScores(value, id) {
+        return this.db.collection('matches').doc(id).update({
+            firstTeamGoals: value.firstTeamGoals,
+            secondTeamGoals: value.secondTeamGoals
         });
     }
 

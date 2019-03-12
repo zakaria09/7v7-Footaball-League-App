@@ -5,5 +5,7 @@ export interface Matches {
     date: string;
     time: string;
     winner?: string;
-    draw?: boolean
+    draw?: boolean;
+    firstTeamGoals?: number;
+    secondTeamGoals?: number;
 }

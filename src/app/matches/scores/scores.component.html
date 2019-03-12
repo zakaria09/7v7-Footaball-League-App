@@ -1,12 +1,9 @@
 <section fxLayout fxLayoutAlign="center" class="scores" fxLayout="column">
-    <mat-card role="group">
-        <mat-card-title fxLayoutAlign="center">Rovers FC 3 - 4 Blatant United</mat-card-title>
-        <mat-card-subtitle fxLayoutAlign="center">Date: Sunday</mat-card-subtitle>
-        <mat-card-subtitle fxLayoutAlign="center">Time: 17:00</mat-card-subtitle>
-    </mat-card>
-    <mat-card role="group">
-            <mat-card-title fxLayoutAlign="center">Rovers FC 3 - 4 Blatant United</mat-card-title>
-            <mat-card-subtitle fxLayoutAlign="center">Date: Sunday</mat-card-subtitle>
-            <mat-card-subtitle fxLayoutAlign="center">Time: 17:00</mat-card-subtitle>
+    <mat-card *ngFor="let score of scores | async" role="group">
+        <div *ngIf="!(score.firstTeamGoals == null && score.secondTeamGoals == null)">
+            <mat-card-title fxLayoutAlign="center">{{ score.firstTeam | titlecase }} {{ score.firstTeamGoals }} - {{ score.secondTeamGoals }} {{ score.secondTeam | titlecase }}</mat-card-title>
+            <mat-card-subtitle fxLayoutAlign="center">{{ score.date | date : 'fullDate'  : locale }}</mat-card-subtitle>
+            <mat-card-subtitle fxLayoutAlign="center">{{ score.time }}</mat-card-subtitle>
+        </div>
     </mat-card>
 </section>

@@ -17,9 +17,6 @@ export class FixturesComponent implements OnInit {
   // exactly in that format
   matches: Observable<Matches[]>;
   items: Array<any>;
-  value;
-  team1 = '';
-  team2 = '';
 
   constructor(private games: MatchesService,
               private dialog: MatDialog) { }
@@ -48,12 +45,13 @@ export class FixturesComponent implements OnInit {
     this.games.deleteFixtures(item);
   }
 
-  openDialog(team1, team2) {
+  openDialog(team1, team2, id) {
     console.log(this.matches)
     this.dialog.open(ScoresModalComponent, {
       width: '70%',
       autoFocus: true,
       data: {
+        id: id,
         team1: team1,
         team2: team2
       }

@@ -5,7 +5,7 @@
   <form 
     class="container" 
     [formGroup]="scoresForm" 
-    (ngSubmit)="onSubmit(scoresForm)"
+    (ngSubmit)="onSubmit(scoresForm, passedData.id)"
     fxLayoutAlign="center"
     fxLayout="column">
       <mat-label>{{ passedData.team1 }}    </mat-label>
