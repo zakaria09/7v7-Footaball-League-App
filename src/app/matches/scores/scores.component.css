@@ -1,0 +1,8 @@
+mat-card {
+    border: 1px #A6A5A6 solid;
+    padding: 2rem;
+}
+
+mat-card-title, mat-card-subtitle {
+    padding: 1rem;
+}

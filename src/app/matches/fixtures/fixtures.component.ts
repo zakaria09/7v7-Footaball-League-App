@@ -39,10 +39,8 @@ export class FixturesComponent implements OnInit {
 
   }
 
-  deleteFixture(item) {
-    // add yes or no option
-    alert('Are You Sure Yoou Want to Delete This Fixture?');
-    this.games.deleteFixtures(item);
+  deleteFixture(id) {
+    this.games.deleteMatch(id);
   }
 
   openDialog(team1, team2, id) {

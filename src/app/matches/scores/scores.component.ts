@@ -31,4 +31,7 @@ export class ScoresComponent implements OnInit {
     })
   }
 
+  deleteFixture(id) {
+    this.matches.deleteMatch(id);
+  }
 }

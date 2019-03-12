@@ -19,17 +19,18 @@ export class ScoresModalComponent implements OnInit {
     this.scoresForm = new FormGroup({
       'firstTeamGoals': new FormControl('', [
         Validators.required,
-        //Validators.pattern("^[0-9]*"),
+        Validators.pattern("^[0-9]*"),
       ]),
       'secondTeamGoals': new FormControl('', [
         Validators.required,
-        //Validators.pattern("^[0-9]*"),
+        Validators.pattern("^[0-9]*"),
       ]),
     })
   }
 
   onSubmit(scoresForm, id) {
-    console.log('form', scoresForm.value, 'id', id)
+    console.log('form', scoresForm.value, 'id', id);
     this.matchesService.addScores(scoresForm.value, id);
+    this.scoresForm.reset();
   }
 }

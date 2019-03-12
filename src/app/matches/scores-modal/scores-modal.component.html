@@ -18,6 +18,9 @@
         type="number"
         min=0
         formControlName="firstTeamGoals">
+        <mat-error>
+            Please Add a score - ONLY accepts numbers
+        </mat-error>
     </mat-form-field>
       <mat-label>{{ passedData.team2 }}    </mat-label>
     <mat-form-field 
@@ -29,6 +32,9 @@
         type="number"
         min=0
         formControlName="secondTeamGoals">
+        <mat-error>
+            Please Add a score - ONLY accepts numbers
+        </mat-error>
     </mat-form-field>
     <button 
       mat-raised-button 

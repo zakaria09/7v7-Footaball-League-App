@@ -40,7 +40,9 @@ export class MatchesService {
         });
     }
 
-    deleteFixtures(key) {
+    deleteMatch(key) {
+        // add yes or no option
+        alert('Are You Sure Yoou Want to Delete This?');
         return this.db.collection('matches').doc(key).delete();
     }
 }

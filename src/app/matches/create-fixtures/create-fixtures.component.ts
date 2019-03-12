@@ -47,9 +47,22 @@ export class CreateFixturesComponent implements OnInit {
     }); 
   }
 
+  resetCreateFixtures() {
+    this.fixturesForm.setValue({
+      firstTeam: '',
+      secondTeam: '',
+      date: '',
+      time: ''
+    });
+  }
+
   onSubmit(value) {
-    console.log(this.fixturesForm.value.date);
-    this.matchesService.createMatches(value.value);
+    if(!this.fixturesForm.invalid) {
+      console.log(this.fixturesForm.value.date);
+      this.matchesService.createMatches(value.value);
+      this.resetCreateFixtures();
+      this.fixturesForm.reset();
+    }
   }
 
   setFirstValues(selectedValue) {

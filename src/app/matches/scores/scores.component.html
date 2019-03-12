@@ -1,9 +1,10 @@
 <section fxLayout fxLayoutAlign="center" class="scores" fxLayout="column">
-    <mat-card *ngFor="let score of scores | async" role="group">
-        <div *ngIf="!(score.firstTeamGoals == null && score.secondTeamGoals == null)">
+    <div *ngFor="let score of scores | async"> 
+        <mat-card *ngIf="!(score.firstTeamGoals == null && score.secondTeamGoals == null)" role="group">
             <mat-card-title fxLayoutAlign="center">{{ score.firstTeam | titlecase }} {{ score.firstTeamGoals }} - {{ score.secondTeamGoals }} {{ score.secondTeam | titlecase }}</mat-card-title>
             <mat-card-subtitle fxLayoutAlign="center">{{ score.date | date : 'fullDate'  : locale }}</mat-card-subtitle>
             <mat-card-subtitle fxLayoutAlign="center">{{ score.time }}</mat-card-subtitle>
-        </div>
-    </mat-card>
+            <button mat-button color="warn" matTooltip="Delete This Fixture" (click)="deleteFixture(score.id)"><mat-icon>delete</mat-icon></button>
+        </mat-card>
+    </div>
 </section>
