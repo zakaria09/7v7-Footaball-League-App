@@ -13,7 +13,7 @@ $candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent, $candy-
 
 @include angular-material-theme($candy-app-theme);
 
-$alt-app-primary: mat-palette($mat-grey, 900);
+$alt-app-primary: mat-palette($mat-grey, 900, 50, 100);
 $alt-app-accent:  mat-palette($mat-green, 400, 700);
 
 // The warn palette is optional (defaults to red).

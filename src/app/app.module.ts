@@ -23,6 +23,7 @@ import { MatchesService } from './matches/matches.service'
 import { DatePipe } from '@angular/common';
 import { ScoresModalComponent } from './matches/scores-modal/scores-modal.component';
 import { SettingsComponent } from './settings/settings.component';
+import { ThemeService } from './theme.service'
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { SettingsComponent } from './settings/settings.component';
     {provide: MAT_DATE_LOCALE, useValue: 'en-GB'},
     MatchesService, 
     DatePipe,
+    ThemeService
   ],
   entryComponents: [ScoresModalComponent],
   bootstrap: [AppComponent]

@@ -1,3 +1,8 @@
-<div>
-    <button (toggleTheme)="changeTheme()" mat-raised-button>Change Theme</button>
-</div>
+<section fxLayout fxLayoutAlign="center">
+    <mat-card class="setting">
+        <mat-card-title fxLayoutAlign="center">Settings</mat-card-title>
+        <mat-card-actions fxLayoutAlign="center">
+            <button (click)="newTheme()" color="primary" mat-raised-button>Toggle Night Mode</button>
+        </mat-card-actions>
+    </mat-card>
+</section>

@@ -1,4 +1,5 @@
-import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
+import { ThemeService } from './theme.service';
 
 @Component({
   selector: 'app-root',
@@ -6,17 +7,9 @@ import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  otherTheme: boolean;
 
-  otherTheme: boolean = false
-
-  @Output() toggleTheme = new EventEmitter<boolean>();
-
-  changeTheme() {
-    this.otherTheme = !this.otherTheme;
-  }
-
-  newTheme() {
-    // emit the event
-    this.toggleTheme.emit(this.otherTheme = true);
+  constructor(public themeService: ThemeService) {
+    this.themeService.currentTheme.subscribe(theme => this.otherTheme = theme);
   }
 }
