@@ -3,6 +3,8 @@ import { MatchesService } from '../matches.service';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { Matches } from '../matches';
+import { MatDialog } from '@angular/material';
+import { ScoresModalComponent } from '../scores-modal/scores-modal.component';
 
 @Component({
   selector: 'app-scores',
@@ -12,7 +14,8 @@ import { Matches } from '../matches';
 export class ScoresComponent implements OnInit {
   scores: Observable<Matches[]>;
 
-  constructor(private matches: MatchesService) { }
+  constructor(private matches: MatchesService,
+              private dialog: MatDialog) { }
 
   ngOnInit() {
     console.log(this.matches.fetchMatches());
@@ -31,7 +34,19 @@ export class ScoresComponent implements OnInit {
     })
   }
 
-  deleteFixture(id) {
+  deleteScore(id) {
     this.matches.deleteMatch(id);
   }
+
+  editScore(team1, team2, id) {
+      this.dialog.open(ScoresModalComponent, {
+        width: '70%',
+        autoFocus: true,
+        data: {
+          id: id,
+          team1: team1,
+          team2: team2
+        }
+      });
+    }
 }

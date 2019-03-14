@@ -22,6 +22,7 @@ import { environment } from 'src/environments/environment';
 import { MatchesService } from './matches/matches.service'
 import { DatePipe } from '@angular/common';
 import { ScoresModalComponent } from './matches/scores-modal/scores-modal.component';
+import { SettingsComponent } from './settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ScoresModalComponent } from './matches/scores-modal/scores-modal.compon
     ScoresComponent,
     TeamsComponent,
     LeagueTableComponent,
-    ScoresModalComponent
+    ScoresModalComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,

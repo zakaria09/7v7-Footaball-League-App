@@ -4,7 +4,8 @@
             <mat-card-title fxLayoutAlign="center">{{ score.firstTeam | titlecase }} {{ score.firstTeamGoals }} - {{ score.secondTeamGoals }} {{ score.secondTeam | titlecase }}</mat-card-title>
             <mat-card-subtitle fxLayoutAlign="center">{{ score.date | date : 'fullDate'  : locale }}</mat-card-subtitle>
             <mat-card-subtitle fxLayoutAlign="center">{{ score.time }}</mat-card-subtitle>
-            <button mat-button color="warn" matTooltip="Delete This Fixture" (click)="deleteFixture(score.id)"><mat-icon>delete</mat-icon></button>
+            <button mat-button color="warn" matTooltip="Delete" (click)="deleteScore(score.id)"><mat-icon>delete</mat-icon></button>
+            <button mat-button color="accent" matTooltip="Edit" (click)="editScore(score.firstTeam, score.secondTeam,score.id)"><mat-icon>edit</mat-icon></button>
         </mat-card>
     </div>
 </section>

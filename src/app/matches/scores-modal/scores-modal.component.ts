@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatchesService } from '../matches.service';
 
@@ -13,7 +13,8 @@ export class ScoresModalComponent implements OnInit {
   scoresForm: FormGroup;
 
   constructor(@Inject(MAT_DIALOG_DATA) public passedData: any, 
-              private matchesService: MatchesService) { }
+              private matchesService: MatchesService,
+              public dialogRef: MatDialogRef<ScoresModalComponent>) { }
 
   ngOnInit() {
     this.scoresForm = new FormGroup({
@@ -32,5 +33,6 @@ export class ScoresModalComponent implements OnInit {
     console.log('form', scoresForm.value, 'id', id);
     this.matchesService.addScores(scoresForm.value, id);
     this.scoresForm.reset();
+    this.dialogRef.close();
   }
 }

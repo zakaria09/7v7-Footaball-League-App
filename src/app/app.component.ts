@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +6,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+
+  otherTheme: boolean = false
+
+  @Output() toggleTheme = new EventEmitter<boolean>();
+
+  changeTheme() {
+    this.otherTheme = !this.otherTheme;
+  }
+
+  newTheme() {
+    // emit the event
+    this.toggleTheme.emit(this.otherTheme = true);
+  }
 }
