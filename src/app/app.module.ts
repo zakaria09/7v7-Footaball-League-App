@@ -23,7 +23,10 @@ import { MatchesService } from './matches/matches.service'
 import { DatePipe } from '@angular/common';
 import { ScoresModalComponent } from './matches/scores-modal/scores-modal.component';
 import { SettingsComponent } from './settings/settings.component';
-import { ThemeService } from './theme.service'
+import { ThemeService } from './shared/theme.service'
+import { CreateTeamComponent } from './teams/create-team/create-team.component';
+import { ViewTeamsComponent } from './teams/view-teams/view-teams.component'
+import { TeamService } from './shared/team.service'
 
 @NgModule({
   declarations: [
@@ -36,7 +39,9 @@ import { ThemeService } from './theme.service'
     TeamsComponent,
     LeagueTableComponent,
     ScoresModalComponent,
-    SettingsComponent
+    SettingsComponent,
+    CreateTeamComponent,
+    ViewTeamsComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +57,8 @@ import { ThemeService } from './theme.service'
     {provide: MAT_DATE_LOCALE, useValue: 'en-GB'},
     MatchesService, 
     DatePipe,
-    ThemeService
+    ThemeService,
+    TeamService
   ],
   entryComponents: [ScoresModalComponent],
   bootstrap: [AppComponent]

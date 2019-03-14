@@ -9,7 +9,7 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { DatePipe } from '@angular/common';
 
-@Injectable() // Whats the point??
+@Injectable() // to inject
 export class MatchesService {
     matchesAdded = new Subject<Matches[]>();
     matches: Observable<any>;

@@ -1,0 +1,35 @@
+<section class="matches" fxLayout fxLayoutAlign="center">
+  <mat-card>
+  <mat-card-title fxLayoutAlign="center">Create Team</mat-card-title>
+  <form class="form" [formGroup]="teamForm" (ngSubmit)="onSubmit(teamForm)">
+    <mat-form-field class="full-width">
+      <input
+        placeholder="Team Name"
+        formControlName="teamName"
+        matInput
+        value="">
+      <mat-error>
+        Please Choose a Team Name!
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field fxLayoutAlign="center">
+    <mat-select>
+      <mat-option>
+        options
+      </mat-option>
+    </mat-select>
+    <mat-error>
+        Please Choose Players!
+      </mat-error>
+    </mat-form-field>
+    <mat-card-actions fxLayoutAlign="center">
+      <button 
+        mat-raised-button 
+        color="primary"
+        [disabled]="teamForm.invalid">
+        Create Team
+      </button>
+    </mat-card-actions>
+  </form>
+  </mat-card>
+  </section>

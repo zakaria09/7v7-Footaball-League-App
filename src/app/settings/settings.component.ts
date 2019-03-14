@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
-import { ThemeService } from '../theme.service';
+import { ThemeService } from '../shared/theme.service';
 
 @Component({
   selector: 'app-settings',
