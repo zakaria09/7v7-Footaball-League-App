@@ -8,6 +8,7 @@ import { Subject } from 'rxjs';
 @Injectable()
 export class TeamService {
     teamsAdded = new Subject<any>();
+    teams: Observable<any>;
 
     constructor(private db: AngularFirestore) {}
 
@@ -15,5 +16,12 @@ export class TeamService {
         return this.db.collection('teams').add({
             teamName: team.teamName
         });
+    }
+
+    fetchTeams() {
+        this.teams = this.db
+                        .collection('teams')
+                        .snapshotChanges();
+        return this.teams;
     }
 }

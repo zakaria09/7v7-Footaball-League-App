@@ -9,8 +9,10 @@
       placeholder="Select Team" 
       [(value)]="firstTeam"
       (selectionChange)="setFirstValues(fixturesForm)">
-      <mat-option *ngFor="let team of teams" [value]="team.name">
-        {{team.name}}
+      <mat-option 
+        *ngFor="let team of teams | async" 
+        [value]="team.teamName">
+        {{team.teamName}}
       </mat-option>
     </mat-select>
     <mat-error>
@@ -25,10 +27,10 @@
     [(value)]="secondTeam"
     [disabled]="isEmpty()">
     <mat-option 
-      *ngFor="let team of teams" 
-      [value]="team.name"
-      [disabled]="isSame(team.name)">
-      {{team.name}}
+      *ngFor="let team of teams | async" 
+      [value]="team.teamName"
+      [disabled]="isSame(team.teamName)">
+      {{team.teamName}}
     </mat-option>
   </mat-select>
   <mat-error>

@@ -16,7 +16,7 @@ export class FixturesComponent implements OnInit {
   // because th objects returned are 
   // exactly in that format
   matches: Observable<Matches[]>;
-  items: Array<any>;
+  //items: Array<any>;
 
   constructor(private games: MatchesService,
               private dialog: MatDialog) { }

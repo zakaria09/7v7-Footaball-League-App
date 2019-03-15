@@ -4,6 +4,9 @@ import { MatSnackBar, MAT_DATEPICKER_VALIDATORS } from '@angular/material';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { MatchesService } from '../matches.service';
+import { Observable } from 'rxjs';
+import { TeamService } from 'src/app/shared/team.service';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-create-fixtures',
@@ -12,13 +15,13 @@ import { MatchesService } from '../matches.service';
 })
 export class CreateFixturesComponent implements OnInit {
 
-  teams: Teams[] = [
+/*   teams: Teams[] = [
     {name: 'Intercontinetal FC'},
     {name: 'Teenage Mutant Ninja Skirtles'},
     {name: 'Harlem Spartans FC'},
     {name: 'Lakehay FC'},
     {name: 'Leather Jacket FC'},
-  ];
+  ]; */
 
   firstTeam: string;
   secondTeam: string;
@@ -28,8 +31,11 @@ export class CreateFixturesComponent implements OnInit {
   firstSelections: string = '';
 
   fixturesForm: FormGroup;
+  teams: Observable<any>;
 
-  constructor(private snackBar: MatSnackBar, private matchesService: MatchesService) { }
+  constructor(private snackBar: MatSnackBar,
+              private matchesService: MatchesService,
+              private teamservice: TeamService) { }
 
   //success snackbar
   openSnackBar(teamone: string, teamtwo: string) {
@@ -45,6 +51,16 @@ export class CreateFixturesComponent implements OnInit {
       'date': new FormControl(null, [Validators.required]),
       'time': new FormControl(null, Validators.required)
     }); 
+    this.teams = this.teamservice
+      .fetchTeams()
+      .pipe(map(docArray => {
+        return docArray.map(doc => {
+          return {
+            id: doc.payload.doc.id,
+            ...doc.payload.doc.data()
+          }
+        })
+      }))
   }
 
   resetCreateFixtures() {
