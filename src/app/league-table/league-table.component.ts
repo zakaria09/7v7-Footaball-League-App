@@ -22,6 +22,8 @@ export class LeagueTableComponent implements OnInit {
     {name: 'Neo United', played: 4, goalsFor: 20, goalsAgainst: 4, points: 48},
   ];
 
+  
+
   displayedColumns = ['name', 'played', 'goalsFor', 'goalsAgainst', 'points'];
   dataSource = this.Teams;
   // new MatTableDataSource<Team>()

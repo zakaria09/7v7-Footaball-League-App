@@ -8,6 +8,7 @@ import { Matches } from './matches';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { DatePipe } from '@angular/common';
+import { map } from 'rxjs/operators';
 
 @Injectable() // to inject
 export class MatchesService {
@@ -31,6 +32,50 @@ export class MatchesService {
             date: this.datePipe.transform(value.date, 'yyyy-MM-dd'),
             time: value.time
         });
+    }
+
+    winningTeams(team2goals: number) {
+        console.log('team2',team2goals);
+        return this.db
+        .collection('matches', ref => 
+            ref.where('firstTeamGoals', '>', team2goals))
+            .valueChanges()
+            .subscribe(res => {
+                console.log('win',res)
+            });
+    }
+
+    addWinners() {
+
+        // put the uppdate in a seperate methods
+        this.matches
+        .pipe(map(docArray => {
+            return docArray.map(doc => {
+              return {
+                id: doc.payload.doc.id,
+                ...doc.payload.doc.data(),
+              }
+            })
+          })).subscribe(res => {
+              res.forEach(game => {
+                  if(game.firstTeamGoals > game.secondTeamGoals) {
+                      this.db.collection('matches').doc(game.id).update({
+                        winner: game.firstTeam,
+                        draw: false
+                      })
+                  } else if(game.firstTeamGoals < game.secondTeamGoals) {
+                      this.db.collection('matches').doc(game.id).update({
+                        winner: game.secondTeam,
+                        draw: false
+                      })
+                  } else {
+                      this.db.collection('matches').doc(game.id).update({
+                        draw: true,
+                        winner: null
+                      })
+                  }
+              })
+          });
     }
 
     addScores(value, id) {

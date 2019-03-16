@@ -5,6 +5,12 @@
           The actual rendered columns are set as a property on the row definition" -->
   
     <!-- Position Column -->
+    <ng-container matColumnDef="">
+      <mat-header-cell *matHeaderCellDef> Position </mat-header-cell>
+      <mat-cell *matCellDef="let element">  </mat-cell>
+    </ng-container>
+
+    <!-- Team Column -->
     <ng-container matColumnDef="name">
       <mat-header-cell *matHeaderCellDef> Teams </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>

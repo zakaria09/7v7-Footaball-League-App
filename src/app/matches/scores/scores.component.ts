@@ -18,7 +18,7 @@ export class ScoresComponent implements OnInit {
               private dialog: MatDialog) { }
 
   ngOnInit() {
-    console.log(this.matches.fetchMatches());
+    //console.log(this.matches.fetchMatches());
     this.scores = this.matches
     .fetchMatches()
     .pipe(map(docArray => {
@@ -30,8 +30,9 @@ export class ScoresComponent implements OnInit {
       })
     }))
     this.scores.subscribe(res => {
-      console.log(res);
+      //console.log(res);
     })
+    this.matches.addWinners()
   }
 
   deleteScore(id) {

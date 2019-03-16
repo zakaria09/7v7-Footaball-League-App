@@ -51,7 +51,7 @@ import { TeamService } from './shared/team.service'
     FlexLayoutModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase), 
-    AngularFirestoreModule, 
+    AngularFirestoreModule.enablePersistence(), 
   ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'en-GB'},
