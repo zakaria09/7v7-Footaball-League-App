@@ -34,21 +34,8 @@ export class MatchesService {
         });
     }
 
-    winningTeams(team2goals: number) {
-        console.log('team2',team2goals);
-        return this.db
-        .collection('matches', ref => 
-            ref.where('firstTeamGoals', '>', team2goals))
-            .valueChanges()
-            .subscribe(res => {
-                console.log('win',res)
-            });
-    }
-
-    addWinners() {
-
-        // put the uppdate in a seperate methods
-        this.matches
+    getAllMatches() {
+        return this.matches
         .pipe(map(docArray => {
             return docArray.map(doc => {
               return {
@@ -56,23 +43,28 @@ export class MatchesService {
                 ...doc.payload.doc.data(),
               }
             })
-          })).subscribe(res => {
+          }))
+    }
+
+    updateDocuments(docId, winningTeam, isDraw: Boolean) {
+        this.db.collection('matches').doc(docId).update({
+            winner: winningTeam,
+            draw: isDraw
+          })
+    }
+
+    addWinners() {
+        // put the uppdate in a seperate methods
+        this.getAllMatches()
+            .subscribe(res => {
               res.forEach(game => {
+                  console.log('update');
                   if(game.firstTeamGoals > game.secondTeamGoals) {
-                      this.db.collection('matches').doc(game.id).update({
-                        winner: game.firstTeam,
-                        draw: false
-                      })
+                      this.updateDocuments(game.id, game.firstTeam, false);
                   } else if(game.firstTeamGoals < game.secondTeamGoals) {
-                      this.db.collection('matches').doc(game.id).update({
-                        winner: game.secondTeam,
-                        draw: false
-                      })
+                      this.updateDocuments(game.id, game.secondTeam, false);
                   } else {
-                      this.db.collection('matches').doc(game.id).update({
-                        draw: true,
-                        winner: null
-                      })
+                      this.updateDocuments(game.id, null, true);
                   }
               })
           });
