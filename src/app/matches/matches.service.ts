@@ -15,7 +15,7 @@ export class MatchesService {
     matchesAdded = new Subject<Matches[]>();
     matches: Observable<any>;
     
-    scores: Observable<any>;
+    //scores: Observable<any>;
 
     constructor(private db: AngularFirestore, private datePipe: DatePipe) {}
 
@@ -34,7 +34,19 @@ export class MatchesService {
         });
     }
 
+/*     winningTeams(team2goals: number) {	    
+        console.log('team2',team2goals);	        
+        return this.matches
+        return this.db	
+        .collection('matches', ref => 	
+            ref.where('firstTeamGoals', '>', team2goals))	
+            .valueChanges()	
+            .subscribe(res => {	
+                console.log('win',res)	
+            )} */
+
     getAllMatches() {
+        // change to this.fetchMatches()
         return this.matches
         .pipe(map(docArray => {
             return docArray.map(doc => {

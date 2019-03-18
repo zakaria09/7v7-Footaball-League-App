@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Team } from './Team';
 import { MatTableDataSource } from '@angular/material';
+import { LeagueTableService } from '../shared/leagueTable.service';
 
 @Component({
   selector: 'app-league-table',
@@ -10,27 +11,29 @@ import { MatTableDataSource } from '@angular/material';
 export class LeagueTableComponent implements OnInit {
 
   Teams: Team[] = [
-    {name: 'Hydrogen FC', played: 4, goalsFor: 20, goalsAgainst: 4, points: 48},
-    {name: 'Helium United', played: 4, goalsFor: 20, goalsAgainst: 4, points: 48},
-    {name: 'Lithium United', played: 4, goalsFor: 20, goalsAgainst: 4, points: 48},
-    {name: 'Beryllium FC', played: 4, goalsFor: 20, goalsAgainst: 4, points: 48},
-    {name: 'Boro FC', played: 4, goalsFor: 20, goalsAgainst: 4, points: 48},
-    {name: 'Carbo FC', played: 4, goalsFor: 20, goalsAgainst: 4, points: 48},
-    {name: 'Nitrogen United', played: 4, goalsFor: 20, goalsAgainst: 4, points: 48},
-    {name: 'Oxygen FC', played: 4, goalsFor: 20, goalsAgainst: 4, points: 48},
-    {name: 'Fluorine United', played: 4, goalsFor: 20, goalsAgainst: 4, points: 48},
-    {name: 'Neo United', played: 4, goalsFor: 20, goalsAgainst: 4, points: 48},
+    {name: 'Hydrogen FC', matchesPlayed: 4, wins: 4, draws: 0, loses: 0, goalDiference: 4, points: 12},
+    {name: 'Helium United', matchesPlayed: 4, wins: 4, draws: 0, loses: 0, goalDiference: 4, points: 12},
+    {name: 'Lithium United', matchesPlayed: 4, wins: 4, draws: 0, loses: 0, goalDiference: 4, points: 12},
+    {name: 'Beryllium FC', matchesPlayed: 4, wins: 4, draws: 0, loses: 0, goalDiference: 4, points: 12},
+    {name: 'Boro FC', matchesPlayed: 4, wins: 4, draws: 0, loses: 0, goalDiference: 4, points: 12},
+    {name: 'Carbo FC', matchesPlayed: 4, wins: 4, draws: 0, loses: 0, goalDiference: 4, points: 12},
+    {name: 'Nitrogen United', matchesPlayed: 4, wins: 4, draws: 0, loses: 0, goalDiference: 4, points: 12},
+    {name: 'Oxygen FC', matchesPlayed: 4, wins: 4, draws: 0, loses: 0, goalDiference: 4, points: 12},
+    {name: 'Fluorine United', matchesPlayed: 4, wins: 4, draws: 0, loses: 0, goalDiference: 4, points: 12},
+    {name: 'Neo United', matchesPlayed: 4, wins: 4, draws: 0, loses: 0, goalDiference: 4, points: 12},
   ];
 
   
 
-  displayedColumns = ['name', 'played', 'goalsFor', 'goalsAgainst', 'points'];
+  displayedColumns = ['name', 'matchesPlayed', 'wins', 'draws', 'loses', 'goalDiference', 'points'];
   dataSource = this.Teams;
-  // new MatTableDataSource<Team>()
 
-  constructor() { }
+  constructor(private table: LeagueTableService) { }
 
   ngOnInit() {
+    this.table.teamCollection = [];
+    this.table.WinningTeams = [];
+    this.table.getAllTeams();
   }
 
 }

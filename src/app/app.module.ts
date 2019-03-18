@@ -25,8 +25,9 @@ import { ScoresModalComponent } from './matches/scores-modal/scores-modal.compon
 import { SettingsComponent } from './settings/settings.component';
 import { ThemeService } from './shared/theme.service'
 import { CreateTeamComponent } from './teams/create-team/create-team.component';
-import { ViewTeamsComponent } from './teams/view-teams/view-teams.component'
-import { TeamService } from './shared/team.service'
+import { ViewTeamsComponent } from './teams/view-teams/view-teams.component';
+import { TeamService } from './shared/team.service';
+import { LeagueTableService } from './shared/leagueTable.service'
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { TeamService } from './shared/team.service'
     MatchesService, 
     DatePipe,
     ThemeService,
-    TeamService
+    TeamService,
+    LeagueTableService
   ],
   entryComponents: [ScoresModalComponent],
   bootstrap: [AppComponent]

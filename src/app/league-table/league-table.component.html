@@ -17,27 +17,38 @@
     </ng-container>
   
     <!-- Name Column -->
-    <ng-container matColumnDef="played">
+    <ng-container matColumnDef="matchesPlayed">
       <mat-header-cell *matHeaderCellDef> Played </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.played | number}} </mat-cell>
+      <mat-cell *matCellDef="let element"> {{element.matchesPlayed | number}} </mat-cell>
     </ng-container>
   
     <!-- Weight Column -->
-    <ng-container matColumnDef="goalsFor">
-      <mat-header-cell *matHeaderCellDef> Goals For </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.goalsFor | number}} </mat-cell>
+    <ng-container matColumnDef="wins">
+      <mat-header-cell *matHeaderCellDef> wins </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.wins | number}} </mat-cell>
+    </ng-container>
+    
+    <!-- Weight Column -->
+    <ng-container matColumnDef="draws">
+      <mat-header-cell *matHeaderCellDef> draws </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.draws | number}} </mat-cell>
     </ng-container>
   
     <!-- Symbol Column -->
-    <ng-container matColumnDef="goalsAgainst">
-      <mat-header-cell *matHeaderCellDef> Goals Against </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.goalsAgainst | number}} </mat-cell>
+    <ng-container matColumnDef="loses">
+      <mat-header-cell *matHeaderCellDef> loses </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.loses | number}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="goalDiference">
+        <mat-header-cell *matHeaderCellDef> GD </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.goalDiference | number}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="points">
-        <mat-header-cell *matHeaderCellDef> Points </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.points | number}} </mat-cell>
-    </ng-container>
+      <mat-header-cell *matHeaderCellDef> Points </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.points | number}} </mat-cell>
+  </ng-container>
   
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>

@@ -4,6 +4,7 @@ import {
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class TeamService {
@@ -14,7 +15,8 @@ export class TeamService {
 
     createTeam(team) {
         return this.db.collection('teams').add({
-            teamName: team.teamName
+            teamName: team.teamName,
+            //wins: 0
         });
     }
 
@@ -23,5 +25,17 @@ export class TeamService {
                         .collection('teams')
                         .snapshotChanges();
         return this.teams;
+    }
+
+    getAllTeams() {
+        return this.fetchTeams()
+        .pipe(map(docArray => {
+            return docArray.map(doc => {
+              return {
+                id: doc.payload.doc.id,
+                ...doc.payload.doc.data(),
+              }
+            })
+          }))
     }
 }
