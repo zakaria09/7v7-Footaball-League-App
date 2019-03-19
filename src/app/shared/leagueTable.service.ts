@@ -48,8 +48,13 @@ export class LeagueTableService{
     }
 
 
-    check(val, winner) {
-        console.log(val, winner)
+    check(teams, matches) {
+        console.log(teams, matches)
+        // tried for loop but doesn't work
+        // https://stackoverflow.com/questions/2722159/javascript-how-to-filter-object-array-based-on-attributes
+        for(let i = 0; i < teams.length; i++) {
+            return console.log(teams[i])
+        }
     }
 
     updateWins(docId, winsTeam) {

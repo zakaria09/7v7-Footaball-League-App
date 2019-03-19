@@ -1,0 +1,6 @@
+<section *ngFor="let post of posts | async">
+  <a routerLink="{{ post.id }}" >
+    <h2>{{ post.title }}</h2>
+  </a>
+  <p>{{ post.content }}</p>
+</section>

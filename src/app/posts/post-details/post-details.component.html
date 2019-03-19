@@ -1,0 +1,6 @@
+<section *ngIf="post">
+  <h1>{{ post.title }}</h1>
+  <p>Posted by {{ post.author }} </p>
+  <!-- <p>&bull; {{ post.published | date : 'fullDate'  : locale }}</p> -->
+  <p>{{ post.content }}</p>
+</section>
