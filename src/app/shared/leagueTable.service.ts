@@ -33,18 +33,36 @@ export class LeagueTableService{
     }
 
     getAllTeams() {
-        this.check(this.teamCollection, this.WinningTeams)
+        //this.check(this.teamCollection, this.WinningTeams)
         // return a list of teams with doc id
-        return this.teamService.getAllTeams()
+        const subscription = this.teamService.getAllTeams()
             .subscribe(teamsCollection => {
                 this.teamCollection.push(...teamsCollection);
                 teamsCollection.forEach(team => {
                 return this.queryCollections(team)
-                .subscribe( data => {
-                    this.WinningTeams.push(...data);
-                })
-            });
-            });
+                    .subscribe(
+                        data => {
+                            console.log(data);
+                            this.WinningTeams.push(...data);
+                            if(data.length) {
+                                console.log("Completed??")
+                                // put the logic here 
+                                // complete
+                            }
+                            
+                        },
+                        (error) => console.log("error", error),
+                        () => {
+                            console.log("Hello 2");
+                            this.check(this.teamCollection, this.WinningTeams)
+                        }
+                        
+                    )
+                });
+                }
+            );
+        
+        return subscription;
     }
 
 
@@ -53,7 +71,7 @@ export class LeagueTableService{
         // tried for loop but doesn't work
         // https://stackoverflow.com/questions/2722159/javascript-how-to-filter-object-array-based-on-attributes
         for(let i = 0; i < teams.length; i++) {
-            return console.log(teams[i])
+            console.log(i)
         }
     }
 

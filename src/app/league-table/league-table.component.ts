@@ -34,6 +34,11 @@ export class LeagueTableComponent implements OnInit {
     this.table.teamCollection = [];
     this.table.WinningTeams = [];
     this.table.getAllTeams();
+    console.log(this.table.teamCollection);
+    //this.table.teamCollection
+    // for (const i of this.table.teamCollection) {
+    //   console.log(i);
+    // }
   }
 
 }
