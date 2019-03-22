@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Teams } from '../teams';
 import { MatSnackBar, MAT_DATEPICKER_VALIDATORS } from '@angular/material';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { AngularFirestore } from 'angularfire2/firestore';
+import { AngularFireModule } from '@angular/fire';
 import { MatchesService } from '../matches.service';
 import { Observable } from 'rxjs';
 import { TeamService } from 'src/app/shared/team.service';

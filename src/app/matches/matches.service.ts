@@ -1,8 +1,5 @@
 import {
-    AngularFirestore,
-    AngularFirestoreCollection,
-    AngularFirestoreDocument
-  } from 'angularfire2/firestore';
+    AngularFirestore  } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { Matches } from './matches';
 import { Injectable } from '@angular/core';

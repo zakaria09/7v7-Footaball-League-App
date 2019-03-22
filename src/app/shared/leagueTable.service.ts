@@ -2,7 +2,7 @@ import {
     AngularFirestore,
     AngularFirestoreCollection,
     AngularFirestoreDocument
-  } from 'angularfire2/firestore';
+  } from '@angular/fire/firestore';
 import { Injectable } from '@angular/core';
 import { TeamService } from './team.service';
 import { Subject } from 'rxjs';
