@@ -10,35 +10,26 @@ import { LeagueTableService } from '../shared/leagueTable.service';
 })
 export class LeagueTableComponent implements OnInit {
 
-  Teams: Team[] = [
-    {name: 'Hydrogen FC', matchesPlayed: 4, wins: 4, draws: 0, loses: 0, goalDiference: 4, points: 12},
-    {name: 'Helium United', matchesPlayed: 4, wins: 4, draws: 0, loses: 0, goalDiference: 4, points: 12},
-    {name: 'Lithium United', matchesPlayed: 4, wins: 4, draws: 0, loses: 0, goalDiference: 4, points: 12},
-    {name: 'Beryllium FC', matchesPlayed: 4, wins: 4, draws: 0, loses: 0, goalDiference: 4, points: 12},
-    {name: 'Boro FC', matchesPlayed: 4, wins: 4, draws: 0, loses: 0, goalDiference: 4, points: 12},
-    {name: 'Carbo FC', matchesPlayed: 4, wins: 4, draws: 0, loses: 0, goalDiference: 4, points: 12},
-    {name: 'Nitrogen United', matchesPlayed: 4, wins: 4, draws: 0, loses: 0, goalDiference: 4, points: 12},
-    {name: 'Oxygen FC', matchesPlayed: 4, wins: 4, draws: 0, loses: 0, goalDiference: 4, points: 12},
-    {name: 'Fluorine United', matchesPlayed: 4, wins: 4, draws: 0, loses: 0, goalDiference: 4, points: 12},
-    {name: 'Neo United', matchesPlayed: 4, wins: 4, draws: 0, loses: 0, goalDiference: 4, points: 12},
-  ];
 
-  
+  tableData: MatTableDataSource<any>;
 
-  displayedColumns = ['name', 'matchesPlayed', 'wins', 'draws', 'loses', 'goalDiference', 'points'];
-  dataSource = this.Teams;
+  displayedColumns = ['teamName', 'draws', 'wins'];
 
   constructor(private table: LeagueTableService) { }
 
   ngOnInit() {
-    this.table.teamCollection = [];
-    this.table.WinningTeams = [];
-    this.table.getAllTeams();
-    console.log(this.table.teamCollection);
-    //this.table.teamCollection
-    // for (const i of this.table.teamCollection) {
-    //   console.log(i);
-    // }
+    
+    this.table
+      .fetchTeams('teams')
+      .subscribe(data => {
+        console.log('data',data)
+        this.tableData = new MatTableDataSource(data)
+      })
+      this.table.getWinners();
+      this.table.getTeams();
+      console.log(this.table.Winners);
+      console.log(this.table.teams);
+      this.table.checkWinners(this.table.teams, this.table.Winners)
   }
-
+  
 }

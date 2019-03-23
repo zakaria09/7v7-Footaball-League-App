@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatchesService } from '../matches.service';
+import { LeagueTableService } from 'src/app/shared/leagueTable.service';
 
 @Component({
   selector: 'app-scores-modal',

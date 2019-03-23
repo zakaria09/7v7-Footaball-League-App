@@ -1,54 +1,27 @@
 
-<mat-table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<mat-table mat-table [dataSource]="tableData" class="mat-elevation-z8">
 
     <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
   
-    <!-- Position Column -->
-    <ng-container matColumnDef="">
-      <mat-header-cell *matHeaderCellDef> Position </mat-header-cell>
-      <mat-cell *matCellDef="let element">  </mat-cell>
+    <!-- TeamName Column -->
+    <ng-container matColumnDef="teamName">
+      <mat-header-cell *matHeaderCellDef> Team </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.teamName }} </mat-cell>
     </ng-container>
 
-    <!-- Team Column -->
-    <ng-container matColumnDef="name">
-      <mat-header-cell *matHeaderCellDef> Teams </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
-    </ng-container>
-  
-    <!-- Name Column -->
-    <ng-container matColumnDef="matchesPlayed">
-      <mat-header-cell *matHeaderCellDef> Played </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.matchesPlayed | number}} </mat-cell>
-    </ng-container>
-  
-    <!-- Weight Column -->
-    <ng-container matColumnDef="wins">
-      <mat-header-cell *matHeaderCellDef> wins </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.wins | number}} </mat-cell>
-    </ng-container>
-    
-    <!-- Weight Column -->
+    <!-- Draws Column -->
     <ng-container matColumnDef="draws">
-      <mat-header-cell *matHeaderCellDef> draws </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef> Draw </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.draws | number}} </mat-cell>
     </ng-container>
   
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="loses">
-      <mat-header-cell *matHeaderCellDef> loses </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.loses | number}} </mat-cell>
+    <!-- Wins Column -->
+    <ng-container matColumnDef="wins">
+      <mat-header-cell *matHeaderCellDef> Win </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.wins | number}} </mat-cell>
     </ng-container>
-
-    <ng-container matColumnDef="goalDiference">
-        <mat-header-cell *matHeaderCellDef> GD </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.goalDiference | number}} </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="points">
-      <mat-header-cell *matHeaderCellDef> Points </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.points | number}} </mat-cell>
-  </ng-container>
+  
   
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>

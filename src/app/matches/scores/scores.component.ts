@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Matches } from '../matches';
 import { MatDialog } from '@angular/material';
 import { ScoresModalComponent } from '../scores-modal/scores-modal.component';
+import { LeagueTableService } from 'src/app/shared/leagueTable.service';
 
 @Component({
   selector: 'app-scores',

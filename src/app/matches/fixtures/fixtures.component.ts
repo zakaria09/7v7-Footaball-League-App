@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { Matches } from '../matches';
 import {MatDialog, MatDialogRef, MatDialogConfig} from '@angular/material';
 import { ScoresModalComponent } from '../scores-modal/scores-modal.component';
+import { LeagueTableService } from 'src/app/shared/leagueTable.service';
 
 @Component({
   selector: 'app-fixtures',

@@ -11,68 +11,69 @@ import { map } from 'rxjs/operators';
 
 @Injectable()
 export class LeagueTableService{
-    WinningTeams = [];
-    teamCollection = [];
+    Winners = [];
+    teams = [];
 
     constructor(private db: AngularFirestore, 
                 public teamService: TeamService) {}
 
-    queryCollections(team) {
-        return this.db.collection('matches', ref => 
-                    ref.where('winner' , '==', team.teamName)
-                    //.orderBy('teamName', 'desc')    
-                ).snapshotChanges()
-                .pipe(map(docArray => {
-                    return docArray.map(doc => {
-                      return {
-                        id: doc.payload.doc.id,
-                        ...doc.payload.doc.data(),
-                      }
+
+    getWinners() {
+        this.db.collection('matches', ref => 
+            ref.where('draw', '==', false))
+                .valueChanges()
+                .subscribe(data => {
+                    data.forEach(match => {
+                        this.Winners.push(match['winner'])
                     })
-                  }))
+                })
     }
 
-    getAllTeams() {
-        //this.check(this.teamCollection, this.WinningTeams)
-        // return a list of teams with doc id
-        const subscription = this.teamService.getAllTeams()
-            .subscribe(teamsCollection => {
-                this.teamCollection.push(...teamsCollection);
-                teamsCollection.forEach(team => {
-                return this.queryCollections(team)
-                    .subscribe(
-                        data => {
-                            console.log(data);
-                            this.WinningTeams.push(...data);
-                            if(data.length) {
-                                console.log("Completed??")
-                                // put the logic here 
-                                // complete
-                            }
-                            
-                        },
-                        (error) => console.log("error", error),
-                        () => {
-                            console.log("Hello 2");
-                            this.check(this.teamCollection, this.WinningTeams)
-                        }
-                        
-                    )
-                });
+    fetchTeams(data) {
+        return this.db.collection(data)
+            .snapshotChanges()
+            .pipe(map(docArray => {
+                return docArray.map(doc => {
+                  return {
+                    id: doc.payload.doc.id,
+                    ...doc.payload.doc.data(),
+                  }
+                })
+              }))
+    }
+
+    getTeams() {
+        this.fetchTeams('teams')
+            .subscribe(data => {
+                console.log('teams',data)
+                data.forEach(team => {
+                    // get and push id
+                    // get and push wins
+                    this.teams.push({
+                        'name' :team['teamName'],
+                        'id': team['id'],
+                        'wins': team['wins']
+                    })
+                })
+            })
+    }
+
+    checkWinners(teams: Array<any>, winner: Array<any>) {
+        // gets the amount of times a team won by comparing
+        setTimeout(() => {
+            winner.forEach((winner) => teams.forEach( (team) => {
+                if(team.name == winner) {
+                    console.log('won', team.name)
+                    //team.wins
+                    team.wins++;
+                    this.updateWins(team.id, team.wins)
                 }
-            );
-        
-        return subscription;
+            }))
+        }, 2000)
     }
 
-
-    check(teams, matches) {
-        console.log(teams, matches)
-        // tried for loop but doesn't work
-        // https://stackoverflow.com/questions/2722159/javascript-how-to-filter-object-array-based-on-attributes
-        for(let i = 0; i < teams.length; i++) {
-            console.log(i)
-        }
+    loopThroughTeamsAndWinners() {
+        
     }
 
     updateWins(docId, winsTeam) {

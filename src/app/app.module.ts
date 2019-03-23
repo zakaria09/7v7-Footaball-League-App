@@ -61,7 +61,7 @@ import { PostService } from './posts/post.service'
     FlexLayoutModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase), 
-    AngularFirestoreModule.enablePersistence(), 
+    AngularFirestoreModule
   ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'en-GB'},
