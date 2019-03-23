@@ -25,3 +25,8 @@ $alt-app-theme: mat-dark-theme($alt-app-primary, $alt-app-accent, $alt-app-warn)
 .alternative {
     @include angular-material-theme($alt-app-theme);
 }
+
+main {
+    text-align: center;
+    position: relative;
+}

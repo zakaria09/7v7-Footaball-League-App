@@ -30,4 +30,20 @@ export class PostService {
     this.postDoc = this.db.doc<Post>(`posts/${id}`);
     return this.postDoc.valueChanges();
    }
+
+   createPost(value: Post) {
+     this.postCollection.add(value)
+   }
+
+   getPost(id: string) {
+    return this.db.doc<Post>(`posts/${id}`)
+   }
+
+   deletePost(id: string) {
+    return this.getPost(id).delete();
+   }
+
+   updatePost(id: string, formdata) {
+     return this.getPost(id).update(formdata);
+   }
 }

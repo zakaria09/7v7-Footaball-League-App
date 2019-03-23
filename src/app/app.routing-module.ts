@@ -9,11 +9,11 @@ import { PostDetailsComponent } from './posts/post-details/post-details.componen
 
 
 const routes: Routes = [
-    { path: 'matches', component: MatchesComponent },
-    { path: 'teams', component: TeamsComponent },
-    { path: 'leagueTable', component: LeagueTableComponent },
-    { path: 'settings', component: SettingsComponent },
-    { path: 'blog', component: PostListComponent },
+    { path: 'matches', component: MatchesComponent, data: { animation: 'isRight' }},
+    { path: 'teams', component: TeamsComponent, data: { animation: 'isLeft' }},
+    { path: 'leagueTable', component: LeagueTableComponent, data: { animation: 'isRight' }},
+    { path: 'settings', component: SettingsComponent, data: { animation: 'isLeft' }},
+    { path: 'blog', component: PostListComponent, data: { animation: 'isLeft' }},
     { path: 'blog/:id', component: PostDetailsComponent },
 ];
 
