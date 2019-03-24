@@ -7,6 +7,7 @@ import { MatchesService } from '../matches.service';
 import { Observable } from 'rxjs';
 import { TeamService } from 'src/app/shared/team.service';
 import { map } from 'rxjs/operators';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-create-fixtures',
@@ -26,6 +27,7 @@ export class CreateFixturesComponent implements OnInit {
   firstTeam: string;
   secondTeam: string;
 
+
   //Form Validation
 
   firstSelections: string = '';
@@ -35,7 +37,8 @@ export class CreateFixturesComponent implements OnInit {
 
   constructor(private snackBar: MatSnackBar,
               private matchesService: MatchesService,
-              private teamservice: TeamService) { }
+              private teamservice: TeamService,
+              private datePipe: DatePipe) { }
 
   //success snackbar
   openSnackBar(teamone: string, teamtwo: string) {
@@ -72,17 +75,26 @@ export class CreateFixturesComponent implements OnInit {
     });
   }
 
-  onSubmit(value) {
+  onSubmit(data) {
+    console.log('id->',data.value.firstTeam.id)
+    //console.log(value.secondTeamId.value)
     if(!this.fixturesForm.invalid) {
       console.log(this.fixturesForm.value.date);
-      this.matchesService.createMatches(value.value);
+      this.matchesService.createMatches({
+        firstTeamId: data.value.firstTeam.id,
+        secondTeamId: data.value.secondTeam.id,
+        firstTeam: data.value.firstTeam.teamName,
+        secondTeam: data.value.secondTeam.teamName,
+        date: this.datePipe.transform(data.value.date, 'yyyy-MM-dd'),
+        time: data.value.time,
+      });
       this.resetCreateFixtures();
       this.fixturesForm.reset();
     }
   }
 
   setFirstValues(selectedValue) {
-    this.firstSelections = selectedValue.value.firstTeam;
+    this.firstSelections = selectedValue.value.firstTeam.teamName;
   }
 
   isEmpty() {

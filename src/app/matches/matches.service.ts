@@ -23,12 +23,7 @@ export class MatchesService {
     }
 
     createMatches(value) {
-        return this.db.collection('matches').add({
-            firstTeam: value.firstTeam,
-            secondTeam: value.secondTeam,
-            date: this.datePipe.transform(value.date, 'yyyy-MM-dd'),
-            time: value.time
-        });
+        return this.db.collection('matches').add(value);
     }
 
 /*     winningTeams(team2goals: number) {	    
@@ -62,16 +57,25 @@ export class MatchesService {
           })
     }
 
+    updateTableWins(id) {
+        this.db.collection('teams').doc(id).update({
+            wins: + 1,
+          })
+    }
+
     addWinners() {
         // put the uppdate in a seperate methods
         this.getAllMatches()
             .subscribe(res => {
               res.forEach(game => {
-                  console.log('update');
+                  console.log('update', res);
                   if(game.firstTeamGoals > game.secondTeamGoals) {
                       this.updateDocuments(game.id, game.firstTeam, false);
+                      // wins++
+                      this.updateTableWins(game.firstTeamId)
                   } else if(game.firstTeamGoals < game.secondTeamGoals) {
                       this.updateDocuments(game.id, game.secondTeam, false);
+                      this.updateTableWins(game.secondTeamId)
                   } else {
                       this.updateDocuments(game.id, null, true);
                   }

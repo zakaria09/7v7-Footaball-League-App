@@ -18,18 +18,12 @@ export class LeagueTableComponent implements OnInit {
   constructor(private table: LeagueTableService) { }
 
   ngOnInit() {
-    
     this.table
       .fetchTeams('teams')
       .subscribe(data => {
         console.log('data',data)
         this.tableData = new MatTableDataSource(data)
       })
-      this.table.getWinners();
-      this.table.getTeams();
-      console.log(this.table.Winners);
-      console.log(this.table.teams);
-      this.table.checkWinners(this.table.teams, this.table.Winners)
   }
   
 }

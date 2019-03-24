@@ -11,7 +11,7 @@
       (selectionChange)="setFirstValues(fixturesForm)">
       <mat-option 
         *ngFor="let team of teams | async" 
-        [value]="team.teamName">
+        [value]="team">
         {{team.teamName}}
       </mat-option>
     </mat-select>
@@ -28,7 +28,7 @@
     [disabled]="isEmpty()">
     <mat-option 
       *ngFor="let team of teams | async" 
-      [value]="team.teamName"
+      [value]="team"
       [disabled]="isSame(team.teamName)">
       {{team.teamName}}
     </mat-option>
