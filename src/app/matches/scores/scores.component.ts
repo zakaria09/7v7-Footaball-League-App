@@ -33,14 +33,20 @@ export class ScoresComponent implements OnInit {
     this.scores.subscribe(res => {
       //console.log(res);
     })
-    this.matches.addWinners()
+    // finds the winners and if draw
+    this.matches.addWinners();
   }
 
   deleteScore(id) {
     this.matches.deleteMatch(id);
   }
 
+  warning() {
+    alert('Warning: By editing scores the league table will also be affected!');
+  }
+
   editScore(team1, team2, id) {
+      this.warning();
       this.dialog.open(ScoresModalComponent, {
         width: '70%',
         autoFocus: true,

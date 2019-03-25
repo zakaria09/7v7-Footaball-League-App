@@ -63,19 +63,46 @@ export class MatchesService {
           })
     }
 
+    updateTableDraws(firstTeamId, num) {
+        this.db.collection('teams').doc(firstTeamId).update({
+            draws: ((num) + (+1)),
+          })
+    }
+
+    updateWinsAndDraws() {
+        // only update table in fixture
+        // NOT in scores!
+        var num = 0;
+        this.getAllMatches()
+            .subscribe(res => {
+                res.forEach(team => {
+                    if(team.firstTeamGoals > team.secondTeamGoals) {
+                        this.updateTableWins(team.firstTeamId);
+                    } else if(team.firstTeamGoals < team.secondTeamGoals) {
+                        this.updateTableWins(team.secondTeamId);
+                    } else if(team.draw) {
+                        this.updateTableDraws(team.firstTeamId, num);
+                        this.updateTableDraws(team.secondTeamId, num);
+                    } else {
+                        alert('Sorry There has Been an Error');
+                    }
+                })
+            })
+    }
+
     addWinners() {
         // put the uppdate in a seperate methods
         this.getAllMatches()
             .subscribe(res => {
               res.forEach(game => {
                   console.log('update', res);
+                  // delete the this.updateTableWins(game.firstTeamId) 
                   if(game.firstTeamGoals > game.secondTeamGoals) {
                       this.updateDocuments(game.id, game.firstTeam, false);
-                      // wins++
-                      this.updateTableWins(game.firstTeamId)
                   } else if(game.firstTeamGoals < game.secondTeamGoals) {
                       this.updateDocuments(game.id, game.secondTeam, false);
-                      this.updateTableWins(game.secondTeamId)
+                  } else if(game.firstTeamGoals == null || game.secondTeamGoals == null) {
+                    this.updateDocuments(game.id, null, null);
                   } else {
                       this.updateDocuments(game.id, null, true);
                   }

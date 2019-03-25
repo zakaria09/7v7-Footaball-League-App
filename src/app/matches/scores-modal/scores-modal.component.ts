@@ -31,9 +31,13 @@ export class ScoresModalComponent implements OnInit {
   }
 
   onSubmit(scoresForm, id) {
-    console.log('form', scoresForm.value, 'id', id);
-    this.matchesService.addScores(scoresForm.value, id);
-    this.scoresForm.reset();
-    this.dialogRef.close();
+    if(!this.scoresForm.invalid) 
+    {
+      console.log('form', scoresForm.value, 'id', id);
+      this.matchesService.addScores(scoresForm.value, id);
+      this.matchesService.updateWinsAndDraws();
+      this.scoresForm.reset();
+      this.dialogRef.close();
+    }
   }
 }
