@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { DatePipe } from '@angular/common';
 import { map } from 'rxjs/operators';
+import { TeamService } from '../shared/team.service';
 
 @Injectable() // to inject
 export class MatchesService {
@@ -14,7 +15,9 @@ export class MatchesService {
     
     //scores: Observable<any>;
 
-    constructor(private db: AngularFirestore, private datePipe: DatePipe) {}
+    constructor(private db: AngularFirestore,
+                private datePipe: DatePipe,
+                private teamservice: TeamService) {}
 
 
     fetchMatches() {
@@ -57,34 +60,35 @@ export class MatchesService {
           })
     }
 
-    updateTableWins(id) {
-        this.db.collection('teams').doc(id).update({
-            wins: + 1,
+    updateTableWins(docId, wins) {
+        this.db.collection('teams').doc(docId).update({
+            wins: ++wins,
           })
     }
 
-    updateTableDraws(firstTeamId, num) {
-        this.db.collection('teams').doc(firstTeamId).update({
-            draws: ((num) + (+1)),
+    updateTableDraws(obj) {
+        this.db.collection('teams').doc(obj.firstTeamId).update({
+            draws: ++obj.firstTeamDraws,
+          })
+          this.db.collection('teams').doc(obj.secondTeamId).update({
+            draws: ++obj.secondTeamDraws,
           })
     }
 
     updateWinsAndDraws() {
         // only update table in fixture
         // NOT in scores!
-        var num = 0;
         this.getAllMatches()
             .subscribe(res => {
                 res.forEach(team => {
                     if(team.firstTeamGoals > team.secondTeamGoals) {
-                        this.updateTableWins(team.firstTeamId);
+                        this.updateTableWins(team.firstTeamId, team.firstTeamWins);
                     } else if(team.firstTeamGoals < team.secondTeamGoals) {
-                        this.updateTableWins(team.secondTeamId);
+                        this.updateTableWins(team.secondTeamId, team.secondTeamWins);
                     } else if(team.draw) {
-                        this.updateTableDraws(team.firstTeamId, num);
-                        this.updateTableDraws(team.secondTeamId, num);
+                        this.updateTableDraws(team);
                     } else {
-                        alert('Sorry There has Been an Error');
+                        console.log('No winners or draws yet!');
                     }
                 })
             })

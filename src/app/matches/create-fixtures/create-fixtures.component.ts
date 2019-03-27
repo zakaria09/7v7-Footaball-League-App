@@ -83,6 +83,10 @@ export class CreateFixturesComponent implements OnInit {
       this.matchesService.createMatches({
         firstTeamId: data.value.firstTeam.id,
         secondTeamId: data.value.secondTeam.id,
+        firstTeamDraws: data.value.firstTeam.draws,
+        secondTeamDraws: data.value.secondTeam.draws,
+        firstTeamWins: data.value.firstTeam.wins,
+        secondTeamWins: data.value.secondTeam.wins,
         firstTeam: data.value.firstTeam.teamName,
         secondTeam: data.value.secondTeam.teamName,
         date: this.datePipe.transform(data.value.date, 'yyyy-MM-dd'),
