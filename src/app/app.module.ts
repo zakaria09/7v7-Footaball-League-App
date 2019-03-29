@@ -32,7 +32,9 @@ import { PostsComponent } from './posts/posts.component';
 import { PostDashboardComponent } from './posts/post-dashboard/post-dashboard.component';
 import { PostDetailsComponent } from './posts/post-details/post-details.component';
 import { PostListComponent } from './posts/post-list/post-list.component';
-import { PostService } from './posts/post.service'
+import { PostService } from './posts/post.service';
+import { LoginComponent } from './auth/login/login.component';
+import { SignupComponent } from './auth/signup/signup.component'
 
 @NgModule({
   declarations: [
@@ -51,7 +53,9 @@ import { PostService } from './posts/post.service'
     PostsComponent,
     PostDashboardComponent,
     PostDetailsComponent,
-    PostListComponent
+    PostListComponent,
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,

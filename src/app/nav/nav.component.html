@@ -29,6 +29,14 @@
                     <mat-icon>filter_none</mat-icon>
                     <span mat-menu-item>Blog</span>
                 </a>
+                <a mat-list-item class="list" routerLink="/login" (click)="sidenav.toggle()">
+                    <mat-icon>keyboard_tab</mat-icon>
+                    <span mat-menu-item>Login</span>
+                </a>
+                <a mat-list-item class="list" routerLink="/signup" (click)="sidenav.toggle()">
+                    <mat-icon>account_box</mat-icon>
+                    <span mat-menu-item>Sign Up</span>
+                </a>
                 <a mat-list-item class="list" routerLink="/settings" (click)="sidenav.toggle()">
                     <mat-icon>settings</mat-icon>
                     <span mat-menu-item>Settings</span>
