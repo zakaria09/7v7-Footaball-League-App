@@ -1,5 +1,6 @@
 import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { ThemeService } from '../shared/theme.service';
+import { LeagueTableService } from '../shared/leagueTable.service';
 
 @Component({
   selector: 'app-settings',
@@ -9,7 +10,8 @@ import { ThemeService } from '../shared/theme.service';
 export class SettingsComponent implements OnInit {
   otherTheme: boolean;
 
-  constructor(public themeService: ThemeService) { }
+  constructor(public themeService: ThemeService,
+              private leagueTable: LeagueTableService) { }
 
   ngOnInit() {
     this.themeService.currentTheme.subscribe(theme => this.otherTheme = theme);
@@ -19,5 +21,9 @@ export class SettingsComponent implements OnInit {
     console.log(this.otherTheme);
     this.otherTheme = !this.otherTheme;
     this.themeService.changeTheme(this.otherTheme);
+  }
+
+  resetTable() {
+    this.leagueTable.resetLeagueTable();
   }
 }

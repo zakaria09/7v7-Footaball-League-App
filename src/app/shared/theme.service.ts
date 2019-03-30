@@ -3,7 +3,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject'
 
 @Injectable()
 export class ThemeService{
-    private otherTheme = new BehaviorSubject<boolean>(true);
+    private otherTheme = new BehaviorSubject<boolean>(false);
     currentTheme = this.otherTheme.asObservable();
 
     constructor() {}

@@ -17,7 +17,9 @@ export class TeamService {
         return this.db.collection('teams').add({
             teamName: team.teamName,
             wins: 0,
-            draws: 0
+            draws: 0,
+            played: 0,
+            points: 0
         });
     }
 

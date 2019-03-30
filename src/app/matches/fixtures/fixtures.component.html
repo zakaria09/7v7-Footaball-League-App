@@ -1,11 +1,11 @@
 <section fxLayout fxLayoutAlign="center" fxLayout="column">
 <div *ngFor="let match of matches | async" (value)="match.id" >
-    <mat-card *ngIf="(match.firstTeamGoals == null && match.secondTeamGoals == null)" class="fixtures">
+    <mat-card *ngIf="(match.firstTeamGoals == null && match.secondTeamGoals == null); else elseBlock" class="fixtures">
         <mat-card-title fxLayoutAlign="center">{{ match.firstTeam | titlecase }} V {{ match.secondTeam | titlecase }}</mat-card-title>
         <mat-card-subtitle fxLayoutAlign="center">{{ match.date | date : 'fullDate'  : locale }}</mat-card-subtitle>
         <mat-card-subtitle fxLayoutAlign="center">{{ match.time }}</mat-card-subtitle>
         <button mat-button color="warn" matTooltip="Delete This Fixture" (click)="deleteFixture(match.id)"><mat-icon>delete</mat-icon></button>
-        <button mat-fab matTooltip="Add The Final Score" color="accent" (click)="openDialog(match.firstTeam, match.secondTeam, match.id)"><mat-icon>add</mat-icon></button>
+        <button mat-fab matTooltip="Add The Final Score" color="accent" (click)="openDialog(match.firstTeam.teamName, match.secondTeam.teamName, match.id)"><mat-icon>add</mat-icon></button>
     </mat-card>
 </div>
 </section>

@@ -1,5 +1,5 @@
 
-<mat-table mat-table [dataSource]="tableData" class="mat-elevation-z8">
+<mat-table mat-table matSort [dataSource]="tableData" class="mat-elevation-z8">
 
     <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
@@ -22,6 +22,17 @@
       <mat-cell *matCellDef="let element"> {{element.wins | number}} </mat-cell>
     </ng-container>
   
+    <!-- played Column -->
+    <ng-container matColumnDef="played">
+      <mat-header-cell *matHeaderCellDef> Played </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.played | number}} </mat-cell>
+    </ng-container>
+
+      <!-- points Column -->
+      <ng-container matColumnDef="points">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Points </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.points | number}} </mat-cell>
+      </ng-container>
   
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>

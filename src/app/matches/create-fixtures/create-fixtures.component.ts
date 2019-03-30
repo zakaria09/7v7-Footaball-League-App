@@ -87,6 +87,8 @@ export class CreateFixturesComponent implements OnInit {
         secondTeamDraws: data.value.secondTeam.draws,
         firstTeamWins: data.value.firstTeam.wins,
         secondTeamWins: data.value.secondTeam.wins,
+        firstTeamPlayed: data.value.firstTeam.played,
+        secondTeamPlayed: data.value.secondTeam.played,
         firstTeam: data.value.firstTeam.teamName,
         secondTeam: data.value.secondTeam.teamName,
         date: this.datePipe.transform(data.value.date, 'yyyy-MM-dd'),

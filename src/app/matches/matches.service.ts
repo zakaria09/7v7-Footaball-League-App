@@ -66,13 +66,29 @@ export class MatchesService {
           })
     }
 
-    updateTableDraws(obj) {
+    updateTableFirstTeamDraws(obj) {
+        this.db.collection('teams').doc(obj.secondTeamId).update({
+            draws: ++obj.secondTeamDraws,
+        })
+    }
+    
+    updateTableSecondTeamDraws(obj) {
         this.db.collection('teams').doc(obj.firstTeamId).update({
             draws: ++obj.firstTeamDraws,
           })
-          this.db.collection('teams').doc(obj.secondTeamId).update({
-            draws: ++obj.secondTeamDraws,
+    }
+
+    updateFirstTeamPlayed(obj) {
+        this.db.collection('teams').doc(obj.firstTeamId).update({
+            played: ++obj.firstTeamPlayed,
           })
+    }
+
+    updateSeccondTeamPlayed(obj) {
+        this.db.collection('teams').doc(obj.secondTeamId).update({
+            played: ++obj.secondTeamPlayed,
+        })
+        console.log('second Draws',obj.secondTeamPlayed);
     }
 
     updateWinsAndDraws() {
@@ -83,10 +99,17 @@ export class MatchesService {
                 res.forEach(team => {
                     if(team.firstTeamGoals > team.secondTeamGoals) {
                         this.updateTableWins(team.firstTeamId, team.firstTeamWins);
+                        this.updateFirstTeamPlayed(team);
+                        this.updateSeccondTeamPlayed(team);
                     } else if(team.firstTeamGoals < team.secondTeamGoals) {
                         this.updateTableWins(team.secondTeamId, team.secondTeamWins);
+                        this.updateFirstTeamPlayed(team);
+                        this.updateSeccondTeamPlayed(team);
                     } else if(team.draw) {
-                        this.updateTableDraws(team);
+                        this.updateTableFirstTeamDraws(team);
+                        this.updateTableSecondTeamDraws(team);
+                        this.updateFirstTeamPlayed(team);
+                        this.updateSeccondTeamPlayed(team);
                     } else {
                         console.log('No winners or draws yet!');
                     }
@@ -99,7 +122,6 @@ export class MatchesService {
         this.getAllMatches()
             .subscribe(res => {
               res.forEach(game => {
-                  console.log('update', res);
                   // delete the this.updateTableWins(game.firstTeamId) 
                   if(game.firstTeamGoals > game.secondTeamGoals) {
                       this.updateDocuments(game.id, game.firstTeam, false);
