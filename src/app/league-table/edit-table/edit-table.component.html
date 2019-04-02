@@ -1,32 +1,30 @@
 <mat-dialog-content 
   fxLayout 
-  class="table" 
   fxLayoutAlign="center">
-  <form 
-    class="container" 
-    [formGroup]="editTableForm" 
-    (ngSubmit)="onSubmit()"
-    fxLayoutAlign="center"
-    fxLayout="column">
-      <mat-label>{{ passedData.teamName }}    </mat-label>
-    <mat-form-field 
-      class="example-full-width" 
-      mat-dialog-content>
-      <input 
-        matInput 
-        placeholder="Goals" 
-        type="number"
-        formControlName="firstTeamGoals">
-        <mat-error>
-            Please Add a score - ONLY accepts numbers
-        </mat-error>
-    </mat-form-field>
-    <button 
-      mat-raised-button 
-      color="primary" 
-      type="submit"
-      [disabled]="editTableForm.invalid">
-      Update
-    </button>
-  </form>
+  <h1>{{ passedData.teamName }}</h1>
+    <mat-list>
+      <mat-list-item class="item">
+        <p>Wins: {{ passedData.wins }}</p> 
+        <mat-action-list>
+          <button mat-mini-fab color="accent"><mat-icon>add</mat-icon></button>
+          <button mat-mini-fab color="accent"><mat-icon>remove</mat-icon></button>
+        </mat-action-list>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item class="item">
+        <p>Draws: {{ passedData.draws }}</p> 
+        <mat-action-list>
+            <button mat-mini-fab color="accent"><mat-icon>add</mat-icon></button>
+            <button mat-mini-fab color="accent"><mat-icon>remove</mat-icon></button>
+        </mat-action-list>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item class="item">
+        <p>Played: {{ passedData.played }}</p> 
+        <mat-action-list>
+            <button mat-mini-fab color="accent"><mat-icon>add</mat-icon></button>
+            <button mat-mini-fab color="accent"><mat-icon>remove</mat-icon></button>
+        </mat-action-list>
+      </mat-list-item>
+    </mat-list>
 </mat-dialog-content>

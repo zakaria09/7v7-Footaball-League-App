@@ -36,13 +36,16 @@ export class LeagueTableComponent implements OnInit, AfterViewInit {
     this.table.updatePoints();
   }
   
-  openDialog(teamName, teamId) {
+  openDialog(teamName, teamId, wins, draws, played) {
     this.dialog.open(EditTableComponent, {
       width: '70%',
       autoFocus: true,
       data: {
         teamName: teamName,
-        teamId: teamId
+        teamId: teamId,
+        wins,
+        draws,
+        played
       }
     });
   }
