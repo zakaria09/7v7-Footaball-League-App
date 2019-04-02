@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { Team } from './Team';
-import { MatTableDataSource, MatSort, MatSortable } from '@angular/material';
+import { MatTableDataSource, MatSort, MatSortable, MatDialog } from '@angular/material';
 import { LeagueTableService } from '../shared/leagueTable.service';
 import { TeamService } from '../shared/team.service';
+import { EditTableComponent } from './edit-table/edit-table.component';
 
 @Component({
   selector: 'app-league-table',
@@ -14,11 +14,12 @@ export class LeagueTableComponent implements OnInit, AfterViewInit {
 
   tableData: MatTableDataSource<any>;
 
-  displayedColumns = ['teamName', 'draws', 'wins', 'played', 'points'];
+  displayedColumns = ['position', 'teamName', 'draws', 'wins', 'played', 'points', 'actions'];
 
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private table: LeagueTableService) { }
+  constructor(private table: LeagueTableService,
+              public dialog: MatDialog) { }
 
   ngOnInit() {
   }
@@ -35,4 +36,14 @@ export class LeagueTableComponent implements OnInit, AfterViewInit {
     this.table.updatePoints();
   }
   
+  openDialog(teamName, teamId) {
+    this.dialog.open(EditTableComponent, {
+      width: '70%',
+      autoFocus: true,
+      data: {
+        teamName: teamName,
+        teamId: teamId
+      }
+    });
+  }
 }

@@ -34,7 +34,9 @@ import { PostDetailsComponent } from './posts/post-details/post-details.componen
 import { PostListComponent } from './posts/post-list/post-list.component';
 import { PostService } from './posts/post.service';
 import { LoginComponent } from './auth/login/login.component';
-import { SignupComponent } from './auth/signup/signup.component'
+import { SignupComponent } from './auth/signup/signup.component';
+import 'hammerjs';
+import { EditTableComponent } from './league-table/edit-table/edit-table.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +57,8 @@ import { SignupComponent } from './auth/signup/signup.component'
     PostDetailsComponent,
     PostListComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    EditTableComponent
   ],
   imports: [
     BrowserModule,
@@ -76,7 +79,10 @@ import { SignupComponent } from './auth/signup/signup.component'
     LeagueTableService,
     PostService
   ],
-  entryComponents: [ScoresModalComponent],
+  entryComponents: [
+    ScoresModalComponent,
+    EditTableComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
