@@ -1,3 +1,8 @@
 export interface Teams {
-    name: string
+    id: string,
+    teamName: string,
+    draws: number,
+    played: number,
+    wins: number,
+    points: number
 }

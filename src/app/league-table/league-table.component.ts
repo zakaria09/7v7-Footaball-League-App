@@ -1,16 +1,20 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
 import { MatTableDataSource, MatSort, MatSortable, MatDialog } from '@angular/material';
 import { LeagueTableService } from '../shared/leagueTable.service';
 import { TeamService } from '../shared/team.service';
 import { EditTableComponent } from './edit-table/edit-table.component';
+import { Subscription } from 'rxjs/Subscription';
+import { Teams } from '../matches/teams';
 
 @Component({
   selector: 'app-league-table',
   templateUrl: './league-table.component.html',
   styleUrls: ['./league-table.component.css']
 })
-export class LeagueTableComponent implements OnInit, AfterViewInit {
+export class LeagueTableComponent implements OnInit, AfterViewInit, OnDestroy {
 
+  teamsTable: Subscription;
+  private teams: Teams[] = [];
 
   tableData: MatTableDataSource<any>;
 
@@ -19,26 +23,29 @@ export class LeagueTableComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(private table: LeagueTableService,
-              public dialog: MatDialog) { }
+              public dialog: MatDialog) {}
 
   ngOnInit() {
+    
   }
 
   ngAfterViewInit() {
-    this.table
+    this.teamsTable = this.table
     .fetchTeams('teams')
-    .subscribe(data => {
+    .subscribe((data: Teams[]) => {
       console.log('data',data)
-      this.tableData = new MatTableDataSource(data)
-      this.sort.sort(<MatSortable>({id: 'points', start: 'desc'}));
+      this.teams.push(...data);
+      this.table.tablePoints(data);
+      this.tableData = new MatTableDataSource(data);
       this.tableData.sort = this.sort;
     });
-    this.table.updatePoints();
+    this.sort.sort(<MatSortable>({id: 'points', start: 'desc'}));
+    console.log('array', this.teams);
   }
   
   openDialog(teamName, teamId, wins, draws, played) {
     this.dialog.open(EditTableComponent, {
-      width: '70%',
+      width: '60%',
       autoFocus: true,
       data: {
         teamName: teamName,
@@ -48,5 +55,10 @@ export class LeagueTableComponent implements OnInit, AfterViewInit {
         played
       }
     });
+  }
+
+  ngOnDestroy() 
+  {
+    this.teamsTable.unsubscribe();
   }
 }

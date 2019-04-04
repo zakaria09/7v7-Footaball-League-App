@@ -1,3 +1,21 @@
 .item {
+    margin: 2rem;
+    padding: 1rem;
+}
+
+div.mat-list-item-content {
+    margin: 1rem;
+    padding: 2rem;
+}
+
+.info {
     margin: 2em;
+}
+
+.mat-mini-fab {
+    margin-left: 2rem;
+}
+
+.modal {
+    text-align: center;
 }
