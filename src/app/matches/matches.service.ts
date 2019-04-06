@@ -60,10 +60,22 @@ export class MatchesService {
           })
     }
 
-    updateTableWins(docId, wins) {
-        this.db.collection('teams').doc(docId).update({
-            wins: ++wins,
+    firstTeamWins(obj) {
+        // just updating teams wins and not the team wins in the game
+        this.db.collection('teams').doc(obj.firstTeamId).update({
+            wins: ++obj.firstTeamWins,
           })
+          console.warn(obj.firstTeamWins)
+        this.UpdateFirstTeamTablePoints(obj);
+    }
+
+    secondTeamWins(obj) {
+        // just updating teams wins and not the team wins in the game
+        this.db.collection('teams').doc(obj.secondTeamId).update({
+            wins: ++obj.secondTeamWins,
+          })
+          console.warn(obj.secondTeamWins)
+        this.UpdateSecondTeamTablePoints(obj);
     }
 
     updateTableFirstTeamDraws(obj) {
@@ -73,6 +85,7 @@ export class MatchesService {
     }
     
     updateTableSecondTeamDraws(obj) {
+        console.log('a draw has occured')
         this.db.collection('teams').doc(obj.firstTeamId).update({
             draws: ++obj.firstTeamDraws,
           })
@@ -82,6 +95,8 @@ export class MatchesService {
         this.db.collection('teams').doc(obj.firstTeamId).update({
             played: ++obj.firstTeamPlayed,
           })
+        //this.tablePoints(obj);
+        
     }
 
     updateSeccondTeamPlayed(obj) {
@@ -89,6 +104,34 @@ export class MatchesService {
             played: ++obj.secondTeamPlayed,
         })
         console.log('second Draws',obj.secondTeamPlayed);
+        //this.tablePoints(obj);
+        this.UpdateFirstTeamTablePoints(obj);
+    }
+
+    UpdateFirstTeamTablePoints(teamObj) {
+        // for --> firstTeam
+        console.log('firstTeam points updated');
+        console.log('fiirst team id',teamObj.firstTeamId);
+        console.log('first team name',teamObj.firstTeam);
+        console.log('first team wins',teamObj.firstTeamWins);
+        if(teamObj.firstTeamDraws || teamObj.firstTeamWins) {
+          this.db.collection('teams').doc(teamObj.firstTeamId).update({
+            points: (teamObj.firstTeamDraws * 1) + (teamObj.firstTeamWins * 3)
+          })
+        }
+    }
+
+    UpdateSecondTeamTablePoints(teamObj) {
+        //for --> secondTeam
+        console.log('secondTeam points updated');
+        console.log('second team id',teamObj.secondTeamId);
+        console.log('second team name',teamObj.secondTeam);
+        console.log('second team wins',teamObj.secondTeamWins);
+        if(teamObj.secondTeamDraws || teamObj.secondTeamWins) {
+          this.db.collection('teams').doc(teamObj.secondTeamId).update({
+            points: (teamObj.secondTeamDraws * 1) + (teamObj.secondTeamWins * 3)
+          })
+        }
     }
 
     updateWinsAndDraws() {
@@ -97,12 +140,13 @@ export class MatchesService {
         this.getAllMatches()
             .subscribe(res => {
                 res.forEach(team => {
+                    console.log('wns and draws department')
                     if(team.firstTeamGoals > team.secondTeamGoals) {
-                        this.updateTableWins(team.firstTeamId, team.firstTeamWins);
+                        this.firstTeamWins(team);
                         this.updateFirstTeamPlayed(team);
                         this.updateSeccondTeamPlayed(team);
                     } else if(team.firstTeamGoals < team.secondTeamGoals) {
-                        this.updateTableWins(team.secondTeamId, team.secondTeamWins);
+                        this.secondTeamWins(team);
                         this.updateFirstTeamPlayed(team);
                         this.updateSeccondTeamPlayed(team);
                     } else if(team.draw) {

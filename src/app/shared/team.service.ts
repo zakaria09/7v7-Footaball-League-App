@@ -19,7 +19,8 @@ export class TeamService {
             wins: 0,
             draws: 0,
             played: 0,
-            points: 0
+            points: 0,
+            homeOrAway: team.homeOrAway
         });
     }
 

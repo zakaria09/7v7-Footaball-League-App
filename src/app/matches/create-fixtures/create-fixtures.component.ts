@@ -4,7 +4,7 @@ import { MatSnackBar, MAT_DATEPICKER_VALIDATORS } from '@angular/material';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire';
 import { MatchesService } from '../matches.service';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { TeamService } from 'src/app/shared/team.service';
 import { map } from 'rxjs/operators';
 import { DatePipe } from '@angular/common';
@@ -58,10 +58,10 @@ export class CreateFixturesComponent implements OnInit {
       .fetchTeams()
       .pipe(map(docArray => {
         return docArray.map(doc => {
-          return {
-            id: doc.payload.doc.id,
-            ...doc.payload.doc.data()
-          }
+            return {
+              id: doc.payload.doc.id,
+              ...doc.payload.doc.data()
+            }
         })
       }))
   }

@@ -35,12 +35,14 @@ export class LeagueTableComponent implements OnInit, AfterViewInit, OnDestroy {
     .subscribe((data: Teams[]) => {
       console.log('data',data)
       this.teams.push(...data);
-      this.table.tablePoints(data);
+      //this.table.tablePoints(data);
       this.tableData = new MatTableDataSource(data);
       this.tableData.sort = this.sort;
     });
     this.sort.sort(<MatSortable>({id: 'points', start: 'desc'}));
     console.log('array', this.teams);
+    //this.table.tablePoints(this.teams);
+    
   }
   
   openDialog(teamName, teamId, wins, draws, played) {

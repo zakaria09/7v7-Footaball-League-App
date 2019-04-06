@@ -6,11 +6,11 @@
     <mat-select 
       id="firstTeam" 
       formControlName="firstTeam" 
-      placeholder="Select Team" 
-      [(value)]="firstTeam"
-      (selectionChange)="setFirstValues(fixturesForm)">
+      placeholder="Select Home Team" 
+      (selectionChange)="setFirstValues(fixturesForm)"
+      [(value)]="firstTeam">
       <mat-option 
-        *ngFor="let team of teams | async" 
+        *ngFor="let team of teams | async; "
         [value]="team">
         {{team.teamName}}
       </mat-option>
@@ -23,13 +23,13 @@
   <mat-select 
     id="secondTeam" 
     formControlName="secondTeam" 
-    placeholder="Select Team" 
+    placeholder="Select Away Team" 
     [(value)]="secondTeam"
     [disabled]="isEmpty()">
     <mat-option 
       *ngFor="let team of teams | async" 
-      [value]="team"
-      [disabled]="isSame(team.teamName)">
+      [disabled]="isSame(team.teamName)"
+      [value]="team">
       {{team.teamName}}
     </mat-option>
   </mat-select>

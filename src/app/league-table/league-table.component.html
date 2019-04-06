@@ -48,9 +48,10 @@
               <mat-menu #menu="matMenu">
                 <button mat-menu-item 
                   (click)="openDialog(element.teamName, element.id, element.wins, element.draws, element.played)">
+                    <mat-icon>edit</mat-icon>
                     Edit
                   </button>
-                <button mat-menu-item>Report</button>
+                <button mat-menu-item><mat-icon>flag</mat-icon>Report</button>
               </mat-menu>
           </mat-cell>
       </ng-container>

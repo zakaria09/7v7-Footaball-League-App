@@ -21,7 +21,23 @@ export class EditTableComponent implements OnInit {
     this.table.incrementWins(id, teamObj);
   }
 
-  addDraws(id, teamObj) {
+  addDraw(id, teamObj) {
     this.table.incrementDraws(id, teamObj);
+  }
+
+  addPlayed(id, teamObj) {
+    this.table.incrementPlayed(id, teamObj);
+  }
+
+  minusWin(id, teamObj) {
+    this.table.decrementWins(id, teamObj);
+  }
+
+  minusDraw(id, teamObj) {
+    this.table.decrementDraws(id, teamObj);
+  }
+
+  minusPlayed(id, teamObj) {
+    this.table.decrementPlayed(id, teamObj);
   }
 }

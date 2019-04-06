@@ -38,6 +38,7 @@ export class LeagueTableService implements OnDestroy{
         wins: ++obj.wins,
         played: ++obj.played
       })
+      this.UpdateTablePoints(obj);
 }
 
   incrementDraws(docId, obj) {
@@ -45,6 +46,37 @@ export class LeagueTableService implements OnDestroy{
         draws: ++obj.draws,
         played: ++obj.played
       })
+      this.UpdateTablePoints(obj);
+}
+
+incrementPlayed(docId, obj) {
+    this.db.collection('teams').doc(docId).update({
+        played: ++obj.played
+      })
+      this.UpdateTablePoints(obj);
+}
+
+decrementWins(docId, obj) {
+  this.db.collection('teams').doc(docId).update({
+      wins: --obj.wins,
+      played: --obj.played
+    })
+    this.UpdateTablePoints(obj);
+}
+
+decrementDraws(docId, obj) {
+  this.db.collection('teams').doc(docId).update({
+      draws: --obj.draws,
+      played: --obj.played
+    })
+    this.UpdateTablePoints(obj);
+}
+
+decrementPlayed(docId, obj) {
+  this.db.collection('teams').doc(docId).update({
+      played: --obj.played
+    })
+    this.UpdateTablePoints(obj);
 }
 
 updateReset(teamObj) {
@@ -96,17 +128,13 @@ updateReset(teamObj) {
   // have teamObj as a param
 
   // !!!
-  tablePoints(teamObj) {
+  UpdateTablePoints(teamObj) {
       // console.log('hello')
       // console.log(teamObj[i].draws)
-      if(teamObj.draws) {
-        this.db.collection('teams').doc(teamObj.id).update({
-          points: (teamObj.draws + 1)
-        })
-      }
-      if(teamObj.wins) {
-        this.db.collection('teams').doc(teamObj.id).update({
-          points: (teamObj.wins * 3)
+      console.log(teamObj);
+      if(teamObj.draws || teamObj.wins) {
+        this.db.collection('teams').doc(teamObj.teamId).update({
+          points: (teamObj.draws * 1) + (teamObj.wins * 3)
         })
       }
   }

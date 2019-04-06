@@ -8,23 +8,23 @@
           <p class="info">Wins: {{ passedData.wins }}</p> 
           <mat-action-list>
             <button mat-mini-fab color="accent" (click)="addWin(passedData.teamId, passedData)"><mat-icon>add</mat-icon></button>
-            <button mat-mini-fab color="accent"><mat-icon>remove</mat-icon></button>
+            <button mat-mini-fab color="accent" (click)="minusWin(passedData.teamId, passedData)"><mat-icon>remove</mat-icon></button>
           </mat-action-list>
         </mat-list-item>
         <mat-divider></mat-divider>
         <mat-list-item class="item">
           <p class="info">Draws: {{ passedData.draws }}</p> 
           <mat-action-list>
-              <button mat-mini-fab color="accent"><mat-icon>add</mat-icon></button>
-              <button mat-mini-fab color="accent"><mat-icon>remove</mat-icon></button>
+              <button mat-mini-fab color="accent" (click)="addDraw(passedData.teamId, passedData)"><mat-icon>add</mat-icon></button>
+              <button mat-mini-fab color="accent" (click)="minusDraw(passedData.teamId, passedData)"><mat-icon>remove</mat-icon></button>
           </mat-action-list>
         </mat-list-item>
         <mat-divider></mat-divider>
         <mat-list-item class="item">
           <p class="info">Played: {{ passedData.played }}</p> 
           <mat-action-list>
-              <button mat-mini-fab color="accent"><mat-icon>add</mat-icon></button>
-              <button mat-mini-fab color="accent"><mat-icon>remove</mat-icon></button>
+              <button mat-mini-fab color="accent" (click)="addPlayed(passedData.teamId, passedData)"><mat-icon>add</mat-icon></button>
+              <button mat-mini-fab color="accent" (click)="minusPlayed(passedData.teamId, passedData)"><mat-icon>remove</mat-icon></button>
           </mat-action-list>
         </mat-list-item>
       </mat-list>

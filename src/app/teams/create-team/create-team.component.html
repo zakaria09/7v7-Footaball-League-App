@@ -1,7 +1,7 @@
 <section class="matches" fxLayout fxLayoutAlign="center">
   <mat-card>
   <mat-card-title fxLayoutAlign="center">Create Team</mat-card-title>
-  <form class="form" [formGroup]="teamForm" (ngSubmit)="onSubmit(teamForm)">
+  <form class="form" [formGroup]="teamForm" (ngSubmit)="onSubmit(teamForm.value)">
     <mat-form-field class="full-width">
       <input
         placeholder="Team Name"
@@ -20,6 +20,20 @@
     </mat-select>
     <mat-error>
         Please Choose Players!
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field fxLayoutAlign="center">
+      <mat-select 
+        formControlName="homeOrAway" 
+        placeholder="Select Away Or Home">
+        <mat-option 
+          *ngFor="let choice of choices" 
+          [value]="choice.value">
+          {{choice.viewValue}}
+        </mat-option>
+      </mat-select>
+      <mat-error>
+        Please Choose a Team!
       </mat-error>
     </mat-form-field>
     <mat-card-actions fxLayoutAlign="center">
