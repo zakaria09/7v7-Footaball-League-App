@@ -16,6 +16,7 @@ import { LeagueTableComponent } from './league-table/league-table.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 
+import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
@@ -37,6 +38,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import 'hammerjs';
 import { EditTableComponent } from './league-table/edit-table/edit-table.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +60,8 @@ import { EditTableComponent } from './league-table/edit-table/edit-table.compone
     PostListComponent,
     LoginComponent,
     SignupComponent,
-    EditTableComponent
+    EditTableComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -68,7 +71,8 @@ import { EditTableComponent } from './league-table/edit-table/edit-table.compone
     FlexLayoutModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase), 
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    AngularFireAuthModule
   ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'en-GB'},
