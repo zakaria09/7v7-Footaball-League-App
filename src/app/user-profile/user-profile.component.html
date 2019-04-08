@@ -1,3 +1,7 @@
-<p>
-  user-profile works!
-</p>
+
+<mat-card>
+  <mat-card-title fxLayoutAlign="center">Welcome, {{ displayName }}</mat-card-title>
+  <h1>You are currently signed in with, {{ email }}</h1>
+  <!-- <p>{{ user?.displayName }}</p>
+  <img [src]="user?.photoUrl || defaultAvatar"> -->
+</mat-card>

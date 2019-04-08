@@ -8,3 +8,7 @@ table {
     width: 700px;
     font-size: 30px;
 }
+
+.cdk-overlay-pane, .md-overlay-pane {
+    height: auto !important;
+  }

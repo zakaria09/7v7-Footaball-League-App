@@ -47,7 +47,7 @@
               <button mat-icon-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
               <mat-menu #menu="matMenu">
                 <button mat-menu-item 
-                  (click)="openDialog(element.teamName, element.id, element.wins, element.draws, element.played)">
+                  (click)="openModal(element.teamName, element.id, element.wins, element.draws, element.played)">
                     <mat-icon>edit</mat-icon>
                     Edit
                   </button>

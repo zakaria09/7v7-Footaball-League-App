@@ -15,8 +15,8 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 const routes: Routes = [
     { path: 'matches', component: MatchesComponent, data: { animation: 'isRight' }, canActivate: [AuthGaurd]},
     { path: 'teams', component: TeamsComponent, data: { animation: 'isLeft' }, canActivate: [AuthGaurd]},
-    { path: 'leagueTable', component: LeagueTableComponent, data: { animation: 'isRight' }, canActivate: [AuthGaurd]},
-    { path: 'settings', component: SettingsComponent, data: { animation: 'isLeft' }, canActivate: [AuthGaurd]},
+    { path: 'leagueTable', component: LeagueTableComponent, data: { animation: 'isRight' }},
+    { path: 'settings', component: SettingsComponent, data: { animation: 'isLeft' }},
     { path: 'blog', component: PostListComponent, data: { animation: 'isLeft' }},
     { path: 'blog/:id', component: PostDetailsComponent },
     { path: 'login', component: LoginComponent },

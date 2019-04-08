@@ -81,11 +81,11 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     ThemeService,
     TeamService,
     LeagueTableService,
-    PostService
+    PostService,
   ],
   entryComponents: [
     ScoresModalComponent,
-    EditTableComponent
+    EditTableComponent,
   ],
   bootstrap: [AppComponent]
 })

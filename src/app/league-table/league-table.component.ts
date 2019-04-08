@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
-import { MatTableDataSource, MatSort, MatSortable, MatDialog } from '@angular/material';
+import { MatTableDataSource, MatSort, MatSortable, MatDialog, MatDialogConfig } from '@angular/material';
 import { LeagueTableService } from '../shared/leagueTable.service';
 import { TeamService } from '../shared/team.service';
 import { EditTableComponent } from './edit-table/edit-table.component';
@@ -23,7 +23,7 @@ export class LeagueTableComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(private table: LeagueTableService,
-              public dialog: MatDialog) {}
+              public modal: MatDialog) {}
 
   ngOnInit() {
     
@@ -45,10 +45,13 @@ export class LeagueTableComponent implements OnInit, AfterViewInit, OnDestroy {
     
   }
   
-  openDialog(teamName, teamId, wins, draws, played) {
-    this.dialog.open(EditTableComponent, {
-      width: '60%',
-      autoFocus: true,
+  openModal(teamName, teamId, wins, draws, played) {
+    console.log(teamName, teamId, wins, draws, played);
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.width = '60%';
+    this.modal.open(EditTableComponent, {
+      width: '60%', 
+      height: '500px',
       data: {
         teamName: teamName,
         teamId: teamId,

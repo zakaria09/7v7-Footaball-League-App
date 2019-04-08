@@ -66,14 +66,14 @@ export class CreateFixturesComponent implements OnInit {
       }))
   }
 
-  resetCreateFixtures() {
-    this.fixturesForm.setValue({
-      firstTeam: '',
-      secondTeam: '',
-      date: '',
-      time: ''
-    });
-  }
+  // resetCreateFixtures() {
+  //   this.fixturesForm.setValue({
+  //     firstTeam: '',
+  //     secondTeam: '',
+  //     date: '',
+  //     time: ''
+  //   });
+  // }
 
   onSubmit(data) {
     console.log('id->',data.value.firstTeam.id)
@@ -94,7 +94,7 @@ export class CreateFixturesComponent implements OnInit {
         date: this.datePipe.transform(data.value.date, 'yyyy-MM-dd'),
         time: data.value.time,
       });
-      this.resetCreateFixtures();
+      //this.resetCreateFixtures();
       this.fixturesForm.reset();
     }
   }

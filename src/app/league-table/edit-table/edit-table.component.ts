@@ -1,11 +1,11 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
 import { LeagueTableService } from 'src/app/shared/leagueTable.service';
 
 @Component({
   selector: 'app-edit-table',
   templateUrl: './edit-table.component.html',
-  styleUrls: ['./edit-table.component.css']
+  styleUrls: ['./edit-table.component.css'],
 })
 export class EditTableComponent implements OnInit {
 

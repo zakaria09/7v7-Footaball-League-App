@@ -9,13 +9,18 @@ import { Router } from '@angular/router';
 import { Subject } from 'rxjs/Subject';
 import { Subscription } from 'rxjs/Subscription';
 import { User } from './user.model';
+import { MatSnackBar } from '@angular/material';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  userData: any; // Save logged in user data
+  userData: Observable<User>; // Save logged in user data
+
+  authState: any = null;
+  //user: Observable<User>;
 
   authChange = new Subject<boolean>();
   private isAuthenticated = false;
@@ -24,7 +29,8 @@ export class AuthService {
   constructor(
     private afAuth: AngularFireAuth,
     private router: Router,
-    private afs: AngularFirestore
+    private afs: AngularFirestore,
+    private snackbar: MatSnackBar,
   ) { }
 
   initAuthListener() {
@@ -58,6 +64,7 @@ export class AuthService {
         email,
         password)
       .then((result) => {
+        this.initAuthListener();
         this.sendVerificationEmail();
         this.SetUserData(result.user, name);
         console.log(result.user.providerData);
@@ -71,6 +78,22 @@ export class AuthService {
       this.authChange.next(true);
   }
 
+  loginUser(authData) {
+    this.afAuth.auth.signInWithEmailAndPassword(
+        authData.email, 
+        authData.password)
+            .then(result => {
+              this.initAuthListener();
+              this.router.navigate(['/matches']);
+            })
+            .catch(err => {
+              this.snackbar.open(err.message, null, {
+                duration: 3000
+              });
+            });
+        this.authChange.next(true);
+  }
+
   isAuth() {
     return this.isAuthenticated;
   }
@@ -79,12 +102,13 @@ export class AuthService {
     this.fbSubs.forEach(sub => sub.unsubscribe());
 }
 
-  SetUserData(user, name) {
+  SetUserData(user: User, name) {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
     const userData: User = {
     uid: user.uid,
     email: user.email,
     displayName: name,
+    nameToSearch: name.toLowerCase(),
     photoURL: user.photoURL,
     emailVerified: user.emailVerified
   }
