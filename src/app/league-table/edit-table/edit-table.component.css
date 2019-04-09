@@ -16,3 +16,8 @@ div.mat-list-item-content {
     margin-left: 2rem;
 }
 
+.dialog-content {
+    text-align: center;
+    margin: auto;
+    display: inline-block;
+}

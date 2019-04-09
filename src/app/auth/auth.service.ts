@@ -11,6 +11,9 @@ import { Subscription } from 'rxjs/Subscription';
 import { User } from './user.model';
 import { MatSnackBar } from '@angular/material';
 import { Observable } from 'rxjs';
+import 'rxjs/add/operator/switchMap';
+import "rxjs/add/observable/of";
+import { Md5 } from 'ts-md5/dist/md5';
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +22,9 @@ export class AuthService {
 
   userData: Observable<User>; // Save logged in user data
 
-  authState: any = null;
+  user: Observable<User>;;
   //user: Observable<User>;
+  authState: firebase.User;
 
   authChange = new Subject<boolean>();
   private isAuthenticated = false;
@@ -31,7 +35,16 @@ export class AuthService {
     private router: Router,
     private afs: AngularFirestore,
     private snackbar: MatSnackBar,
-  ) { }
+  ) 
+  {
+    this.user = this.afAuth.authState.switchMap(user => {
+      if(user) {
+        return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
+      } else {
+        return Observable.of(null);
+      }
+    });
+  }
 
   initAuthListener() {
     this.afAuth.authState.subscribe(user => {
@@ -42,7 +55,7 @@ export class AuthService {
         } else {
             this.cancelSubscriptions();
             this.authChange.next(false);
-            this.router.navigate(['/signup']);
+            this.router.navigate(['/login']);
             this.isAuthenticated = false;
         }
     });
@@ -94,8 +107,8 @@ export class AuthService {
         this.authChange.next(true);
   }
 
-  isAuth() {
-    return this.isAuthenticated;
+  get isAuth(): boolean {
+    return this.authState !== null;
   }
 
   cancelSubscriptions() {
@@ -109,7 +122,8 @@ export class AuthService {
     email: user.email,
     displayName: name,
     nameToSearch: name.toLowerCase(),
-    photoURL: user.photoURL,
+    photoURL: user.photoURL || 
+    "https://en.gravatar.com/avatar" + "/205e460b479e2e5b48aec07710c08d50" + "?d=mp",
     emailVerified: user.emailVerified
   }
   return userRef.set(userData)

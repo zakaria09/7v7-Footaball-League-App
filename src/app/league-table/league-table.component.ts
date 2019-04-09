@@ -46,12 +46,8 @@ export class LeagueTableComponent implements OnInit, AfterViewInit, OnDestroy {
   }
   
   openModal(teamName, teamId, wins, draws, played) {
-    console.log(teamName, teamId, wins, draws, played);
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.width = '60%';
     this.modal.open(EditTableComponent, {
       width: '60%', 
-      height: '500px',
       data: {
         teamName: teamName,
         teamId: teamId,

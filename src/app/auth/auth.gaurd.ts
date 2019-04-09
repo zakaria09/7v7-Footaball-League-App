@@ -3,22 +3,23 @@ import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Observable } from 'rxjs/Observable';
+import { tap, map, take } from 'rxjs/operators';
 
 @Injectable()
 export class AuthGaurd implements CanActivate {
-    constructor(
-        private router: Router,
-        private afAuth: AngularFireAuth
-    ) {}
+    constructor(private auth: AuthService, private router: Router) {}
 
     canActivate(): Observable<boolean> {
-        return this.afAuth.authState.map(auth => {
-            if(!auth) {
-                this.router.navigate(['/signin']);
-                return false;
-            } else {
-                return true;
-            }
-        });
+      return this.auth.user.pipe(
+        take(1),
+        map(user => !!user),
+        tap(loggedIn => {
+          console.log('logged in: ', loggedIn);
+          if (!loggedIn) {
+            alert('access denied');
+            this.router.navigate(['/auth']);
+          }
+        })
+      );
     }
-}
+  }
