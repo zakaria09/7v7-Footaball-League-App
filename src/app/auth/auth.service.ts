@@ -128,4 +128,8 @@ export class AuthService {
   }
   return userRef.set(userData)
 }
+
+logout() {
+  this.afAuth.auth.signOut();
+}
 }

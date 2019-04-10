@@ -22,20 +22,6 @@
         Please Choose Players!
       </mat-error>
     </mat-form-field>
-    <mat-form-field fxLayoutAlign="center">
-      <mat-select 
-        formControlName="homeOrAway" 
-        placeholder="Select Away Or Home">
-        <mat-option 
-          *ngFor="let choice of choices" 
-          [value]="choice.value">
-          {{choice.viewValue}}
-        </mat-option>
-      </mat-select>
-      <mat-error>
-        Please Choose a Team!
-      </mat-error>
-    </mat-form-field>
     <mat-card-actions fxLayoutAlign="center">
       <button 
         mat-raised-button 

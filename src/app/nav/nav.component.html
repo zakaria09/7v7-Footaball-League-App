@@ -29,13 +29,23 @@
                     <mat-icon>filter_none</mat-icon>
                     <span mat-menu-item>Blog</span>
                 </a>
-                <a mat-list-item class="list" routerLink="/login" (click)="sidenav.toggle()">
-                    <mat-icon>keyboard_tab</mat-icon>
-                    <span mat-menu-item>Login</span>
+                <ng-template [ngIf]="!afAuth.auth.currentUser">
+                    <a mat-list-item class="list" routerLink="/login" (click)="sidenav.toggle()">
+                        <mat-icon>keyboard_tab</mat-icon>
+                        <span mat-menu-item>Login</span>
+                    </a>
+                    <a mat-list-item class="list" routerLink="/signup" (click)="sidenav.toggle()">
+                        <mat-icon>account_box</mat-icon>
+                        <span mat-menu-item>Sign Up</span>
+                    </a>
+                </ng-template>
+                <a mat-list-item routerLink="/profile" (click)="sidenav.toggle()" *ngIf="afAuth.auth.currentUser">
+                    <mat-icon>person</mat-icon>
+                    <span class="nav-caption">Profile</span>
                 </a>
-                <a mat-list-item class="list" routerLink="/signup" (click)="sidenav.toggle()">
-                    <mat-icon>account_box</mat-icon>
-                    <span mat-menu-item>Sign Up</span>
+                <a mat-list-item (click)="onLogout()" (click)="sidenav.toggle()" *ngIf="afAuth.auth.currentUser">
+                    <mat-icon>eject</mat-icon>
+                    <span class="nav-caption">Logout</span>
                 </a>
                 <a mat-list-item class="list" routerLink="/settings" (click)="sidenav.toggle()">
                     <mat-icon>settings</mat-icon>

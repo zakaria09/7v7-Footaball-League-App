@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Teams } from '../teams';
 import { MatSnackBar, MAT_DATEPICKER_VALIDATORS } from '@angular/material';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { AngularFireModule } from '@angular/fire';
 import { MatchesService } from '../matches.service';
 import { Observable, Subscription } from 'rxjs';
 import { TeamService } from 'src/app/shared/team.service';
@@ -16,14 +15,6 @@ import { DatePipe } from '@angular/common';
 })
 export class CreateFixturesComponent implements OnInit {
 
-/*   teams: Teams[] = [
-    {name: 'Intercontinetal FC'},
-    {name: 'Teenage Mutant Ninja Skirtles'},
-    {name: 'Harlem Spartans FC'},
-    {name: 'Lakehay FC'},
-    {name: 'Leather Jacket FC'},
-  ]; */
-
   firstTeam: string;
   secondTeam: string;
 
@@ -33,7 +24,7 @@ export class CreateFixturesComponent implements OnInit {
   firstSelections: string = '';
 
   fixturesForm: FormGroup;
-  teams: Observable<any>;
+  teams: Observable<Teams>;
 
   constructor(private snackBar: MatSnackBar,
               private matchesService: MatchesService,
@@ -66,20 +57,8 @@ export class CreateFixturesComponent implements OnInit {
       }))
   }
 
-  // resetCreateFixtures() {
-  //   this.fixturesForm.setValue({
-  //     firstTeam: '',
-  //     secondTeam: '',
-  //     date: '',
-  //     time: ''
-  //   });
-  // }
-
   onSubmit(data) {
-    console.log('id->',data.value.firstTeam.id)
-    //console.log(value.secondTeamId.value)
     if(!this.fixturesForm.invalid) {
-      console.log(this.fixturesForm.value.date);
       this.matchesService.createMatches({
         firstTeamId: data.value.firstTeam.id,
         secondTeamId: data.value.secondTeam.id,
@@ -94,7 +73,6 @@ export class CreateFixturesComponent implements OnInit {
         date: this.datePipe.transform(data.value.date, 'yyyy-MM-dd'),
         time: data.value.time,
       });
-      //this.resetCreateFixtures();
       this.fixturesForm.reset();
     }
   }

@@ -11,17 +11,11 @@ import { Choices } from './Choices';
 export class CreateTeamComponent implements OnInit {
   teamForm: FormGroup;
 
-  choices: Choices[] = [
-    {value: 'firstTeam', viewValue: 'Home Team'},
-    {value: 'secondTeam', viewValue: 'Away Team'},
-  ];
-
   constructor(private teamservice: TeamService)  { }
 
   ngOnInit() {
     this.teamForm = new FormGroup({
       'teamName': new FormControl(null, Validators.required),
-      'homeOrAway': new FormControl(null, Validators.required)
     }); 
   }
 

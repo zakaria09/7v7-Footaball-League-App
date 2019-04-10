@@ -6,7 +6,7 @@
     <mat-select 
       id="firstTeam" 
       formControlName="firstTeam" 
-      placeholder="Select Home Team" 
+      placeholder="Select a Team" 
       (selectionChange)="setFirstValues(fixturesForm)"
       [(value)]="firstTeam">
       <mat-option 
@@ -23,7 +23,7 @@
   <mat-select 
     id="secondTeam" 
     formControlName="secondTeam" 
-    placeholder="Select Away Team" 
+    placeholder="Select a Team" 
     [(value)]="secondTeam"
     [disabled]="isEmpty()">
     <mat-option 
@@ -67,7 +67,7 @@
       mat-raised-button 
       color="primary" 
       type="submit"
-      (click)="openSnackBar(secondTeam, firstTeam)"
+      (click)="openSnackBar(firstTeam.teamName, secondTeam.teamName)"
       [disabled]="fixturesForm.invalid">
       Add Fixtures
     </button>
