@@ -1,3 +1,40 @@
-<p>
-  post-dashboard works!
-</p>
+<section class="postForm" fxLayout fxLayoutAlign="center">
+  <mat-card>
+  <mat-card-title fxLayoutAlign="center">Create A New Blog Post</mat-card-title>
+    <form class="form" [formGroup]="postForm" (ngSubmit)="onSubmit(postForm)">
+        <mat-form-field fxLayoutAlign="center" class="full-width">
+              <input 
+                formControlName="title" 
+                type="text" 
+                matInput 
+                placeholder="Title" 
+                value="">
+              <mat-error>
+                Please Choose a Title!
+              </mat-error>
+        </mat-form-field>
+        <mat-form-field fxLayoutAlign="center" class="full-width">
+            <textarea 
+              id="content"
+              formControlName="content" 
+              type="text" 
+              matInput 
+              placeholder="Post Content" 
+              value=""></textarea>
+            <mat-error>
+              Please add some content!
+            </mat-error>
+        </mat-form-field>
+        <mat-card-actions fxLayoutAlign="center">
+          <mat-slide-toggle formControlName="draft">Publish</mat-slide-toggle>
+          <button 
+            mat-raised-button 
+            type="submit" 
+            color="primary"
+            [disabled]="postForm.invalid">
+            Save
+          </button>
+        </mat-card-actions>
+    </form>
+  </mat-card>
+</section>

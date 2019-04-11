@@ -29,6 +29,10 @@
                     <mat-icon>filter_none</mat-icon>
                     <span mat-menu-item>Blog</span>
                 </a>
+                <a mat-list-item class="list" routerLink="/create-post" (click)="sidenav.toggle()">
+                    <mat-icon>create</mat-icon>
+                    <span mat-menu-item>Write Blog Post</span>
+                </a>
                 <ng-template [ngIf]="!afAuth.auth.currentUser">
                     <a mat-list-item class="list" routerLink="/login" (click)="sidenav.toggle()">
                         <mat-icon>keyboard_tab</mat-icon>

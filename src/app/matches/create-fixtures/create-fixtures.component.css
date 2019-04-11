@@ -13,3 +13,8 @@
   .full-width {
     width: 100%;
   }
+
+  mat-form-field, mat-card-title, mat-card-actions {
+    padding: .5em;
+    margin: 0.1em;
+}

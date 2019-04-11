@@ -46,6 +46,14 @@ export class AuthService {
     });
   }
 
+  get authenticated(): boolean {
+    return this.authState !== null;
+  }
+
+  get currentUserId(): string {
+    return this.authenticated ? this.authState.uid : null;
+  }
+
   initAuthListener() {
     this.afAuth.authState.subscribe(user => {
         if(user) {

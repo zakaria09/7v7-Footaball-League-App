@@ -13,7 +13,7 @@ export class PostService {
 
   constructor(private db: AngularFirestore) {
     this.postCollection = this.db.collection('posts', ref => 
-    ref.orderBy('published', 'desc'))
+    ref.orderBy('published', 'desc').limit(10))
    }
 
    getPosts() {

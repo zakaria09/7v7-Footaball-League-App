@@ -10,6 +10,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { AuthGaurd } from './auth/auth.gaurd'
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { PostDashboardComponent } from './posts/post-dashboard/post-dashboard.component';
 
 
 const routes: Routes = [
@@ -19,6 +20,7 @@ const routes: Routes = [
     { path: 'settings', component: SettingsComponent, data: { animation: 'isLeft' }, canActivate: [AuthGaurd]},
     { path: 'blog', component: PostListComponent, data: { animation: 'isLeft' }},
     { path: 'blog/:id', component: PostDetailsComponent },
+    { path: 'create-post', component: PostDashboardComponent },
     { path: 'login', component: LoginComponent },
     { path: 'signup', component: SignupComponent },
     { path: 'profile', component: UserProfileComponent },
