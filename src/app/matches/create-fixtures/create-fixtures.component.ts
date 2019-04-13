@@ -7,6 +7,7 @@ import { Observable, Subscription } from 'rxjs';
 import { TeamService } from 'src/app/shared/team.service';
 import { map } from 'rxjs/operators';
 import { DatePipe } from '@angular/common';
+import { NotificationService } from 'src/app/shared/notification.service';
 
 @Component({
   selector: 'app-create-fixtures',
@@ -26,16 +27,14 @@ export class CreateFixturesComponent implements OnInit {
   fixturesForm: FormGroup;
   teams: Observable<Teams>;
 
-  constructor(private snackBar: MatSnackBar,
-              private matchesService: MatchesService,
+  constructor(private matchesService: MatchesService,
               private teamservice: TeamService,
-              private datePipe: DatePipe) { }
+              private datePipe: DatePipe,
+              private notfication: NotificationService) { }
 
   //success snackbar
   openSnackBar(teamone: string, teamtwo: string) {
-    this.snackBar.open('Succesfully Added Fixture: ' + teamone + ' vs ' + teamtwo, 'Close', {
-      duration: 3000,
-    });
+    this.notfication.openFixtureSnackBar(teamone, teamtwo);
   }
 
   ngOnInit() {

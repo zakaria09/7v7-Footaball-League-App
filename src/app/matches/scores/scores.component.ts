@@ -5,7 +5,10 @@ import { Observable } from 'rxjs';
 import { Matches } from '../matches';
 import { MatDialog } from '@angular/material';
 import { ScoresModalComponent } from '../scores-modal/scores-modal.component';
-import { LeagueTableService } from 'src/app/shared/leagueTable.service';
+import { AuthService } from 'src/app/auth/auth.service';
+import { User } from 'src/app/auth/user.model';
+import { NotificationService } from 'src/app/shared/notification.service';
+
 
 @Component({
   selector: 'app-scores',
@@ -14,9 +17,12 @@ import { LeagueTableService } from 'src/app/shared/leagueTable.service';
 })
 export class ScoresComponent implements OnInit {
   scores: Observable<Matches[]>;
+  user: User;
 
   constructor(private matches: MatchesService,
-              private dialog: MatDialog) { }
+              private dialog: MatDialog,
+              private authservice: AuthService,
+              private notification: NotificationService) { }
 
   ngOnInit() {
     //console.log(this.matches.fetchMatches());
@@ -35,10 +41,15 @@ export class ScoresComponent implements OnInit {
     })
     // finds the winners and if draw
     this.matches.addWinners();
+    this.authservice.user.subscribe(user => this.user = user);
   }
 
   deleteScore(id) {
-    this.matches.deleteMatch(id);
+    if(this.authservice.canDelete(this.user)) {
+      this.matches.deleteMatch(id);
+    } else {
+      this.notification.warnPermissions();
+    }
   }
 
   warning() {
@@ -46,6 +57,7 @@ export class ScoresComponent implements OnInit {
   }
 
   editScore(team1, team2, id) {
+    if(this.authservice.canEdit(this.user)) {
       this.warning();
       this.dialog.open(ScoresModalComponent, {
         width: '70%',
@@ -56,5 +68,8 @@ export class ScoresComponent implements OnInit {
           team2: team2
         }
       });
+    } else {
+      this.notification.warnPermissions();
     }
+  }
 }

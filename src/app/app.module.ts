@@ -39,6 +39,7 @@ import { SignupComponent } from './auth/signup/signup.component';
 import 'hammerjs';
 import { EditTableComponent } from './league-table/edit-table/edit-table.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { NotificationService } from './shared/notification.service'; 
 
 @NgModule({
   declarations: [
@@ -82,6 +83,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     TeamService,
     LeagueTableService,
     PostService,
+    NotificationService
   ],
   entryComponents: [
     ScoresModalComponent,

@@ -18,6 +18,11 @@ $alt-app-accent:  mat-palette($mat-green, 400, 700);
 
 // The warn palette is optional (defaults to red).
 $alt-app-warn:    mat-palette($mat-red, 900);
+.warn{ 
+    background: #f8d7da;
+    border: #ff3d3d solid;
+    color: black;
+ }
 
 // Create the theme object (a Sass map containing all of the palettes).
 $alt-app-theme: mat-dark-theme($alt-app-primary, $alt-app-accent, $alt-app-warn);

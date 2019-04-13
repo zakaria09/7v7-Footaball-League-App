@@ -14,7 +14,6 @@ export class UserProfileComponent implements OnInit {
   displayName;
   email;
   emailVerified;
-  profilePic;
 
   constructor(public afAuth: AngularFireAuth,
               public auth: AuthService) 
@@ -23,11 +22,10 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit() {
     this.auth.user.subscribe(auth => {
-      console.log(auth);
+      //console.log(auth);
       this.displayName = auth.displayName;
       this.email = auth.email;
       this.emailVerified = auth.emailVerified;
-      this.profilePic = auth.photoURL;
     });
   }
 

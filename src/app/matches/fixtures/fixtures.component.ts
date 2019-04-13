@@ -6,6 +6,9 @@ import { Matches } from '../matches';
 import {MatDialog, MatDialogRef, MatDialogConfig} from '@angular/material';
 import { ScoresModalComponent } from '../scores-modal/scores-modal.component';
 import { LeagueTableService } from 'src/app/shared/leagueTable.service';
+import { User } from 'src/app/auth/user.model';
+import { AuthService } from 'src/app/auth/auth.service';
+import { NotificationService } from 'src/app/shared/notification.service';
 
 @Component({
   selector: 'app-fixtures',
@@ -17,10 +20,12 @@ export class FixturesComponent implements OnInit {
   // because th objects returned are 
   // exactly in that format
   matches: Observable<Matches[]>;
-  //items: Array<any>;
+  user: User;
 
   constructor(private games: MatchesService,
-              private dialog: MatDialog) { }
+              private dialog: MatDialog,
+              private authservice: AuthService,
+              private notification: NotificationService) { }
 
   // more info about pipe method at:
   //https://www.udemy.com/angular-full-app-with-angular-material-angularfire-ngrx/learn/v4/t/lecture/9912780?start=1
@@ -37,23 +42,31 @@ export class FixturesComponent implements OnInit {
           }
         })
       }))
-
+      this.authservice.user.subscribe(user => this.user = user);
   }
 
   deleteFixture(id) {
-    this.games.deleteMatch(id);
+    if(this.authservice.canDelete(this.user)) {
+      this.games.deleteMatch(id);
+    } else {
+      this.notification.warnPermissions();
+    }
   }
 
   openDialog(team1, team2, id) {
-    console.log(this.matches)
-    this.dialog.open(ScoresModalComponent, {
-      width: '70%',
-      autoFocus: true,
-      data: {
-        id: id,
-        team1: team1,
-        team2: team2
-      }
-    });
+    if(this.authservice.canEdit(this.user)) {
+      console.log(this.matches)
+      this.dialog.open(ScoresModalComponent, {
+        width: '70%',
+        autoFocus: true,
+        data: {
+          id: id,
+          team1: team1,
+          team2: team2
+        }
+      });
+    } else {
+      this.notification.warnPermissions();
+    }
   }
 }

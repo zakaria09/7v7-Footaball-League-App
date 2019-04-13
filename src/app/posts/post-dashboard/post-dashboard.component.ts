@@ -29,14 +29,6 @@ export class PostDashboardComponent implements OnInit {
     });
   }
 
-  // createForm() {
-  //   this.postForm = this.fb.group({
-  //     title: [''],
-  //     content: [''],
-  //     draft: false
-  //   });
-  // }
-
   onSubmit(data) {
     const formData: Post = {
       author: this.displayName,

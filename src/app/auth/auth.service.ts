@@ -22,7 +22,7 @@ export class AuthService {
 
   userData: Observable<User>; // Save logged in user data
 
-  user: Observable<User>;;
+  user: Observable<User>;
   //user: Observable<User>;
   authState: firebase.User;
 
@@ -88,7 +88,7 @@ export class AuthService {
         this.initAuthListener();
         this.sendVerificationEmail();
         this.SetUserData(result.user, name);
-        console.log(result.user.providerData);
+        console.log(result.user);
       })
       .then(() => {
         this.router.navigate(['/profile']);
@@ -123,21 +123,53 @@ export class AuthService {
     this.fbSubs.forEach(sub => sub.unsubscribe());
 }
 
-  SetUserData(user: User, name) {
+  SetUserData(user, name) {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
     const userData: User = {
     uid: user.uid,
     email: user.email,
     displayName: name,
     nameToSearch: name.toLowerCase(),
-    photoURL: user.photoURL || 
-    "https://en.gravatar.com/avatar" + "/205e460b479e2e5b48aec07710c08d50" + "?d=mp",
-    emailVerified: user.emailVerified
+    emailVerified: user.emailVerified,
+    roles: {
+      subscriber: true,
+      editor: false,
+      admin: false,
+    }
   }
-  return userRef.set(userData)
+  return userRef.set(userData, {merge: true});
 }
 
 logout() {
   this.afAuth.auth.signOut();
+}
+
+// Abilities and Roles Authorization 
+// assigns roles to an abilities method
+
+canRead(user: User): boolean {
+  const allowed = ['admin', 'editor', 'subscriber'];
+  return this.checkAuthorization(user, allowed)
+}
+
+canEdit(user: User): boolean {
+  const allowed = ['admin', 'editor'];
+  return this.checkAuthorization(user, allowed)
+}
+
+canDelete(user: User): boolean {
+  const allowed = ['admin'];
+  return this.checkAuthorization(user, allowed)
+}
+
+// determines if user has a matching role
+private checkAuthorization(user: User, allowedRoles: string[]): boolean {
+  if(!user) return false;
+  for (const role of allowedRoles) {
+    if(user.roles[role]) {
+      return true;
+    }
+  }
+  return false;
 }
 }
