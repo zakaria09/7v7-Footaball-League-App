@@ -2,6 +2,7 @@
   <mat-card>
   <mat-card-title fxLayoutAlign="center">Create A New Blog Post</mat-card-title>
     <form class="form" [formGroup]="postForm" (ngSubmit)="onSubmit(postForm)">
+        <input #resetMe type="file" name="file" id="file" formControlName="image" (change)="startUpload($event.target.files)">
         <mat-form-field fxLayoutAlign="center" class="full-width">
               <input 
                 formControlName="title" 

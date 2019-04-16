@@ -18,6 +18,7 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireModule } from '@angular/fire';
+import { AngularFireStorageModule } from 'angularfire2/storage';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
 import { MatchesService } from './matches/matches.service'
@@ -73,7 +74,8 @@ import { NotificationService } from './shared/notification.service';
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase), 
     AngularFirestoreModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    AngularFireStorageModule
   ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'en-GB'},

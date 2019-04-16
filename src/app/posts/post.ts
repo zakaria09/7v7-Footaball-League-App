@@ -5,7 +5,7 @@ export interface Post {
     authorId?: string;
     author?: string;
     content?: string;
-    image?: string;
+    image: string;
     published?: Date;
     likes: number;
 }
