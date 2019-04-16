@@ -1,8 +1,17 @@
 <section class="postForm" fxLayout fxLayoutAlign="center">
   <mat-card>
-  <mat-card-title fxLayoutAlign="center">Create A New Blog Post</mat-card-title>
+  <mat-card-title fxLayoutAlign="center">Write A New Blog Post</mat-card-title>
+    <img src="{{ imageURL }}" alt="">
     <form class="form" [formGroup]="postForm" (ngSubmit)="onSubmit(postForm)">
-        <input #resetMe type="file" name="file" id="file" formControlName="image" (change)="startUpload($event.target.files)">
+        <label for="">Image:</label>
+        <input 
+          type="file" 
+          name="file" 
+          class="upload" 
+          accept="image/x-png,image/gif,image/jpeg" 
+          formControlName="image" 
+          (change)="startUpload($event.target.files)">
+          <mat-progress-bar mode="determinate" value="{{ uploadPercentage | async }}"></mat-progress-bar>
         <mat-form-field fxLayoutAlign="center" class="full-width">
               <input 
                 formControlName="title" 
@@ -15,7 +24,9 @@
               </mat-error>
         </mat-form-field>
         <mat-form-field fxLayoutAlign="center" class="full-width">
-            <textarea 
+            <textarea
+              rows="20" 
+              cols="50" 
               id="content"
               formControlName="content" 
               type="text" 

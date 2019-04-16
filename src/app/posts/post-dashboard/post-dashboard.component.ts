@@ -18,12 +18,9 @@ export class PostDashboardComponent implements OnInit {
   imageURL: string;
   displayName: string;
 
-  // State for dropzone CSS toggling
-  isHovering: boolean;
-
+  uploadPercentage: Observable<number>
   task: AngularFireUploadTask;
   downloadURL: Observable<string>;
-  snapshot: Observable<any>;
 
   constructor(private postService: PostService,
               private auth: AuthService,
@@ -34,7 +31,6 @@ export class PostDashboardComponent implements OnInit {
       'title': new FormControl(null, Validators.required),
       'content': new FormControl(null, Validators.required),
       'image': new FormControl(null, Validators.required),
-      'draft': new FormControl(false),
     }); 
     this.auth.user.subscribe(auth => {
       this.displayName = auth.displayName;
@@ -64,11 +60,13 @@ export class PostDashboardComponent implements OnInit {
     }
     // storage path 
     const path = `test/${new Date().getTime()}_${file.name}`;
-    // the main task 
+    // upload the path and the file
     this.task = this.storage.upload(path, file);
+    // make a reference to the file path
     let ref = this.storage.ref(path);
-    // the files download url
-    // The file's download URL
+    // assign the uploadPercentage to the percentageChanges
+    this.uploadPercentage = this.task.percentageChanges();
+    // get url and subscribe
     this.task.snapshotChanges().pipe(
       finalize(() => {
         this.downloadURL = ref.getDownloadURL();

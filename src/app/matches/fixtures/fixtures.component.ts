@@ -27,9 +27,6 @@ export class FixturesComponent implements OnInit {
               private authservice: AuthService,
               private notification: NotificationService) { }
 
-  // more info about pipe method at:
-  //https://www.udemy.com/angular-full-app-with-angular-material-angularfire-ngrx/learn/v4/t/lecture/9912780?start=1
-
   ngOnInit() {
     console.log(this.games.fetchMatches());
     this.matches = this.games

@@ -24,6 +24,10 @@ $alt-app-warn:    mat-palette($mat-red, 900);
     color: black;
  }
 
+ * {
+    font-family: 'Roboto', sans-serif;
+ }
+
 // Create the theme object (a Sass map containing all of the palettes).
 $alt-app-theme: mat-dark-theme($alt-app-primary, $alt-app-accent, $alt-app-warn);
 

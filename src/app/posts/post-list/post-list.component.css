@@ -1,0 +1,103 @@
+.card {
+    max-width: 800px;
+    text-align: center;
+    border: #e6e5e6 solid 1px;
+    padding: 1em;
+    box-shadow: 0.2em 0.3em hsla(0, 0%, 82%, 0.5);
+    margin-bottom: 1em;
+  }
+
+  .truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 4em; /* exactly three lines */
+    font-family: 'Roboto', sans-serif;
+}
+
+.more-actions {
+    display: flex;
+}
+
+.share-likes {
+    flex: 0 1 auto;
+}
+
+.more-vert {
+    flex: 0 1 auto;
+    margin-left: auto;
+}
+
+mat-card-title {
+    font-size: 2.5rem;
+    padding: 0.5em;
+}
+
+p {
+    padding: .2em;
+}
+
+@media only screen and (max-width: 1440px) {
+    .card {
+        width: 100%;
+        text-align: center;
+        padding: 0.5em;
+        max-width: 620px;
+      }
+
+      mat-card-title {
+        font-size: 2rem;
+        padding: .5em;
+    }
+  }
+
+@media only screen and (max-width: 600px) {
+    .card {
+        width: 100%;
+        text-align: center;
+        padding: 0.3em;
+        max-width: 400px;
+      }
+
+      .postimg {
+        width: 22rem;
+      }
+
+      mat-card-title {
+        font-size: 1rem;
+        padding: 0.5em;
+    }
+  }
+
+@media only screen and (max-width: 455px) {
+    .card {
+        width: 100%;
+        text-align: center;
+        padding: 0.3em;
+      }
+
+      .postimg {
+        width: 22rem;
+      }
+
+      mat-card-title {
+        font-size: 1rem;
+        padding: 0.5em;
+    }
+
+@media only screen and (max-width: 370px) {
+    .card {
+        width: 100%;
+        text-align: center;
+        padding: 0.2em;
+      }
+
+      .postimg {
+        width: 19rem;
+      }
+
+      mat-card-title {
+        font-size: .9rem;
+        padding: 0.05em;
+    }
+} 
+}

@@ -1,7 +1,28 @@
-<section *ngFor="let post of posts | async">
-  <a routerLink="{{ post.id }}" >
-    <h2>{{ post.title }}</h2>
-  </a>
-  <img src="{{ post.image }}" alt="">
-  <p>{{ post.content }}</p>
+<section fxLayout="column" fxLayoutAlign="space-around center" >
+  <mat-card fxFlex.xs="100" class="card" *ngFor="let post of posts | async">
+    <a mat-button routerLink="{{ post.id }}" >
+      <mat-card-title>{{ post.title | titlecase }}</mat-card-title>
+      <img class="postimg" mat-card-image src="{{ post.image }}" alt="">
+    </a>
+    <mat-card-content>
+      <p class="truncate">{{ post.content }}</p>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button routerLink="{{ post.id }}" color="primary" >Read More</button>
+    </mat-card-actions>
+    <mat-card-actions class="more-actions">
+      <div class="share-likes" >
+        <button mat-button>LIKE<mat-icon>favorite_border</mat-icon></button>
+        <button mat-button>SHARE<mat-icon>share</mat-icon></button>
+      </div>
+      <div class="more-vert" >
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item><mat-icon><img src="../../../assets/material-pin-icon.png" alt=""></mat-icon>Pin To HomePage</button>
+            <button mat-menu-item (click)="deletePost(post.id)"><mat-icon>delete</mat-icon>Delete</button>
+            <button mat-menu-item><mat-icon>flag</mat-icon>Report</button>
+        </mat-menu>
+        <button mat-icon-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
+      </div>
+    </mat-card-actions>
+  </mat-card>
 </section>
