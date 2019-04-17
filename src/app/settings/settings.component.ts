@@ -1,6 +1,9 @@
 import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { ThemeService } from '../shared/theme.service';
 import { LeagueTableService } from '../shared/leagueTable.service';
+import { AuthService } from '../auth/auth.service';
+import { NotificationService } from '../shared/notification.service';
+import { User } from '../auth/user.model';
 
 @Component({
   selector: 'app-settings',
@@ -9,9 +12,12 @@ import { LeagueTableService } from '../shared/leagueTable.service';
 })
 export class SettingsComponent implements OnInit {
   otherTheme: boolean;
+  user: User;
 
   constructor(public themeService: ThemeService,
-              private leagueTable: LeagueTableService) { }
+              private leagueTable: LeagueTableService,
+              private authservice: AuthService,
+              private notification: NotificationService) { }
 
   ngOnInit() {
     this.themeService.currentTheme.subscribe(theme => this.otherTheme = theme);
@@ -24,6 +30,10 @@ export class SettingsComponent implements OnInit {
   }
 
   resetTable() {
-    this.leagueTable.resetLeagueTable();
+    if(this.authservice.canDelete(this.user)) {
+      this.leagueTable.resetLeagueTable();
+    } else {
+      this.notification.warnPermissions();
+    }
   }
 }

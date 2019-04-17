@@ -12,3 +12,7 @@ mat-sidenav-container, mat-sidenav-content, mat-sidenav {
     padding: .5rem;
     margin-right: 1.2rem;
 }
+
+mat-icon, .list {
+    padding-right: 1.5rem;
+}

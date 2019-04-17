@@ -13,6 +13,10 @@
         <mat-sidenav-container>
         <mat-sidenav #sidenav role="navigation">
             <mat-nav-list>
+                <a mat-list-item class="list" routerLink="/create-fixtures" (click)="sidenav.toggle()">
+                    <mat-icon>event</mat-icon>
+                    <span mat-menu-item>Create Fixtures</span>
+                </a>
                 <a mat-list-item class="list" routerLink="/matches" (click)="sidenav.toggle()">
                     <mat-icon>calendar_today</mat-icon>
                     <span mat-menu-item>Matches</span>

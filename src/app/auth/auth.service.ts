@@ -27,7 +27,7 @@ export class AuthService {
   authState: firebase.User;
 
   authChange = new Subject<boolean>();
-  private isAuthenticated = false;
+  // private isAuthenticated = false;
   private fbSubs: Subscription[] = [];
 
   constructor(
@@ -54,21 +54,6 @@ export class AuthService {
     return this.authenticated ? this.authState.uid : null;
   }
 
-  initAuthListener() {
-    this.afAuth.authState.subscribe(user => {
-        if(user) {
-            this.isAuthenticated = true;
-            this.authChange.next(true);
-            this.router.navigate(['/profile']);
-        } else {
-            this.cancelSubscriptions();
-            this.authChange.next(false);
-            this.router.navigate(['/login']);
-            this.isAuthenticated = false;
-        }
-    });
-  }
-
   sendVerificationEmail() {
     return this.afAuth.auth.currentUser.sendEmailVerification()
       .then(() => {
@@ -85,7 +70,6 @@ export class AuthService {
         email,
         password)
       .then((result) => {
-        this.initAuthListener();
         this.sendVerificationEmail();
         this.SetUserData(result.user, name);
         console.log(result.user);
@@ -104,7 +88,6 @@ export class AuthService {
         authData.email, 
         authData.password)
             .then(result => {
-              this.initAuthListener();
               this.router.navigate(['/matches']);
             })
             .catch(err => {
@@ -141,6 +124,7 @@ export class AuthService {
 }
 
 logout() {
+  this.router.navigate(['/login']);
   this.afAuth.auth.signOut();
 }
 

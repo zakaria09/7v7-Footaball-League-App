@@ -11,16 +11,19 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { AuthGaurd } from './auth/auth.gaurd'
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { PostDashboardComponent } from './posts/post-dashboard/post-dashboard.component';
+import { AdminGuard } from './auth/admin.guard';
+import { CreateFixturesComponent } from './matches/create-fixtures/create-fixtures.component';
 
 
 const routes: Routes = [
+    { path: 'create-fixtures', component: CreateFixturesComponent, data: { animation: 'isLeft' }, canActivate: [AdminGuard]},
     { path: 'matches', component: MatchesComponent, data: { animation: 'isRight' }, canActivate: [AuthGaurd]},
     { path: 'teams', component: TeamsComponent, data: { animation: 'isLeft' }, canActivate: [AuthGaurd]},
     { path: 'leagueTable', component: LeagueTableComponent, data: { animation: 'isRight' }, canActivate: [AuthGaurd]},
     { path: 'settings', component: SettingsComponent, data: { animation: 'isLeft' }, canActivate: [AuthGaurd]},
     { path: 'blog', component: PostListComponent, data: { animation: 'isLeft' }},
     { path: 'blog/:id', component: PostDetailsComponent },
-    { path: 'create-post', component: PostDashboardComponent },
+    { path: 'create-post', component: PostDashboardComponent , canActivate: [AuthGaurd]},
     { path: 'login', component: LoginComponent },
     { path: 'signup', component: SignupComponent },
     { path: 'profile', component: UserProfileComponent },

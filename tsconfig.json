@@ -16,6 +16,6 @@
       "es2017",
       "dom"
     ],
-    "paths": { "@angular/*": ["node_modules/@angular/*"] } // This is added in new ts config file
+    "paths": { "@angular/*": ["node_modules/@angular/*", "@fortawesome/fontawesome-free-solid", "../node_modules/@fortawesome/fontawesome-free-solid/shakable.es.js"] } // This is added in new ts config file
   }
 }

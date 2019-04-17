@@ -22,4 +22,9 @@ export class NotificationService {
         this.snackBar.open('You are not allowed to do that!', '', this.config);
     }
 
+    accessDeniedPermissions() {
+        this.config['panelClass'] = ['warn'];
+        this.snackBar.open('Access Denied! You Must be an Admin To Enter This Route.', '', this.config);
+    }
+
 }
