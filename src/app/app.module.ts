@@ -42,6 +42,9 @@ import { EditTableComponent } from './league-table/edit-table/edit-table.compone
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { NotificationService } from './shared/notification.service'; 
 
+import { ShareButtonsModule } from '@ngx-share/buttons';
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,7 +66,7 @@ import { NotificationService } from './shared/notification.service';
     LoginComponent,
     SignupComponent,
     EditTableComponent,
-    UserProfileComponent
+    UserProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -75,7 +78,11 @@ import { NotificationService } from './shared/notification.service';
     AngularFireModule.initializeApp(environment.firebase), 
     AngularFirestoreModule,
     AngularFireAuthModule,
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    ShareButtonsModule.withConfig({
+      debug: true
+    }),
+    HttpClientModule
   ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'en-GB'},

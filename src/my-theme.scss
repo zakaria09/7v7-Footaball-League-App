@@ -1,5 +1,10 @@
 @import '~@angular/material/theming';
 
+@import '~@ngx-share/button/themes/default/default-theme';
+
+@import '~@ngx-share/button/themes/material/material-dark-theme';
+@import '~@ngx-share/button/themes/modern/modern-light-theme';
+
 @include mat-core();
 
 $candy-app-primary: mat-palette($mat-light-green, 900, 300);

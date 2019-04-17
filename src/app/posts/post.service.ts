@@ -46,4 +46,10 @@ export class PostService {
    updatePost(id: string, formdata) {
      return this.getPost(id).update(formdata);
    }
+
+   incrementLikes(docId, obj) {
+    this.db.collection('posts').doc(docId).update({
+        likes: ++obj.likes
+      })
+}
 }

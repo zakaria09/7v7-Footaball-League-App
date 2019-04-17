@@ -5,6 +5,10 @@ import { PostService } from '../post.service';
 import { AuthService } from 'src/app/auth/auth.service';
 import { NotificationService } from 'src/app/shared/notification.service';
 import { User } from 'src/app/auth/user.model';
+import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons/faFacebookSquare';
+import { faTwitterSquare } from '@fortawesome/free-brands-svg-icons/faTwitterSquare';
+import { faLinkedin } from '@fortawesome/free-brands-svg-icons/faLinkedin';
+
 
 @Component({
   selector: 'app-post-list',
@@ -12,9 +16,16 @@ import { User } from 'src/app/auth/user.model';
   styleUrls: ['./post-list.component.css']
 })
 export class PostListComponent implements OnInit {
+
+  fbIcon = faFacebookSquare;
+  tweetIcon = faTwitterSquare;
+  lnkedinIcon = faLinkedin;
   
   posts: Observable<Post[]>;
   user: User;
+  userinfo;
+
+  name = '@ngx-share/buttons';
 
   constructor(private postService: PostService,
               private authservice: AuthService,
@@ -31,5 +42,9 @@ export class PostListComponent implements OnInit {
     } else {
       this.notification.warnPermissions();
     }
+  }
+
+  addLikes(id , obj) {
+    this.postService.incrementLikes(id, obj);
   }
 }
