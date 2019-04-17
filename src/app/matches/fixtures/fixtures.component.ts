@@ -28,7 +28,6 @@ export class FixturesComponent implements OnInit {
               private notification: NotificationService) { }
 
   ngOnInit() {
-    console.log(this.games.fetchMatches());
     this.matches = this.games
       .fetchMatches()
       .pipe(map(docArray => {

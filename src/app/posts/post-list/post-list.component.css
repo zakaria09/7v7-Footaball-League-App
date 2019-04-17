@@ -58,10 +58,6 @@ p {
         max-width: 400px;
       }
 
-      .postimg {
-        width: 22rem;
-      }
-
       mat-card-title {
         font-size: 1rem;
         padding: 0.5em;
@@ -75,10 +71,6 @@ p {
         padding: 0.3em;
       }
 
-      .postimg {
-        width: 22rem;
-      }
-
       mat-card-title {
         font-size: 1rem;
         padding: 0.5em;
@@ -89,10 +81,6 @@ p {
         width: 100%;
         text-align: center;
         padding: 0.2em;
-      }
-
-      .postimg {
-        width: 19rem;
       }
 
       mat-card-title {

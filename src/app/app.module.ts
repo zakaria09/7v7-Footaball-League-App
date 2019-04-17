@@ -44,6 +44,7 @@ import { NotificationService } from './shared/notification.service';
 
 import { ShareButtonsModule } from '@ngx-share/buttons';
 import { HttpClientModule } from '@angular/common/http';
+import { ManageUsersComponent } from './manage-users/manage-users.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { HttpClientModule } from '@angular/common/http';
     SignupComponent,
     EditTableComponent,
     UserProfileComponent,
+    ManageUsersComponent,
   ],
   imports: [
     BrowserModule,

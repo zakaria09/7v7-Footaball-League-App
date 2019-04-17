@@ -26,6 +26,8 @@ export class AuthService {
   //user: Observable<User>;
   authState: firebase.User;
 
+  allUsers: Observable<any>;
+
   authChange = new Subject<boolean>();
   // private isAuthenticated = false;
   private fbSubs: Subscription[] = [];
@@ -45,6 +47,11 @@ export class AuthService {
       }
     });
   }
+
+  fetchUsers() {
+    this.allUsers = this.afs.collection('users').snapshotChanges();
+    return this.allUsers;
+}
 
   get authenticated(): boolean {
     return this.authState !== null;

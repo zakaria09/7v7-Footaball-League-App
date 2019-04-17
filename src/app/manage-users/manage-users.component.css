@@ -1,0 +1,12 @@
+.accounts {
+    padding: 3rem;
+}
+
+mat-card {
+    border: 1px #A6A5A6 solid;
+    padding: 2rem;
+}
+
+mat-card-title, mat-card-content {
+    padding: 1rem;
+}

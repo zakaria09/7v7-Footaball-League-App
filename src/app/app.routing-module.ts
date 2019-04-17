@@ -13,6 +13,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { PostDashboardComponent } from './posts/post-dashboard/post-dashboard.component';
 import { AdminGuard } from './auth/admin.guard';
 import { CreateFixturesComponent } from './matches/create-fixtures/create-fixtures.component';
+import { ManageUsersComponent } from './manage-users/manage-users.component';
 
 
 const routes: Routes = [
@@ -27,6 +28,7 @@ const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'signup', component: SignupComponent },
     { path: 'profile', component: UserProfileComponent },
+    { path: 'manage-users', component: ManageUsersComponent, canActivate: [AdminGuard] },
 ];
 
 @NgModule({
