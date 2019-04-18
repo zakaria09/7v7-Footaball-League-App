@@ -7,6 +7,7 @@ import { Subject } from 'rxjs';
 import { DatePipe } from '@angular/common';
 import { map } from 'rxjs/operators';
 import { TeamService } from '../shared/team.service';
+import { NotificationService } from '../shared/notification.service';
 
 @Injectable() // to inject
 export class MatchesService {
@@ -17,7 +18,8 @@ export class MatchesService {
 
     constructor(private db: AngularFirestore,
                 private datePipe: DatePipe,
-                private teamservice: TeamService) {}
+                private teamservice: TeamService,
+                private notify: NotificationService) {}
 
 
     fetchMatches() {
@@ -110,10 +112,6 @@ export class MatchesService {
 
     UpdateFirstTeamTablePoints(teamObj) {
         // for --> firstTeam
-        console.log('firstTeam points updated');
-        console.log('fiirst team id',teamObj.firstTeamId);
-        console.log('first team name',teamObj.firstTeam);
-        console.log('first team wins',teamObj.firstTeamWins);
         if(teamObj.firstTeamDraws || teamObj.firstTeamWins) {
           this.db.collection('teams').doc(teamObj.firstTeamId).update({
             points: (teamObj.firstTeamDraws * 1) + (teamObj.firstTeamWins * 3)
@@ -123,10 +121,6 @@ export class MatchesService {
 
     UpdateSecondTeamTablePoints(teamObj) {
         //for --> secondTeam
-        console.log('secondTeam points updated');
-        console.log('second team id',teamObj.secondTeamId);
-        console.log('second team name',teamObj.secondTeam);
-        console.log('second team wins',teamObj.secondTeamWins);
         if(teamObj.secondTeamDraws || teamObj.secondTeamWins) {
           this.db.collection('teams').doc(teamObj.secondTeamId).update({
             points: (teamObj.secondTeamDraws * 1) + (teamObj.secondTeamWins * 3)
@@ -188,8 +182,7 @@ export class MatchesService {
     }
 
     deleteMatch(key) {
-        // add yes or no option
-        alert('Are You Sure Yoou Want to Delete This?');
+        this.notify.warnMessage('Match has been deleted!');
         return this.db.collection('matches').doc(key).delete();
     }
 }

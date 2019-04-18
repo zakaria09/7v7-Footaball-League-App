@@ -14,12 +14,14 @@ import { PostDashboardComponent } from './posts/post-dashboard/post-dashboard.co
 import { AdminGuard } from './auth/admin.guard';
 import { CreateFixturesComponent } from './matches/create-fixtures/create-fixtures.component';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
+import { CreateTeamComponent } from './teams/create-team/create-team.component';
 
 
 const routes: Routes = [
     { path: 'create-fixtures', component: CreateFixturesComponent, data: { animation: 'isLeft' }, canActivate: [AdminGuard]},
-    { path: 'matches', component: MatchesComponent, data: { animation: 'isRight' }, canActivate: [AuthGaurd]},
-    { path: 'teams', component: TeamsComponent, data: { animation: 'isLeft' }, canActivate: [AuthGaurd]},
+    { path: 'matches', component: MatchesComponent, data: { animation: 'isLeft' }, canActivate: [AuthGaurd]},
+    { path: 'teams', component: TeamsComponent, data: { animation: 'isRight' }, canActivate: [AuthGaurd]},
+    { path: 'create-teams', component: CreateTeamComponent, data: { animation: 'isLeft' }, canActivate: [AdminGuard]},
     { path: 'leagueTable', component: LeagueTableComponent, data: { animation: 'isRight' }, canActivate: [AuthGaurd]},
     { path: 'settings', component: SettingsComponent, data: { animation: 'isLeft' }, canActivate: [AuthGaurd]},
     { path: 'blog', component: PostListComponent, data: { animation: 'isLeft' }},

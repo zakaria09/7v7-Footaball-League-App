@@ -27,4 +27,9 @@ export class NotificationService {
         this.snackBar.open('Access Denied! You Must be an Admin To Enter This Route.', '', this.config);
     }
 
+    warnMessage(msg) {
+        this.config['panelClass'] = ['warn'];
+        this.snackBar.open(msg, '', this.config);
+    }
+
 }

@@ -5,7 +5,7 @@ import {
 } from '@angular/fire/firestore';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Subject } from 'rxjs/Subject';
 import { Subscription } from 'rxjs/Subscription';
 import { User } from './user.model';
@@ -13,7 +13,7 @@ import { MatSnackBar } from '@angular/material';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/switchMap';
 import "rxjs/add/observable/of";
-import { Md5 } from 'ts-md5/dist/md5';
+
 
 @Injectable({
   providedIn: 'root'
@@ -162,5 +162,41 @@ private checkAuthorization(user: User, allowedRoles: string[]): boolean {
     }
   }
   return false;
+}
+
+// update user roles
+
+isEditor(docId, boolean) {
+  this.afs.collection('users').doc(docId).update({
+      roles: {
+        subscriber: true,
+        editor: boolean,
+        admin: false
+      }
+    })
+}
+
+isAdmin(docId, boolean) {
+  this.afs.collection('users').doc(docId).update({
+      roles: {
+        subscriber: true,
+        editor: true,
+        admin: boolean
+      }
+    })
+}
+
+isSubscriber(docId) {
+  this.afs.collection('users').doc(docId).update({
+      roles: {
+        subscriber: true,
+        editor: false,
+        admin: false
+      }
+    })
+}
+
+deleteUser(id) {
+  return this.afs.collection('users').doc(id).delete();
 }
 }

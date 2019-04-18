@@ -7,9 +7,13 @@
           <mat-card-content fxLayoutAlign="center">Is A Subscriber: {{ user.roles.subscriber }}</mat-card-content>
           <mat-card-content fxLayoutAlign="center">Is An Editor: {{ user.roles.editor }}</mat-card-content>
           <mat-card-content fxLayoutAlign="center">Is An Admin: {{ user.roles.admin }}</mat-card-content>
-          <button mat-button color="warn" matTooltip="Delete This Account"><mat-icon>delete</mat-icon></button>
-          <button mat-button matTooltip="Assign A Role"><mat-icon>more_vert</mat-icon></button>
-          <button mat-button matTooltip="Assign A Team"><mat-icon>add_box</mat-icon></button>
+          <button mat-button color="warn" matTooltip="Delete This Account" (click)="deleteUser(user.id)"><mat-icon>delete</mat-icon></button>
+          <button mat-button matTooltip="Assign A Role" [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="makeEditor(user.id)">Make User an Editor</button>
+                <button mat-menu-item (click)="makeAdmin(user.id)">Make User an Admin</button>
+                <button mat-menu-item (click)="makeSubscriber(user.id)">downgrade User a Subscriber</button>
+            </mat-menu>
       </mat-card>
   </div>
   </section>
