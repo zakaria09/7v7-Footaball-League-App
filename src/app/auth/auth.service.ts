@@ -196,6 +196,12 @@ isSubscriber(docId) {
     })
 }
 
+giveUserTeam(docId, team) {
+  this.afs.collection('users').doc(docId).update({
+    team: team
+  })
+}
+
 deleteUser(id) {
   return this.afs.collection('users').doc(id).delete();
 }

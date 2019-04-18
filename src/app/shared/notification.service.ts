@@ -32,4 +32,9 @@ export class NotificationService {
         this.snackBar.open(msg, '', this.config);
     }
 
+    successMessage(msg) {
+        this.config['panelClass'] = ['success'];
+        this.snackBar.open(msg, '', this.config);
+    }
+
 }

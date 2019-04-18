@@ -1,14 +1,25 @@
 <section fxLayout fxLayoutAlign="center" fxLayout="column">
   <div *ngFor="let user of accounts | async" (value)="user.id" >
       <mat-card class="accounts">
-          <mat-card-title fxLayoutAlign="center">{{ user.displayName | titlecase }}</mat-card-title>
-          <mat-card-content fxLayoutAlign="center">{{ user.email }}</mat-card-content>
-          <mat-card-content fxLayoutAlign="center">User Has Verified Their Email: {{ user.emailVerified }}</mat-card-content>
-          <mat-card-content fxLayoutAlign="center">Is A Subscriber: {{ user.roles.subscriber }}</mat-card-content>
-          <mat-card-content fxLayoutAlign="center">Is An Editor: {{ user.roles.editor }}</mat-card-content>
-          <mat-card-content fxLayoutAlign="center">Is An Admin: {{ user.roles.admin }}</mat-card-content>
-          <button mat-button color="warn" matTooltip="Delete This Account" (click)="deleteUser(user.id)"><mat-icon>delete</mat-icon></button>
-          <button mat-button matTooltip="Assign A Role" [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
+        <mat-card-title fxLayoutAlign="center">{{ user.displayName | titlecase }}</mat-card-title>
+        <mat-card-content fxLayoutAlign="center">{{ user.email }}</mat-card-content>
+        <mat-card-content fxLayoutAlign="center">Is A Subscriber: {{ user.roles.subscriber }}</mat-card-content>
+        <mat-card-content fxLayoutAlign="center">Is An Editor: {{ user.roles.editor }}</mat-card-content>
+        <mat-card-content fxLayoutAlign="center">Is An Admin: {{ user.roles.admin }}</mat-card-content>
+        <div *ngIf="user.team; else elseBlock">
+            <mat-card-content fxLayoutAlign="center">This person plays for: {{ user.team }}</mat-card-content>
+        </div>
+        <ng-template #elseBlock>
+                <mat-card-content fxLayoutAlign="center">This Account has not been assigned to a team.</mat-card-content>
+        </ng-template>
+        <button mat-button color="warn" matTooltip="Delete This Account" (click)="deleteUser(user.id)"><mat-icon>delete</mat-icon></button>
+        <button [matMenuTriggerFor]="teammenu"><mat-icon>add_box</mat-icon></button>
+            <mat-menu #teammenu="matMenu">
+                <div *ngFor="let team of teams | async">
+                    <button mat-menu-item (click)="assignTeam(user.id, team.teamName)">{{ team.teamName }}</button>
+                </div>
+            </mat-menu>
+        <button mat-button matTooltip="Assign A Role" [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
             <mat-menu #menu="matMenu">
                 <button mat-menu-item (click)="makeEditor(user.id)">Make User an Editor</button>
                 <button mat-menu-item (click)="makeAdmin(user.id)">Make User an Admin</button>

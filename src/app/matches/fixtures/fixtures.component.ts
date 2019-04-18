@@ -51,7 +51,6 @@ export class FixturesComponent implements OnInit {
 
   openDialog(team1, team2, id) {
     if(this.authservice.canEdit(this.user)) {
-      console.log(this.matches)
       this.dialog.open(ScoresModalComponent, {
         width: '70%',
         autoFocus: true,

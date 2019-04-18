@@ -5,6 +5,9 @@ import { TeamService } from '../shared/team.service';
 import { EditTableComponent } from './edit-table/edit-table.component';
 import { Subscription } from 'rxjs/Subscription';
 import { Teams } from '../matches/teams';
+import { AuthService } from '../auth/auth.service';
+import { NotificationService } from '../shared/notification.service';
+import { User } from '../auth/user.model';
 
 @Component({
   selector: 'app-league-table',
@@ -16,6 +19,8 @@ export class LeagueTableComponent implements OnInit, AfterViewInit, OnDestroy {
   teamsTable: Subscription;
   private teams: Teams[] = [];
 
+  user: User;
+
   tableData: MatTableDataSource<any>;
 
   displayedColumns = ['position', 'teamName', 'draws', 'wins', 'played', 'points', 'actions'];
@@ -23,7 +28,9 @@ export class LeagueTableComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(private table: LeagueTableService,
-              public modal: MatDialog) {}
+              public modal: MatDialog,
+              private authservice: AuthService,
+              private notification: NotificationService) {}
 
   ngOnInit() {
     
@@ -46,16 +53,20 @@ export class LeagueTableComponent implements OnInit, AfterViewInit, OnDestroy {
   }
   
   openModal(teamName, teamId, wins, draws, played) {
-    this.modal.open(EditTableComponent, {
-      width: '60%', 
-      data: {
-        teamName: teamName,
-        teamId: teamId,
-        wins,
-        draws,
-        played
-      }
-    });
+    if(this.authservice.canEdit(this.user)) {
+      this.modal.open(EditTableComponent, {
+        width: '60%', 
+        data: {
+          teamName: teamName,
+          teamId: teamId,
+          wins,
+          draws,
+          played
+        }
+      });
+  } else {
+    this.notification.warnPermissions();
+    }
   }
 
   ngOnDestroy() 
