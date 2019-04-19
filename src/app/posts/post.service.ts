@@ -13,7 +13,7 @@ export class PostService {
 
   constructor(private db: AngularFirestore) {
     this.postCollection = this.db.collection('posts', ref => 
-    ref.orderBy('published', 'desc').limit(10))
+    ref.orderBy('published', 'desc'))
    }
 
    getPosts() {
@@ -24,6 +24,10 @@ export class PostService {
          return { id, ...data }
        })
      })
+   }
+
+   getPinnedPosts() {
+    return this.db.collection('posts', ref => ref.where('pinned', '==', true)).valueChanges();
    }
 
    getPostData(id: string) {

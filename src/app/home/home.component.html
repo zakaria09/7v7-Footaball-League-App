@@ -1,41 +1,10 @@
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
-integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-
-<ngb-carousel>
-    <ng-template ngbSlide >
-      <div *ngFor="let post of pinnedPosts | async">
-        <div class="slider" *ngIf="post.pinned === true;">
-          <img class="img-fluid" src="{{ post.image }}" alt="">
-          <div class="carousel-caption">
-            <h3>{{ post.title | titlecase }}</h3>
-            <!-- <p>{{ post.content }}</p> -->
-          </div>
+<section>  
+  <carousel>
+    <slide *ngFor="let post of pinnedPosts | async">
+        <img src="{{ post.image }}" alt="first slide" style="display: block; max-height: 40rem; width: 100%;">
+        <div class="carousel-caption d-none d-md-block">
+          <h1>{{ post.title | uppercase }}</h1>
         </div>
-      </div>
-    </ng-template>
-  </ngb-carousel>
-
-  <ngb-carousel *ngIf="images">
-      <ng-template ngbSlide>
-        <img [src]="images[0]" alt="Random first slide">
-        <div class="carousel-caption">
-          <h3>First slide label</h3>
-          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-        </div>
-      </ng-template>
-      <ng-template ngbSlide>
-        <img [src]="images[1]" alt="Random second slide">
-        <div class="carousel-caption">
-          <h3>Second slide label</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        </div>
-      </ng-template>
-      <ng-template ngbSlide>
-        <img [src]="images[2]" alt="Random third slide">
-        <div class="carousel-caption">
-          <h3>Third slide label</h3>
-          <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-        </div>
-      </ng-template>
-    </ngb-carousel>
+    </slide>
+  </carousel>
+</section>

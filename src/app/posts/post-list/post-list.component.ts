@@ -33,6 +33,7 @@ export class PostListComponent implements OnInit {
 
   ngOnInit() {
     this.posts = this.postService.getPosts();
+    this.authservice.user.subscribe(user => this.user = user);
   }
 
   deletePost(id) {

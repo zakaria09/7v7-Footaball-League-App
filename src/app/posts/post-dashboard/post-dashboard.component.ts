@@ -6,6 +6,8 @@ import { AuthService } from 'src/app/auth/auth.service';
 import { Observable } from 'rxjs/Observable';
 import { AngularFireStorage, AngularFireUploadTask } from 'angularfire2/storage';
 import { finalize } from 'rxjs/operators';
+import { User } from 'src/app/auth/user.model';
+import { NotificationService } from 'src/app/shared/notification.service';
 
 @Component({
   selector: 'app-post-dashboard',
@@ -22,8 +24,12 @@ export class PostDashboardComponent implements OnInit {
   task: AngularFireUploadTask;
   downloadURL: Observable<string>;
 
+  user: User;
+
   constructor(private postService: PostService,
               private auth: AuthService,
+              private authservice: AuthService,
+              private notification: NotificationService,
               private storage: AngularFireStorage) { }
 
   ngOnInit() {
@@ -35,22 +41,28 @@ export class PostDashboardComponent implements OnInit {
     this.auth.user.subscribe(auth => {
       this.displayName = auth.displayName;
     });
+
+    this.authservice.user.subscribe(user => this.user = user);
   }
 
   onSubmit(data) {
-    const formData: Post = {
-      author: this.displayName,
-      image: this.imageURL,
-      title: data.value.title,
-      content: data.value.content,
-      draft: data.value.draft,
-      published: new Date(),
-      likes: 0
+    if(this.authservice.canDelete(this.user)) {
+      const formData: Post = {
+        author: this.displayName,
+        image: this.imageURL,
+        title: data.value.title,
+        content: data.value.content,
+        published: new Date(),
+        likes: 0
+      }
+      if (!(this.postForm.invalid)) {
+        this.postService.createPost(formData);
+        this.postForm.reset();
+        this.notification.successMessage('Post has been created!');
+      }
+  } else {
+      this.notification.warnPermissions();
     }
-    if (!this.postForm.untouched) {
-      return this.postService.createPost(formData);
-    }
-    this.postForm.reset();
   }
 
   startUpload(event) {

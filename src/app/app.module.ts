@@ -49,7 +49,7 @@ import { HomeComponent } from './home/home.component';
 
 // bootsrap
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {NgbCarouselModule} from '@ng-bootstrap/ng-bootstrap';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 @NgModule({
   declarations: [
@@ -92,7 +92,7 @@ import {NgbCarouselModule} from '@ng-bootstrap/ng-bootstrap';
     }),
     HttpClientModule,
     NgbModule,
-    NgbCarouselModule
+    CarouselModule
   ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'en-GB'},

@@ -38,7 +38,9 @@ $alt-app-warn:    mat-palette($mat-red, 900);
  * {
     font-family: 'Roboto', sans-serif;
  }
-
+ a {
+    text-decoration: none !important;
+}
 
 // Create the theme object (a Sass map containing all of the palettes).
 $alt-app-theme: mat-dark-theme($alt-app-primary, $alt-app-accent, $alt-app-warn);
