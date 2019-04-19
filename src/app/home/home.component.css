@@ -1,0 +1,14 @@
+
+
+img {
+    display:block;
+    width:100%; height:100%;
+    object-fit: cover;
+}
+
+ngb-carousel {
+    object-fit:cover;
+    height: 100% !important;
+    background-color: #8a8a8a;
+}
+

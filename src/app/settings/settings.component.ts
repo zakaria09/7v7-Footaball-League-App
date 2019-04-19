@@ -21,6 +21,8 @@ export class SettingsComponent implements OnInit {
 
   ngOnInit() {
     this.themeService.currentTheme.subscribe(theme => this.otherTheme = theme);
+
+    this.authservice.user.subscribe(user => this.user = user);
   }
 
   newTheme() {

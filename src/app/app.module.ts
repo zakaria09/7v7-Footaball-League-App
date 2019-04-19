@@ -45,6 +45,11 @@ import { NotificationService } from './shared/notification.service';
 import { ShareButtonsModule } from '@ngx-share/buttons';
 import { HttpClientModule } from '@angular/common/http';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
+import { HomeComponent } from './home/home.component';
+
+// bootsrap
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbCarouselModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -69,6 +74,7 @@ import { ManageUsersComponent } from './manage-users/manage-users.component';
     EditTableComponent,
     UserProfileComponent,
     ManageUsersComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -84,7 +90,9 @@ import { ManageUsersComponent } from './manage-users/manage-users.component';
     ShareButtonsModule.withConfig({
       debug: true
     }),
-    HttpClientModule
+    HttpClientModule,
+    NgbModule,
+    NgbCarouselModule
   ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'en-GB'},

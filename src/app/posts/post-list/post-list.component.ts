@@ -37,7 +37,7 @@ export class PostListComponent implements OnInit {
 
   deletePost(id) {
     if(this.authservice.canDelete(this.user)) {
-      alert('Are you sure ?')
+      this.notification.warnMessage('Post has been deleted!')
       this.postService.deletePost(id);
     } else {
       this.notification.warnPermissions();
@@ -46,5 +46,10 @@ export class PostListComponent implements OnInit {
 
   addLikes(id , obj) {
     this.postService.incrementLikes(id, obj);
+  }
+
+  pinPost(id) {
+    this.notification.successMessage('Post has now been pinned to the homepage!');
+    this.postService.pinToHomepage(id);
   }
 }

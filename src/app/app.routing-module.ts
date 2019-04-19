@@ -15,9 +15,11 @@ import { AdminGuard } from './auth/admin.guard';
 import { CreateFixturesComponent } from './matches/create-fixtures/create-fixtures.component';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { CreateTeamComponent } from './teams/create-team/create-team.component';
+import { HomeComponent } from './home/home.component';
 
 
 const routes: Routes = [
+    { path: '', component: HomeComponent, data: { animation: 'isRight' }},
     { path: 'create-fixtures', component: CreateFixturesComponent, data: { animation: 'isLeft' }, canActivate: [AdminGuard]},
     { path: 'matches', component: MatchesComponent, data: { animation: 'isLeft' }, canActivate: [AuthGaurd]},
     { path: 'teams', component: TeamsComponent, data: { animation: 'isRight' }, canActivate: [AuthGaurd]},

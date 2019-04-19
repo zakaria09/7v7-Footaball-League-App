@@ -22,7 +22,7 @@
       </div>
       <div class="more-vert" >
         <mat-menu #menu="matMenu">
-            <button mat-menu-item><mat-icon><img src="../../../assets/material-pin-icon.png" alt=""></mat-icon>Pin To HomePage</button>
+            <button mat-menu-item (click)="pinPost(post.id)"><mat-icon><img src="../../../assets/material-pin-icon.png" alt=""></mat-icon>Pin To HomePage</button>
             <button mat-menu-item (click)="deletePost(post.id)"><mat-icon>delete</mat-icon>Delete</button>
             <button mat-menu-item><mat-icon>flag</mat-icon>Report</button>
         </mat-menu>

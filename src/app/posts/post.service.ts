@@ -52,4 +52,10 @@ export class PostService {
         likes: ++obj.likes
       })
 }
+
+pinToHomepage(docId) {
+  this.db.collection('posts').doc(docId).update({
+    pinned: true
+  })
+}
 }

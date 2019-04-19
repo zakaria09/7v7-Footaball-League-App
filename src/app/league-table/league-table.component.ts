@@ -47,9 +47,8 @@ export class LeagueTableComponent implements OnInit, AfterViewInit, OnDestroy {
       this.tableData.sort = this.sort;
     });
     this.sort.sort(<MatSortable>({id: 'points', start: 'desc'}));
-    console.log('array', this.teams);
-    //this.table.tablePoints(this.teams);
     
+    this.authservice.user.subscribe(user => this.user = user);
   }
   
   openModal(teamName, teamId, wins, draws, played) {
