@@ -33,8 +33,8 @@ export class CreateFixturesComponent implements OnInit {
               private notfication: NotificationService) { }
 
   //success snackbar
-  openSnackBar(teamone: string, teamtwo: string) {
-    this.notfication.openFixtureSnackBar(teamone, teamtwo);
+  openSnackBar(teamone, teamtwo) {
+    this.notfication.successMessage(`${teamone.teamName} VS ${teamtwo.teamName}`);
   }
 
   ngOnInit() {

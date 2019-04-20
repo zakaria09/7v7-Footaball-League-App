@@ -20,7 +20,6 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireStorageModule } from 'angularfire2/storage';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { environment } from 'src/environments/environment';
 import { MatchesService } from './matches/matches.service'
 import { DatePipe } from '@angular/common';
 import { ScoresModalComponent } from './matches/scores-modal/scores-modal.component';
@@ -50,6 +49,8 @@ import { HomeComponent } from './home/home.component';
 // bootsrap
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -92,7 +93,8 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
     }),
     HttpClientModule,
     NgbModule,
-    CarouselModule
+    CarouselModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'en-GB'},

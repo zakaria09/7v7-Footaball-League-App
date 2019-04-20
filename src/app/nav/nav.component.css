@@ -17,3 +17,7 @@ mat-icon, .list, ::ng-deep .list {
     padding-right: 1.2rem;
 }
 
+mat-toolbar {
+    position: relative; 
+    z-index: 10;
+}

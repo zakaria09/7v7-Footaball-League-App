@@ -7,7 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "http-server": "http-server ."
   },
   "private": true,
   "dependencies": {
@@ -24,7 +25,9 @@
     "@angular/platform-browser": "^7.2.8",
     "@angular/platform-browser-dynamic": "^7.2.8",
     "@angular/platform-server": "^7.2.8",
+    "@angular/pwa": "^0.12.4",
     "@angular/router": "^7.2.8",
+    "@angular/service-worker": "^7.2.8",
     "@fortawesome/angular-fontawesome": "^0.3.0",
     "@fortawesome/fontawesome-free": "^5.8.1",
     "@fortawesome/fontawesome-svg-core": "^1.2.17",
@@ -57,6 +60,7 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^11.10.5",
     "codelyzer": "^4.5.0",
+    "http-server": "^0.11.1",
     "jasmine-core": "^3.3.0",
     "jasmine-spec-reporter": "^4.2.1",
     "karma": "^4.0.1",

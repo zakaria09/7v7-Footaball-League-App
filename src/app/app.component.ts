@@ -8,7 +8,7 @@ import { slider } from './route-animations';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
   animations: [
-    slider
+    //slider
   ]
 })
 export class AppComponent {

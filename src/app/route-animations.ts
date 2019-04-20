@@ -10,13 +10,14 @@ import {
  } from '@angular/animations'
 
 
- export const slider =
+ export const slider = 
   trigger('routeAnimations', [
     transition('* => isLeft', slideTo('left') ),
     transition('* => isRight', slideTo('right') ),
     transition('isRight => *', slideTo('left') ),
     transition('isLeft => *', slideTo('right') )
   ]);
+ 
 
 function slideTo(direction) {
   const optional = { optional: true };
