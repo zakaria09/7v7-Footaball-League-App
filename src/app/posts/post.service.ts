@@ -57,9 +57,9 @@ export class PostService {
       })
 }
 
-pinToHomepage(docId) {
+pinToHomepage(docId, isPinned) {
   this.db.collection('posts').doc(docId).update({
-    pinned: true
+    pinned: isPinned
   })
 }
 }

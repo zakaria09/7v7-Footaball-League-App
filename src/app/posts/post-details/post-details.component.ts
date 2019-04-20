@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PostService } from '../post.service';
 import { Post } from '../post';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-post-details',
@@ -16,14 +17,13 @@ export class PostDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.getPost();
-    console.log(this);
   }
 
   getPost() {
     const id = this.route.snapshot.paramMap.get('id');
-    return this.postservice.getPostData(id).subscribe(data => 
-      this.post = data,
-    )
+    return this.postservice.getPostData(id).subscribe(data => {
+      return this.post = data;
+    });
   }
 
 }

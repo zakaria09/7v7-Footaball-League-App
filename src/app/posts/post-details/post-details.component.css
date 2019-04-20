@@ -1,0 +1,48 @@
+section {
+    padding: 1em;
+    margin-bottom: 3em;
+}
+  
+.card {
+    max-width: 800px;
+    text-align: center;
+    border: #e6e5e6 solid 1px;
+    padding: 1em;
+    box-shadow: 0.2em 0.3em hsla(0, 0%, 82%, 0.5);
+    margin-bottom: 1.5em;
+}
+
+.more-actions {
+    display: flex;
+}
+
+.share-likes {
+    flex: 0 1 auto;
+}
+
+.more-vert {
+    flex: 0 1 auto;
+    margin-left: auto;
+}
+
+mat-card-title {
+    font-size: 2.3rem;
+    padding: 0.5em;
+}
+
+p {
+    padding: .2em;
+}
+
+.content {
+    text-align: left;
+    margin-left: 1.5em;
+    margin-right: 1.5em;
+    padding: 2em;
+    font-size: 1.3em;
+    line-height: 1.8;
+}
+
+p.post-info {
+    font-style: italic;
+}

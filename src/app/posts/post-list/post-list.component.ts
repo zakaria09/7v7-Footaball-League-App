@@ -51,6 +51,11 @@ export class PostListComponent implements OnInit {
 
   pinPost(id) {
     this.notification.successMessage('Post has now been pinned to the homepage!');
-    this.postService.pinToHomepage(id);
+    this.postService.pinToHomepage(id, true);
+  }
+
+  unpinPost(id) {
+    this.notification.successMessage('Post has now been removed from the homepage!');
+    this.postService.pinToHomepage(id, false);
   }
 }

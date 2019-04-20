@@ -1,10 +1,14 @@
-<section>  
-  <carousel>
-    <slide *ngFor="let post of pinnedPosts | async">
-        <img src="{{ post.image }}" alt="first slide" style="display: block; max-height: 40rem; width: 100%;">
-        <div class="carousel-caption d-none d-md-block">
-          <h1>{{ post.title | uppercase }}</h1>
-        </div>
-    </slide>
-  </carousel>
+<section>
+  <mat-card fxLayout="column" fxLayoutAlign="center stretch">  
+    <carousel>
+      <slide *ngFor="let post of pinnedPosts | async">
+          <a mat-button routerLink="/blog" >
+            <img mat-card-image src="{{ post.image }}" alt="">
+            <div class="carousel-caption d-none d-md-block">
+              <h1>{{ post.title | uppercase }}</h1>
+            </div>
+          </a>
+      </slide>
+    </carousel>
+  </mat-card>
 </section>

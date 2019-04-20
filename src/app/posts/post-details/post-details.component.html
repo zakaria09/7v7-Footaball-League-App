@@ -1,6 +1,33 @@
-<section *ngIf="post">
-  <h1>{{ post.title }}</h1>
-  <p>Posted by {{ post.author }} </p>
-  <!-- <p>&bull; {{ post.published | date : 'fullDate'  : locale }}</p> -->
-  <p>{{ post.content }}</p>
+<section fxLayout="column" fxLayoutAlign="space-around center" *ngIf="post">
+  <mat-card fxFlex.xs="100" class="card">
+    <mat-card-actions>
+        <button 
+          mat-raised-button 
+          routerLink="/blog" 
+          color="primary"
+          fxLayoutAlign="start start">
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+    </mat-card-actions>
+    <mat-card-title>{{ post.title | titlecase }}</mat-card-title>
+    <img mat-card-image  src="{{ post.image }}" alt="">
+    <mat-card-subtitle>
+      <p class="post-info">Authored by {{ post.author }} </p>
+      <p class="post-info">Published on {{ post.published.toDate() | date }}</p>
+    </mat-card-subtitle>	
+    <mat-card-content>
+      <p class="content">{{ post.content }}</p>
+    </mat-card-content>
+    <mat-card-actions class="more-actions">
+      <div class="share-likes" >
+        <button mat-button matTooltip="{{ post.likes }} LIKES"><mat-icon>favorite_border</mat-icon></button>
+        <button mat-button [matMenuTriggerFor]="sharemenu">SHARE<mat-icon>share</mat-icon></button>
+        <mat-menu #sharemenu="matMenu">
+            <share-button button="facebook" text="Share" [showText]="true"></share-button>
+            <share-button button="twitter" text="Tweet" [showText]="true"></share-button>
+            <share-button button="linkedin" text="Share" [showText]="true"></share-button>
+        </mat-menu>
+      </div>
+    </mat-card-actions>
+  </mat-card>
 </section>
