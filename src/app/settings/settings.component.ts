@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ThemeService } from '../shared/theme.service';
 import { LeagueTableService } from '../shared/leagueTable.service';
 import { AuthService } from '../auth/auth.service';
@@ -26,7 +26,6 @@ export class SettingsComponent implements OnInit {
   }
 
   newTheme() {
-    console.log(this.otherTheme);
     this.otherTheme = !this.otherTheme;
     this.themeService.changeTheme(this.otherTheme);
   }
@@ -34,6 +33,7 @@ export class SettingsComponent implements OnInit {
   resetTable() {
     if(this.authservice.canDelete(this.user)) {
       this.leagueTable.resetLeagueTable();
+      this.notification.successMessage('The League Table has been reset.');
     } else {
       this.notification.warnPermissions();
     }

@@ -87,7 +87,6 @@ export class MatchesService {
     }
     
     updateTableSecondTeamDraws(obj) {
-        console.log('a draw has occured')
         this.db.collection('teams').doc(obj.firstTeamId).update({
             draws: ++obj.firstTeamDraws,
           })

@@ -21,3 +21,10 @@ div.mat-list-item-content {
     margin: auto;
     display: inline-block;
 }
+
+@media only screen and (max-width: 600px) {
+    mat-dialog-content  {
+        padding: 0.05em;
+        font-size: 0.05em;
+      }
+  }

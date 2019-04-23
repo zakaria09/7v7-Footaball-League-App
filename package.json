@@ -8,7 +8,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "http-server": "http-server ."
+    "http-server": "http-server .",
+    "pwa": "ng build --prod && sw-precache --root=dist --config=precache-config.js",
+    "precache": "sw-precache --verbose --config=sw-precache-config.js"
   },
   "private": true,
   "dependencies": {
@@ -71,6 +73,7 @@
     "karma-jasmine-html-reporter": "^1.4.0",
     "protractor": "^5.4.2",
     "rxjs-tslint": "^0.1.7",
+    "sw-precache-webpack-plugin": "^0.11.5",
     "ts-node": "~8.0.2",
     "tslint": "^5.13.1",
     "typescript": "3.1.6",
