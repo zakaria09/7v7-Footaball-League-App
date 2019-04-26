@@ -3,17 +3,18 @@
       <mat-card class="accounts">
         <mat-card-title fxLayoutAlign="center">{{ user.displayName | titlecase }}</mat-card-title>
         <mat-card-content fxLayoutAlign="center">{{ user.email }}</mat-card-content>
-        <mat-card-content fxLayoutAlign="center">Is A Subscriber: {{ user.roles.subscriber }}</mat-card-content>
-        <mat-card-content fxLayoutAlign="center">Is An Editor: {{ user.roles.editor }}</mat-card-content>
-        <mat-card-content fxLayoutAlign="center">Is An Admin: {{ user.roles.admin }}</mat-card-content>
+        <mat-card-content fxLayoutAlign="center">Subscriber<mat-checkbox [checked]="user.roles.subscriber" disabled></mat-checkbox> </mat-card-content>
+        <mat-card-content fxLayoutAlign="center">Editor<mat-checkbox [checked]="user.roles.editor" disabled></mat-checkbox> </mat-card-content>
+        <mat-card-content fxLayoutAlign="center">Admin<mat-checkbox [checked]="user.roles.admin" disabled></mat-checkbox> </mat-card-content>
         <div *ngIf="user.team; else elseBlock">
             <mat-card-content fxLayoutAlign="center">This person plays for: {{ user.team }}</mat-card-content>
         </div>
         <ng-template #elseBlock>
                 <mat-card-content fxLayoutAlign="center">This Account has not been assigned to a team.</mat-card-content>
         </ng-template>
+        <mat-card-actions>
         <button mat-button color="warn" matTooltip="Delete This Account" (click)="deleteUser(user.id)"><mat-icon>delete</mat-icon></button>
-        <button [matMenuTriggerFor]="teammenu"><mat-icon>add_box</mat-icon></button>
+        <button mat-button  matTooltip="Assign a Team" [matMenuTriggerFor]="teammenu"><mat-icon>add_box</mat-icon></button>
             <mat-menu #teammenu="matMenu">
                 <div *ngFor="let team of teams | async">
                     <button mat-menu-item (click)="assignTeam(user.id, team.teamName)">{{ team.teamName }}</button>
@@ -25,6 +26,7 @@
                 <button mat-menu-item (click)="makeAdmin(user.id)">Make User an Admin</button>
                 <button mat-menu-item (click)="makeSubscriber(user.id)">downgrade User a Subscriber</button>
             </mat-menu>
+        </mat-card-actions>
       </mat-card>
   </div>
   </section>

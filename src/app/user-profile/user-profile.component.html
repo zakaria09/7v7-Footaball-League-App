@@ -4,6 +4,6 @@
     <img [src]="profilePic" alt="profile picture">
   </div>
   <mat-card-title fxLayoutAlign="center">Welcome, {{ displayName }}</mat-card-title>
-  <mat-card-title>You are currently signed in with this email, {{ email }}</mat-card-title>
-  <mat-card-title>verified, <mat-checkbox [checked]="emailVerified" disabled></mat-checkbox></mat-card-title>
+  <mat-card-title>Your Email: {{ email }}</mat-card-title>
+  <mat-card-title>verified: <mat-checkbox [checked]="emailVerified" disabled></mat-checkbox></mat-card-title>
 </mat-card>

@@ -36,6 +36,10 @@ export class LoginComponent implements OnInit {
     this.authservice.googleLogin();
   }
 
+  facebookLogin() {
+    this.authservice.facebookLogin();
+  }
+
   openModal() {
       this.modal.open(ForgotPasswordComponent, {
         width: '60%', 

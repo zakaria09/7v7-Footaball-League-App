@@ -15,6 +15,8 @@ ngb-carousel {
 mat-card {
     width: 100%;
     height: 100%;
+    /* background: linear-gradient(to bottom, rgba(210,255,82,.6) 0%,rgba(145,232,66,.1) 98%,rgba(145,232,66,.05) 50%); */
+    background: linear-gradient(to bottom, rgba(210,255,82,.6) 0%,rgba(145,232,66,.1) 70%);;
 }
 
 @media screen and (min-width: 1330px) {

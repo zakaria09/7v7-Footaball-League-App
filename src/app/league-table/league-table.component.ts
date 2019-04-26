@@ -28,6 +28,7 @@ export class LeagueTableComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(private table: LeagueTableService,
+              private teamservice: TeamService,
               public modal: MatDialog,
               private authservice: AuthService,
               private notification: NotificationService) {}
@@ -66,6 +67,15 @@ export class LeagueTableComponent implements OnInit, AfterViewInit, OnDestroy {
   } else {
     this.notification.warnPermissions();
     }
+  }
+
+  deleteTeam(id) {
+    if(this.authservice.canDelete(this.user)) {
+    this.notification.successMessage('You\'ve Succesfully Deleted The Team!');
+    this.teamservice.DeleteTeam(id);
+    } else {
+      this.notification.warnPermissions();
+      }
   }
 
   ngOnDestroy() 

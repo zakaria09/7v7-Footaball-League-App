@@ -20,11 +20,11 @@
                     <span mat-menu-item>Home</span>
                 </a>
                 <a mat-list-item class="list" routerLink="/create-fixtures" (click)="sidenav.toggle()">
-                    <mat-icon>event</mat-icon>
+                    <mat-icon>date_range</mat-icon>
                     <span mat-menu-item>Create Fixtures</span>
                 </a>
                 <a mat-list-item class="list" routerLink="/matches" (click)="sidenav.toggle()">
-                    <mat-icon>calendar_today</mat-icon>
+                    <mat-icon>insert_invitation</mat-icon>
                     <span mat-menu-item>Matches</span>
                 </a>
                 <a mat-list-item class="list" routerLink="/teams" (click)="sidenav.toggle()">
@@ -50,7 +50,7 @@
                 <ng-template [ngIf]="!afAuth.auth.currentUser">
                     <a mat-list-item class="list" routerLink="/login" (click)="sidenav.toggle()">
                         <mat-icon>keyboard_tab</mat-icon>
-                        <span mat-menu-item>Login</span>
+                        <span mat-menu-item>Sign in</span>
                     </a>
                     <a mat-list-item class="list" routerLink="/signup" (click)="sidenav.toggle()">
                         <mat-icon>account_box</mat-icon>
@@ -62,7 +62,7 @@
                     <span class="nav-caption">Profile</span>
                 </a>
                 <a mat-list-item class="list" routerLink="/manage-users" (click)="sidenav.toggle()" *ngIf="afAuth.auth.currentUser">
-                    <mat-icon>supervised_user_circle</mat-icon>
+                    <mat-icon>supervisor_account</mat-icon>
                     <span class="nav-caption">Manage Users</span>
                 </a>
                 <a mat-list-item class="list" (click)="onLogout()" (click)="sidenav.toggle()" *ngIf="afAuth.auth.currentUser">

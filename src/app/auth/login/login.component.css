@@ -1,3 +1,16 @@
 .signin {
     padding: 2rem;
 }
+
+.googleLogin {
+    background-color: #ff0000;
+    color: #fff;
+    font: bold;
+}
+
+.facebookLogin {
+    background-color: #385899;
+    color: #fff;
+    font: bold;
+    font-family: 'Roboto', "Helvetica Neue",sans-serif;
+}

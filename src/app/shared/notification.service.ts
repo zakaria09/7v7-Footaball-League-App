@@ -19,7 +19,7 @@ export class NotificationService {
 
     warnPermissions() {
         this.config['panelClass'] = ['warn'];
-        this.snackBar.open('You are not allowed to do that!', '', this.config);
+        this.snackBar.open('You must be an Admin to do that!', '', this.config);
     }
 
     accessDeniedPermissions() {

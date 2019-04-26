@@ -112,7 +112,21 @@ export class AuthService {
     const provider = new auth.GoogleAuthProvider();
     this.afAuth.auth.signInWithPopup(provider)
     .then((result) => {
-      this.notify.successMessage('Hooray! Successfully Signed In');
+      this.notify.successMessage('Hooray! Successfully Signed In with Google');
+      this.router.navigate(['/profile']);
+      this.SetUserData(result.user);
+    })
+    .catch(err => {
+      this.notify.warnMessage('Bummer! ' + err.message);
+    });
+    this.authChange.next(true);
+  }
+
+  async facebookLogin() {
+    const provider = new auth.FacebookAuthProvider();
+    this.afAuth.auth.signInWithPopup(provider)
+    .then((result) => {
+      this.notify.successMessage('Hooray! Successfully Signed In with Facebook');
       this.router.navigate(['/profile']);
       this.SetUserData(result.user);
     })

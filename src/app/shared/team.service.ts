@@ -41,4 +41,9 @@ export class TeamService {
             })
           }))
     }
+
+
+    DeleteTeam(teamId) {
+      return this.db.collection('teams').doc(teamId).delete();
+  }
 }
