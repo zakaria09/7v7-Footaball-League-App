@@ -14,7 +14,7 @@ export class SettingsComponent implements OnInit {
   otherTheme: boolean;
   user: User;
 
-  constructor(public themeService: ThemeService,
+  constructor(private themeService: ThemeService,
               private leagueTable: LeagueTableService,
               private authservice: AuthService,
               private notification: NotificationService) { }

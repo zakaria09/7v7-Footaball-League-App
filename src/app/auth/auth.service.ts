@@ -13,6 +13,8 @@ import { MatSnackBar } from '@angular/material';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/switchMap';
 import "rxjs/add/observable/of";
+import { auth } from 'firebase';
+import { NotificationService } from '../shared/notification.service';
 
 
 @Injectable({
@@ -30,15 +32,17 @@ export class AuthService {
 
   authChange = new Subject<boolean>();
   // private isAuthenticated = false;
-  private fbSubs: Subscription[] = [];
 
   constructor(
     private afAuth: AngularFireAuth,
     private router: Router,
     private afs: AngularFirestore,
     private snackbar: MatSnackBar,
+    private notify: NotificationService
   ) 
   {
+    // listen to the users that emitted from authstate
+    // and switcth to it
     this.user = this.afAuth.authState.switchMap(user => {
       if(user) {
         return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
@@ -64,9 +68,9 @@ export class AuthService {
   sendVerificationEmail() {
     return this.afAuth.auth.currentUser.sendEmailVerification()
       .then(() => {
-        alert('Please Check Your Email To Verify Your Account!')
+        this.notify.successMessage('Please Check Your Email To Verify Your Account!')
       }).catch((error) => {
-        window.alert(error.message);
+        this.notify.warnMessage('Bummer! ' + error.message);
       })
   }
 
@@ -85,7 +89,7 @@ export class AuthService {
         this.router.navigate(['/profile']);
       })
       .catch((error) => {
-        window.alert(error.message);
+        this.notify.warnMessage('Bummer! ' + error.message);
       });
       this.authChange.next(true);
   }
@@ -95,31 +99,40 @@ export class AuthService {
         authData.email, 
         authData.password)
             .then(result => {
+              this.notify.successMessage('Hooray! Successfully Signed In');
               this.router.navigate(['/matches']);
             })
             .catch(err => {
-              this.snackbar.open(err.message, null, {
-                duration: 3000
-              });
+              this.notify.warnMessage('Bummer! ' + err.message);
             });
         this.authChange.next(true);
+  }
+
+  async googleLogin() {
+    const provider = new auth.GoogleAuthProvider();
+    this.afAuth.auth.signInWithPopup(provider)
+    .then((result) => {
+      this.notify.successMessage('Hooray! Successfully Signed In');
+      this.router.navigate(['/profile']);
+      this.SetUserData(result.user);
+    })
+    .catch(err => {
+      this.notify.warnMessage('Bummer! ' + err.message);
+    });
+    this.authChange.next(true);
   }
 
   get isAuth(): boolean {
     return this.authState !== null;
   }
 
-  cancelSubscriptions() {
-    this.fbSubs.forEach(sub => sub.unsubscribe());
-}
-
-  SetUserData(user, name) {
+  SetUserData(user, name?) {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
     const userData: User = {
     uid: user.uid,
     email: user.email,
-    displayName: name,
-    nameToSearch: name.toLowerCase(),
+    displayName: name || user.displayName,
+    photoURL: user.photoURL || null,
     emailVerified: user.emailVerified,
     roles: {
       subscriber: true,
@@ -131,8 +144,17 @@ export class AuthService {
 }
 
 logout() {
+  this.notify.warnMessage('You\'ve Logged Out')
   this.router.navigate(['/login']);
   this.afAuth.auth.signOut();
+}
+
+// reset password
+
+resetPassword(email) {
+  return this.afAuth.auth.sendPasswordResetEmail(email)
+    .then(() => this.notify.successMessage(`Check Your Email: We've sent you a password reset link`))
+    .catch(error => this.notify.warnMessage(error.message));
 }
 
 // Abilities and Roles Authorization 

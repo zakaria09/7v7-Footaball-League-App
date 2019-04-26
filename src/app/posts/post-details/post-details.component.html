@@ -12,7 +12,12 @@
     <mat-card-title>{{ post.title | titlecase }}</mat-card-title>
     <img mat-card-image  src="{{ post.image }}" alt="">
     <mat-card-subtitle>
-      <p class="post-info">Authored by {{ post.author }} </p>
+      <div *ngIf="post.authorPic; else elseBlock">
+          <p class="post-info">Authored by {{ post.author }} <img src="{{ post.authorPic }}" alt="" class="profilepic"></p>
+      </div>
+      <ng-template #elseBlock>
+        <p class="post-info">Authored by {{ post.author }} </p>
+      </ng-template>
       <p class="post-info">Published on {{ post.published.toDate() | date }}</p>
     </mat-card-subtitle>	
     <mat-card-content>

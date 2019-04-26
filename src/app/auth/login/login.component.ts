@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
+import { MatDialog } from '@angular/material';
+import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +13,8 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
 
-  constructor(private authservice: AuthService) { }
+  constructor(private authservice: AuthService,
+              public modal: MatDialog,) { }
 
   ngOnInit() {
     this.loginForm = new FormGroup({
@@ -27,6 +30,16 @@ export class LoginComponent implements OnInit {
       email: this.loginForm.value.email,
       password: this.loginForm.value.password
     });
+  }
+
+  googleLogin() {
+    this.authservice.googleLogin();
+  }
+
+  openModal() {
+      this.modal.open(ForgotPasswordComponent, {
+        width: '60%', 
+      });
   }
 
 }

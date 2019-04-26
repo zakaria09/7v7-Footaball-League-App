@@ -19,6 +19,7 @@ export class PostDashboardComponent implements OnInit {
   postForm: FormGroup;
   imageURL: string;
   displayName: string;
+  profilePic;
 
   uploadPercentage: Observable<number>
   task: AngularFireUploadTask;
@@ -40,15 +41,17 @@ export class PostDashboardComponent implements OnInit {
     }); 
     this.auth.user.subscribe(auth => {
       this.displayName = auth.displayName;
+      this.profilePic = auth.photoURL;
     });
 
     this.authservice.user.subscribe(user => this.user = user);
   }
 
   onSubmit(data) {
-    if(this.authservice.canDelete(this.user)) {
+    if(this.authservice.canEdit(this.user)) {
       const formData: Post = {
         author: this.displayName,
+        authorPic: this.profilePic || null,
         image: this.imageURL,
         title: data.value.title,
         content: data.value.content,

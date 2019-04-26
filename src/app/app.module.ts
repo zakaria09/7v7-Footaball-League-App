@@ -51,6 +51,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
@@ -76,6 +77,7 @@ import { environment } from '../environments/environment';
     UserProfileComponent,
     ManageUsersComponent,
     HomeComponent,
+    ForgotPasswordComponent,
   ],
   imports: [
     BrowserModule,
@@ -109,6 +111,7 @@ import { environment } from '../environments/environment';
   entryComponents: [
     ScoresModalComponent,
     EditTableComponent,
+    ForgotPasswordComponent
   ],
   bootstrap: [AppComponent]
 })

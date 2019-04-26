@@ -46,3 +46,10 @@ p {
 p.post-info {
     font-style: italic;
 }
+
+.profilepic {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    padding: 1em;
+}

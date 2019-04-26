@@ -9,7 +9,7 @@ describe('AdminGuard', () => {
     });
   });
 
-  it('should ...', inject([AdminGuard], (guard: AdminGuard) => {
-    expect(guard).toBeTruthy();
-  }));
+  // it('should ...', inject([AdminGuard], (guard: AdminGuard) => {
+  //   expect(guard).toBeTruthy();
+  // }));
 });
