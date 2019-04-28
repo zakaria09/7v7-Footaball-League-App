@@ -4,9 +4,7 @@ import { Observable } from 'rxjs';
 import { Matches } from './matches';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { DatePipe } from '@angular/common';
 import { map } from 'rxjs/operators';
-import { TeamService } from '../shared/team.service';
 import { NotificationService } from '../shared/notification.service';
 
 @Injectable() // to inject
@@ -17,8 +15,6 @@ export class MatchesService {
     //scores: Observable<any>;
 
     constructor(private db: AngularFirestore,
-                private datePipe: DatePipe,
-                private teamservice: TeamService,
                 private notify: NotificationService) {}
 
 
@@ -67,7 +63,6 @@ export class MatchesService {
         this.db.collection('teams').doc(obj.firstTeamId).update({
             wins: ++obj.firstTeamWins,
           })
-          console.warn(obj.firstTeamWins)
         this.UpdateFirstTeamTablePoints(obj);
     }
 
@@ -76,7 +71,6 @@ export class MatchesService {
         this.db.collection('teams').doc(obj.secondTeamId).update({
             wins: ++obj.secondTeamWins,
           })
-          console.warn(obj.secondTeamWins)
         this.UpdateSecondTeamTablePoints(obj);
     }
 
@@ -96,15 +90,12 @@ export class MatchesService {
         this.db.collection('teams').doc(obj.firstTeamId).update({
             played: ++obj.firstTeamPlayed,
           })
-        //this.tablePoints(obj);
-        
     }
 
     updateSeccondTeamPlayed(obj) {
         this.db.collection('teams').doc(obj.secondTeamId).update({
             played: ++obj.secondTeamPlayed,
         })
-        console.log('second Draws',obj.secondTeamPlayed);
         //this.tablePoints(obj);
         this.UpdateFirstTeamTablePoints(obj);
     }
@@ -133,7 +124,6 @@ export class MatchesService {
         this.getAllMatches()
             .subscribe(res => {
                 res.forEach(team => {
-                    console.log('wns and draws department')
                     if(team.firstTeamGoals > team.secondTeamGoals) {
                         this.firstTeamWins(team);
                         this.updateFirstTeamPlayed(team);
@@ -148,7 +138,6 @@ export class MatchesService {
                         this.updateFirstTeamPlayed(team);
                         this.updateSeccondTeamPlayed(team);
                     } else {
-                        console.log('No winners or draws yet!');
                     }
                 })
             })

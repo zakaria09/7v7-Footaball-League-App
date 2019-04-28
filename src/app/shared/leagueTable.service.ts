@@ -129,9 +129,6 @@ updateReset(teamObj) {
 
   // !!!
   UpdateTablePoints(teamObj) {
-      // console.log('hello')
-      // console.log(teamObj[i].draws)
-      console.log(teamObj);
       if(teamObj.draws || teamObj.wins) {
         this.db.collection('teams').doc(teamObj.teamId).update({
           points: (teamObj.draws * 1) + (teamObj.wins * 3)

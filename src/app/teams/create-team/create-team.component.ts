@@ -20,7 +20,6 @@ export class CreateTeamComponent implements OnInit {
   }
 
   onSubmit(teamForm) {
-    console.log(teamForm);
     if(!this.teamForm.invalid) {
       this.teamservice.createTeam(teamForm);
     }

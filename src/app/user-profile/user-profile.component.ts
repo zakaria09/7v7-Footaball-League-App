@@ -23,7 +23,6 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit() {
     this.auth.user.subscribe(auth => {
-      //console.log(auth);
       this.displayName = auth.displayName;
       this.email = auth.email;
       this.emailVerified = auth.emailVerified;

@@ -87,7 +87,6 @@ export class PostDashboardComponent implements OnInit {
         this.downloadURL = ref.getDownloadURL();
         this.downloadURL.subscribe(url => {
           this.imageURL = url;
-          console.log(url);
         });
       }
       )

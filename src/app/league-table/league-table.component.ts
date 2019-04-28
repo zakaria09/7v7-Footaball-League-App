@@ -41,7 +41,6 @@ export class LeagueTableComponent implements OnInit, AfterViewInit, OnDestroy {
     this.teamsTable = this.table
     .fetchTeams('teams')
     .subscribe((data: Teams[]) => {
-      console.log('data',data)
       this.teams.push(...data);
       //this.table.tablePoints(data);
       this.tableData = new MatTableDataSource(data);

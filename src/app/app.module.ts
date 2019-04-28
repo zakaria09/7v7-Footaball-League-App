@@ -87,7 +87,7 @@ import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.
     FlexLayoutModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase), 
-    AngularFirestoreModule,
+    AngularFirestoreModule.enablePersistence(), /// <--- offline data capability
     AngularFireAuthModule,
     AngularFireStorageModule,
     ShareButtonsModule.withConfig({
