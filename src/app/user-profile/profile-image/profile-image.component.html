@@ -1,0 +1,27 @@
+<mat-card class="card">
+  <mat-card-title fxLayoutAlign="center">Upload New Profile Image</mat-card-title>
+    <img src="{{ imageURL }}" alt="" class="image">
+    <form class="form" [formGroup]="imgForm" (ngSubmit)="onSubmit()">
+      <label for="">Image:</label>
+      <input 
+        type="file" 
+        name="file" 
+        class="upload" 
+        accept="image/x-png,image/gif,image/jpeg" 
+        formControlName="image" 
+        (change)="startUpload($event.target.files)">
+        <mat-progress-bar fxLayoutAlign="center center" mode="determinate" value="{{ uploadPercentage | async }}"></mat-progress-bar>
+        <div *ngIf="uploadPercentage">
+          <p>{{ uploadPercentage | async | number:'1.2-2' }}%</p>
+        </div>
+        <mat-card-actions>
+            <button 
+            mat-raised-button 
+            type="submit" 
+            color="primary"
+            [disabled]="imgForm.invalid">
+            Change Profile Picture
+          </button>
+        </mat-card-actions>
+    </form>
+</mat-card>

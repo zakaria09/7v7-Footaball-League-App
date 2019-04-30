@@ -52,6 +52,8 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
+import { EditProfileComponent } from './user-profile/edit-profile/edit-profile.component';
+import { ProfileImageComponent } from './user-profile/profile-image/profile-image.component';
 
 @NgModule({
   declarations: [
@@ -78,6 +80,8 @@ import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.
     ManageUsersComponent,
     HomeComponent,
     ForgotPasswordComponent,
+    EditProfileComponent,
+    ProfileImageComponent,
   ],
   imports: [
     BrowserModule,
@@ -111,7 +115,9 @@ import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.
   entryComponents: [
     ScoresModalComponent,
     EditTableComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    EditProfileComponent,
+    ProfileImageComponent
   ],
   bootstrap: [AppComponent]
 })

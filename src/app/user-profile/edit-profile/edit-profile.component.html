@@ -1,0 +1,31 @@
+<mat-dialog-content 
+  fxLayout 
+  class="edit" 
+  fxLayoutAlign="center">
+  <form 
+    class="container" 
+    [formGroup]="editForm" 
+    (ngSubmit)="onSubmit(editForm.value)"
+    fxLayoutAlign="center"
+    fxLayout="column">
+      <mat-label>{{ passedData.displayName }}    </mat-label>
+    <mat-form-field 
+      class="example-full-width" 
+      mat-dialog-content>
+      <input 
+        matInput 
+        placeholder="New Profile Name" 
+        formControlName="displayName">
+        <mat-error>
+            Please enter a name!
+        </mat-error>
+    </mat-form-field>
+    <button 
+      mat-raised-button 
+      color="primary" 
+      type="submit"
+      [disabled]="editForm.invalid">
+      Change Profile Info
+    </button>
+  </form>
+</mat-dialog-content>

@@ -2,6 +2,9 @@
   <div *ngFor="let user of accounts | async" (value)="user.id" >
       <mat-card class="accounts">
         <mat-card-title fxLayoutAlign="center">{{ user.displayName | titlecase }}</mat-card-title>
+        <div *ngIf="user.photoURL">
+            <img [src]="user.photoURL" alt="profile picture">
+        </div>
         <mat-card-content fxLayoutAlign="center">{{ user.email }}</mat-card-content>
         <mat-card-content fxLayoutAlign="center">Subscriber<mat-checkbox [checked]="user.roles.subscriber" disabled></mat-checkbox> </mat-card-content>
         <mat-card-content fxLayoutAlign="center">Editor<mat-checkbox [checked]="user.roles.editor" disabled></mat-checkbox> </mat-card-content>

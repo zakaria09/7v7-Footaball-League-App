@@ -3,6 +3,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatchesService } from '../matches.service';
 import { LeagueTableService } from 'src/app/shared/leagueTable.service';
+import { NotificationService } from 'src/app/shared/notification.service';
 
 @Component({
   selector: 'app-scores-modal',
@@ -15,7 +16,8 @@ export class ScoresModalComponent implements OnInit {
 
   constructor(@Inject(MAT_DIALOG_DATA) public passedData: any, 
               private matchesService: MatchesService,
-              public dialogRef: MatDialogRef<ScoresModalComponent>) { }
+              public dialogRef: MatDialogRef<ScoresModalComponent>,
+              private notify: NotificationService) { }
 
   ngOnInit() {
     this.scoresForm = new FormGroup({
@@ -37,6 +39,7 @@ export class ScoresModalComponent implements OnInit {
       this.matchesService.updateWinsAndDraws();
       this.scoresForm.reset();
       this.dialogRef.close();
+      this.notify.successMessage('Scores have successfuly been added!');
     }
   }
 }

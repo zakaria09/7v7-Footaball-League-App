@@ -14,3 +14,9 @@ mat-card-title, mat-card-content {
 mat-card-content mat-checkbox {
     padding-left: 1.5em;
 }
+
+img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { TeamService } from 'src/app/shared/team.service';
 import { Choices } from './Choices';
+import { NotificationService } from 'src/app/shared/notification.service';
 
 @Component({
   selector: 'app-create-team',
@@ -11,7 +12,8 @@ import { Choices } from './Choices';
 export class CreateTeamComponent implements OnInit {
   teamForm: FormGroup;
 
-  constructor(private teamservice: TeamService)  { }
+  constructor(private teamservice: TeamService,
+              private notify: NotificationService)  { }
 
   ngOnInit() {
     this.teamForm = new FormGroup({
@@ -21,7 +23,9 @@ export class CreateTeamComponent implements OnInit {
 
   onSubmit(teamForm) {
     if(!this.teamForm.invalid) {
+      console.log(teamForm)
       this.teamservice.createTeam(teamForm);
+      this.notify.successMessage('Successfully added ' + teamForm.teamName + ' to the league!');
     }
     this.teamForm.reset();
   }

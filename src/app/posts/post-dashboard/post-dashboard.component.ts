@@ -21,7 +21,7 @@ export class PostDashboardComponent implements OnInit {
   displayName: string;
   profilePic;
 
-  uploadPercentage: Observable<number>
+  uploadPercentage: Observable<number>;
   task: AngularFireUploadTask;
   downloadURL: Observable<string>;
 

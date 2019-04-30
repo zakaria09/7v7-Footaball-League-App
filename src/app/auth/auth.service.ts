@@ -238,6 +238,18 @@ giveUserTeam(docId, team) {
   })
 }
 
+updateDisplayName(docId, newName) {
+  this.afs.collection('users').doc(docId).update({
+    displayName: newName
+  })
+}
+
+updateProfileImage(docId, imageURL) {
+  this.afs.collection('users').doc(docId).update({
+    photoURL: imageURL
+  })
+}
+
 deleteUser(id) {
   return this.afs.collection('users').doc(id).delete();
 }

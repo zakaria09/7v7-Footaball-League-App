@@ -6,4 +6,8 @@
   <mat-card-title fxLayoutAlign="center">Welcome, {{ displayName }}</mat-card-title>
   <mat-card-title>Your Email: {{ email }}</mat-card-title>
   <mat-card-title>verified: <mat-checkbox [checked]="emailVerified" disabled></mat-checkbox></mat-card-title>
+  <mat-card-actions>
+    <button mat-raised-button color="accent" (click)="openImageModal(userId)"><mat-icon>account_circle</mat-icon>Update Profile Picture</button>
+    <button mat-raised-button color="primary" (click)="openModal(displayName, userId)"><mat-icon>edit</mat-icon>Update Profile Name</button>
+  </mat-card-actions>
 </mat-card>
