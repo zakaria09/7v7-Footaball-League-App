@@ -83,7 +83,6 @@ export class AuthService {
       .then((result) => {
         this.sendVerificationEmail();
         this.SetUserData(result.user, name);
-        console.log(result.user);
       })
       .then(() => {
         this.router.navigate(['/profile']);

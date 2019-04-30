@@ -22,7 +22,6 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   onSubmit(form) {
-    console.log(form.value.email);
     this.authservice.resetPassword(form.value.email);
     this.emailForm.clearValidators();
     this.emailForm.reset();
