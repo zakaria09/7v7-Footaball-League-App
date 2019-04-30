@@ -50,12 +50,20 @@ export class PostListComponent implements OnInit {
   }
 
   pinPost(id) {
+  if(this.authservice.canEdit(this.user)) {
     this.notification.successMessage('Post has now been pinned to the homepage!');
     this.postService.pinToHomepage(id, true);
+  } else {
+    this.notification.warnPermissions();
+  }
   }
 
   unpinPost(id) {
-    this.notification.successMessage('Post has now been removed from the homepage!');
-    this.postService.pinToHomepage(id, false);
+    if(this.authservice.canEdit(this.user)) {
+      this.notification.successMessage('Post has now been removed from the homepage!');
+      this.postService.pinToHomepage(id, false);
+    } else {
+      this.notification.warnPermissions();
+    }
   }
 }

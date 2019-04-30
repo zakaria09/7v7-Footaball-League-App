@@ -25,7 +25,7 @@
     </mat-card-content>
     <mat-card-actions class="more-actions">
       <div class="share-likes" >
-        <button mat-button matTooltip="{{ post.likes }} LIKES"><mat-icon>favorite_border</mat-icon></button>
+        <!-- <button mat-button matTooltip="{{ post.likes }} LIKES"><mat-icon>favorite_border</mat-icon></button> -->
         <button mat-button [matMenuTriggerFor]="sharemenu">SHARE<mat-icon>share</mat-icon></button>
         <mat-menu #sharemenu="matMenu">
             <share-button button="facebook" text="Share" [showText]="true"></share-button>
