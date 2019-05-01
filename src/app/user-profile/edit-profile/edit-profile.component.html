@@ -13,6 +13,7 @@
       class="example-full-width" 
       mat-dialog-content>
       <input 
+        type="text"
         matInput 
         placeholder="New Profile Name" 
         formControlName="displayName">
@@ -25,7 +26,7 @@
       color="primary" 
       type="submit"
       [disabled]="editForm.invalid">
-      Change Profile Info
+      Save Profile Info
     </button>
   </form>
 </mat-dialog-content>

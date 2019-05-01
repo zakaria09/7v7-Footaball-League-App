@@ -21,13 +21,14 @@ export class EditProfileComponent implements OnInit {
   ngOnInit() {
     this.editForm = new FormGroup({
       'displayName': new FormControl('', [
-        Validators.required
+        Validators.required,
+        Validators.pattern('^[a-zA-Z]+$')
       ]),
     })
   }
 
   onSubmit(data) {
-    if(!this.editForm.invalid) 
+    if(!this.editForm.invalid && data.displayName) 
     {
       this.authservice.updateDisplayName(this.passedData.userId, data.displayName);
       this.notify.successMessage('Profile Successfully Updated!');
