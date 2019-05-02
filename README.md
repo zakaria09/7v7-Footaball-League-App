@@ -21,12 +21,12 @@ Password: Test123
 
 ## Editor
 
-Email: test@editor.com
+Email: editor@test.com
 Password: Test123
 
 ## Admin
 
-Email: test@admin.com
+Email: admin@test.com
 Password: Test123
 
 ## 7v7 Football League App
