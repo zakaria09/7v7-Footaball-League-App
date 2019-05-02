@@ -1,11 +1,11 @@
 export const environment = {
   production: true,
     firebase: {
-      apiKey: "AIzaSyB94R5wE0JQUaVAdBG74qnk5vAvPE6CRcs",
-      authDomain: "teesside7aside.firebaseapp.com",
-      databaseURL: "https://teesside7aside.firebaseio.com",
-      projectId: "teesside7aside",
-      storageBucket: "teesside7aside.appspot.com",
-      messagingSenderId: "714349045938"
+      apiKey: "AIzaSyDL0Xhd29s43DY7FqnpKt5kOsIqDatkNFg",
+      authDomain: "football-league-app.firebaseapp.com",
+      databaseURL: "https://football-league-app.firebaseio.com",
+      projectId: "football-league-app",
+      storageBucket: "football-league-app.appspot.com",
+      messagingSenderId: "811504898134"
   }
 };

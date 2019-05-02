@@ -1,27 +1,36 @@
 # FootballApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
+This project is live on: https://football-league-app.firebaseapp.com/
 
-## Development server
+## Unzip the Folder
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+The project file have been zipped please unzip to view
 
-## Code scaffolding
+## There are different User Roles and User Previledges 
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+The Roles are:
 
-## Build
+Subscriber: Can only Read
+Editor: Can only Read & Edit
+Admin: Can Read, Edit & Delete
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Subscriber
 
-## Running unit tests
+Email: test@subscriber.com
+Password: Test123
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Editor
 
-## Running end-to-end tests
+Email: test@editor.com
+Password: Test123
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+## Admin
+
+Email: test@admin.com
+Password: Test123
 
 ## 7v7 Football League App
 
 For the 7v7 - Teesside Uni League 
+This app is only for demonstration 
+purposes.
